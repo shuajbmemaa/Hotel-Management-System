@@ -4,8 +4,8 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import React from 'react'
 import Home from './Home'
 import Dashboard from './Dashboard'
-import Register from './Register'
-import Login from './Login'
+import Register from './Auth/Register'
+import Login from './Auth/Login'
 
 function App() {
   return (
