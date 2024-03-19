@@ -5,6 +5,6 @@ const app = express();
 
 
 
-app.listen(3000,()=>{
+app.listen(3002,()=>{
     console.log("Server is running ");
 })
