@@ -10,10 +10,11 @@ import mysql from 'mysql'
 
 const app = express();
 app.use(cors({
-    origin:["http:localhost:5173"],
-    methods:["POST","GET","PUT","DELETE"],
-    credentials:true
+    origin: '*',
+    methods: ["POST", "GET", "PUT", "DELETE"],
+    credentials: true
 }));
+
 app.use(express.json());
 app.use(express.static('public'));
 app.use(bodyParser.json());
@@ -27,7 +28,7 @@ app.use(session({
         maxAge:1000*60*60*24
     }
 }))
-
+ 
 const storage=multer.diskStorage({
     destination:(req,file,cb)=>{
         cb(null,'public/images')
@@ -55,6 +56,38 @@ db.connect(function(err){
         console.log("SQL Connected");
     }
 })
+
+app.post('/login', (req, res) => {
+    const sql = 'SELECT * FROM users WHERE email = ? and password = ?';
+    db.query(sql, [req.body.email, req.body.password], (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.json({ Error: "An error occurred while logging in" });
+      }
+      if (result.length > 0) {
+        req.session.role = result[0].role;
+        //console.log(req.session.name);
+        //console.log(result);
+        return res.json({ Login: true,userId: result[0].id, name: req.session.name })
+      } else {
+        res.json({ Login: false });
+      }
+    });
+  });
+  
+  app.post('/register', (req, res) => {
+    const sql = "INSERT INTO users(`name`,`email`,`password`) VALUES (?)";
+    const values = [
+      req.body.name,
+      req.body.email,
+      req.body.password
+    ]
+    db.query(sql, [values], (err, result) => {
+      if (err) return res.json({ Message: "Error in Node" })
+      return res.json(result)
+    })
+  })
+  
 
 
 app.listen(3002,()=>{
