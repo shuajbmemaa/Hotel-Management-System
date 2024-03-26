@@ -88,6 +88,13 @@ app.post('/login', (req, res) => {
     })
   })
   
+  app.get('/', (req, res) => {
+    if (req.session.role) {
+      return res.json({ valid: true, role: req.session.role })
+    } else {
+      return res.json({ valid: false })
+    }
+  })
 
 
 app.listen(3002,()=>{
