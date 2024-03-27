@@ -72,6 +72,8 @@ const Login = () => {
             if(res.data.Login){
               console.log(res.data);
               window.localStorage.setItem("userId",res.data.userId);
+              window.localStorage.setItem("accessToken",res.data.accessToken);
+              window.localStorage.setItem("refreshToken",res.data.refreshToken)
                 navigate('/');
                 
             }else{
