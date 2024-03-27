@@ -66,9 +66,9 @@ app.post('/login', (req, res) => {
       }
       if (result.length > 0) {
         req.session.role = result[0].role;
-        //console.log(req.session.name);
-        //console.log(result);
-        return res.json({ Login: true,userId: result[0].id, name: req.session.name })
+        const accessToken=jwt.sign({email:result[0].email},'secretKey',{expiresIn:'1h'})
+        const refreshToken=jwt.sign({email:result[0].email},'refreshSecretKey')
+        return res.json({ Login: true,userId: result[0].id, accessToken,refreshToken})
       } else {
         res.json({ Login: false });
       }
