@@ -76,11 +76,12 @@ app.post('/login', (req, res) => {
   });
   
   app.post('/register', (req, res) => {
-    const sql = "INSERT INTO users(`name`,`email`,`password`) VALUES (?)";
+    const sql = "INSERT INTO users(`name`,`email`,`password`,`role`) VALUES (?)";
     const values = [
       req.body.name,
       req.body.email,
-      req.body.password
+      req.body.password,
+      req.body.role
     ]
     db.query(sql, [values], (err, result) => {
       if (err) return res.json({ Message: "Error in Node" })
