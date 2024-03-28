@@ -9,7 +9,8 @@ const Register = () => {
     const[values,setValues]=useState({
         name:'',
         email:'',
-        password:''
+        password:'',
+        role:'user'
     })
 
     const navigate = useNavigate();
@@ -49,7 +50,7 @@ const Register = () => {
           .then(res => {
               console.log(res);
               navigate('/login')
-              toast.warn('Pas disa minutave llogaria juaj do të jetë aktive!')
+              toast.success('Jeni regjistruar me sukses! Ju lutem kycuni per te eksploruar <3')
           }) 
           .catch(err => console.log(err))
       }
