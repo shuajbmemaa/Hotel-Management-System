@@ -76,18 +76,27 @@ app.post('/login', (req, res) => {
   });
   
   app.post('/register', (req, res) => {
-    const sql = "INSERT INTO users(`name`,`email`,`password`,`role`) VALUES (?)";
-    const values = [
-      req.body.name,
-      req.body.email,
-      req.body.password,
-      req.body.role
-    ]
-    db.query(sql, [values], (err, result) => {
-      if (err) return res.json({ Message: "Error in Node" })
-      return res.json(result)
-    })
-  })
+    const { name, email, password, role } = req.body;
+    const checkEmail = "SELECT * FROM users WHERE email = ?";
+    
+    db.query(checkEmail, [email], (err, result) => {
+        if (err) {
+            return res.status(500).json({ message: "Error" });
+        }
+        if (result.length > 0) {
+            return res.status(400).json({ message: "Email-i eshte ne perdorim" });
+        } else {
+            const sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
+            db.query(sql, [name, email, password, role], (err, result) => {
+                if (err) {
+                    return res.status(500).json({ message: "Gabim ne server" });
+                }
+                return res.status(201).json({ message: "Regjistrimi u krye me sukses" });
+            });
+        }
+    });
+});
+
   
   app.get('/', (req, res) => {
     if (req.session.role) {
