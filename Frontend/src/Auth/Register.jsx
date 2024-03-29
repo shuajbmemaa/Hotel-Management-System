@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import axios from 'axios'
 import { Link ,useNavigate} from 'react-router-dom'
 import {toast,ToastContainer} from 'react-toastify'
@@ -29,19 +29,17 @@ const Register = () => {
           event.preventDefault();
          const nameRegex =  /^[A-Za-z\s'-]{3,50}$/;
           if (!values.name || !nameRegex.test(values.name)) {
-            toast.error('Ju lutem shkruani një emër të vlefshëm (të paktën 3 karaktere dhe pa numra)!', {
-              position: toast.POSITION.TOP_RIGHT
-            });
+            toast.error('Ju lutem shkruani një emër të vlefshëm (të paktën 3 karaktere dhe pa numra)!');
             return;
           }
           const emailRegex = /^\S+@\S+\.\S+$/;
           if (!values.email || !emailRegex.test(values.email)) {
-            toast.error('Ju lutem shkruani një email të vlefshëm!', { position: toast.POSITION.TOP_RIGHT });
+            toast.error('Ju lutem shkruani një email të vlefshëm!');
             return;
           }
           const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
           if (!values.password || !passwordRegex.test(values.password)) {
-            toast.error('Fjalëkalimi duhet të ketë të paktën 6 karaktere,1 shkronjë të madhe,1 shkronjë të vogël,1 simbol (@$!%*?&) dhe 1 numër!', { position: toast.POSITION.TOP_RIGHT });
+            toast.error('Fjalëkalimi duhet të ketë të paktën 6 karaktere,1 shkronjë të madhe,1 shkronjë të vogël,1 simbol (@$!%*?&) dhe 1 numër!');
             return;
           }
           
@@ -52,7 +50,14 @@ const Register = () => {
               navigate('/login')
               toast.success('Jeni regjistruar me sukses! Ju lutem kycuni per te eksploruar <3')
           }) 
-          .catch(err => console.log(err))
+          .catch(err => {
+            if (err) {
+                toast.error("Emaili eshte ne perdorim tanime!Ju lutem perdor nje email tjeter");
+            } else {
+                console.error(err);
+                toast.error('Dicka shkoi keq ne regjistrim.');
+            }
+        })
       }
     
 
