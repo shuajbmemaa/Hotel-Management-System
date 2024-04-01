@@ -59,12 +59,14 @@ const Login = () => {
   
     
     const handleSubmit=(event) =>{
-        event.preventDefault();
-        const emailRegex = /^\S+@\S+\.\S+$/;
-        if (!values.email || !emailRegex.test(values.email)) {
-          toast.error('Email i pavlefshëm!', { position: toast.POSITION.TOP_RIGHT });
-          return;
-        }
+        // event.preventDefault();
+        // const emailRegex = /^\S+@\S+\.\S+$/;
+        // if (!values.email || !emailRegex.test(values.email)) {
+        //   toast.error('Email i pavlefshëm!', { position: toast.POSITION.TOP_RIGHT });
+        //   return;
+        // }
+
+        
  
         
         axios.post('http://localhost:3002/login',values)
@@ -93,8 +95,8 @@ const Login = () => {
       <div class="form-container sign-in">
           <form onSubmit={handleSubmit}>
               <h1>Sign In</h1>
-              <input type="email"
-              placeholder="Email"
+              <input type="text"
+              placeholder="Username or Email"
               name="email"
               value={values.email}
               onChange={handleInput}/>

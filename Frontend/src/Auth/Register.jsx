@@ -70,7 +70,7 @@ const Register = () => {
           <form onSubmit={handleSubmit}>
               <h1>Create Account</h1>
               <input type="text"
-               placeholder="Name"
+               placeholder="Username"
                name="name"
                value={values.name}
                onChange={handleInput}
