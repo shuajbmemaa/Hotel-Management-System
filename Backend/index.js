@@ -59,9 +59,7 @@ db.connect(function(err){
 
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
-  const sql = `SELECT * FROM users WHERE email='${email}' AND password='${password}'`;
-  const sql1 = `SELECT * FROM users WHERE name='${email}' AND password='${password}'`;
-
+  const sql = `SELECT * FROM users WHERE (email='${email}' or name='${email}') AND password='${password}'`;
   db.query(sql, (err, result) => {
       if (err) {
           console.log(err);
@@ -73,24 +71,11 @@ app.post('/login', (req, res) => {
          const refreshToken=jwt.sign({email:result[0].email},'refreshSecretKey')
          return res.json({ Login: true,userId: result[0].id, accessToken,refreshToken})
       } else {
-        
-          db.query(sql1, (err, result1) => {
-              if (err) {
-                  console.log(err);
-                  return res.json({ Error: "An error occurred while logging in" });
-              }
-              if (result1.length > 0) {
-                req.session.role = result1[0].role;
-         const accessToken=jwt.sign({id:result1[0].id,email:result1[0].email},'secretKey',{expiresIn:'1h'})
-         const refreshToken=jwt.sign({email:result1[0].email},'refreshSecretKey')
-         return res.json({ Login: true,userId: result1[0].id, accessToken,refreshToken})
-              } else {
                   return res.json({ Login: false });
               }
           });
       }
-  });
-});
+);
 
 
 
