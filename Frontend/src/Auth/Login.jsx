@@ -4,6 +4,7 @@ import { Link ,useNavigate} from 'react-router-dom'
 import {toast,ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import './form.css'
+import Cookies from 'js-cookie'
 
 const Login = () => {
     const[values,setValues]=useState({
@@ -74,8 +75,8 @@ const Login = () => {
             if(res.data.Login){
               console.log(res.data);
               window.localStorage.setItem("userId",res.data.userId);
-              window.localStorage.setItem("accessToken",res.data.accessToken);
-              window.localStorage.setItem("refreshToken",res.data.refreshToken)
+             Cookies.set("accessToken",res.data.accessToken);
+             Cookies.set("refreshToken",res.data.refreshToken)
                 navigate('/');
                 
             }else{
