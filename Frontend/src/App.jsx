@@ -6,6 +6,7 @@ import Home from './Home'
 import Dashboard from './Dashboard'
 import Register from './Auth/Register'
 import Login from './Auth/Login'
+import Error from './Error'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       </Route>
       <Route path='/register' element={<Register/>}></Route>
       <Route path='/login' element={<Login/>}></Route>
+      <Route path='*' element={<Error/>}></Route>
     </Routes>
     </BrowserRouter>
   )
