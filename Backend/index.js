@@ -58,25 +58,24 @@ db.connect(function(err){
 })
 
 app.post('/login', (req, res) => {
-  const { email, password } = req.body;
-  const sql = `SELECT * FROM users WHERE (email='${email}' or name='${email}') AND password='${password}'`;
-  db.query(sql, (err, result) => {
+    const { userOrEmail, password } = req.body;
+    const sql = "SELECT * FROM users WHERE (name = ? OR email = ?) AND password=? ";
+    
+    db.query(sql, [userOrEmail, userOrEmail, password], (err, result) => { 
       if (err) {
-          console.log(err);
-          return res.json({ Error: "An error occurred while logging in" });
+        console.log(err);
+        return res.json({ Error: "An error occurred while logging in" });
       }
       if (result.length > 0) {
         req.session.role = result[0].role;
-         const accessToken=jwt.sign({id:result[0].id,email:result[0].email},'secretKey',{expiresIn:'1h'})
-         const refreshToken=jwt.sign({email:result[0].email},'refreshSecretKey')
-         return res.json({ Login: true,userId: result[0].id, accessToken,refreshToken})
+        const accessToken = jwt.sign({ id: result[0].id, email: result[0].email }, 'secretKey', { expiresIn: '1h' })
+        const refreshToken = jwt.sign({ email: result[0].email }, 'refreshSecretKey')
+        return res.json({ Login: true, userId: result[0].id, accessToken, refreshToken })
       } else {
-                  return res.json({ Login: false });
-              }
-          });
+        return res.json({ Login: false });
       }
-);
-
+    });
+});
 
 
 
