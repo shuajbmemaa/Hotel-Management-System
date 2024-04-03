@@ -8,7 +8,7 @@ import Cookies from 'js-cookie'
 
 const Login = () => {
     const[values,setValues]=useState({
-        email:'',
+        userOrEmail:'',
         password:''
     })
 
@@ -98,8 +98,8 @@ const Login = () => {
               <h1>Sign In</h1>
               <input type="text"
               placeholder="Username or Email"
-              name="email"
-              value={values.email}
+              name="userOrEmail"
+              value={values.userOrEmail}
               onChange={handleInput}/>
              <input type="password"
               placeholder="Password"
