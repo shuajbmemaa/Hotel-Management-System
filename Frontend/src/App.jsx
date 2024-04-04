@@ -7,6 +7,8 @@ import Dashboard from './Dashboard'
 import Register from './Auth/Register'
 import Login from './Auth/Login'
 import Error from './Error'
+import 'bootstrap-icons/font/bootstrap-icons.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (
