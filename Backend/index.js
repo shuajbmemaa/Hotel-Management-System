@@ -29,17 +29,17 @@ app.use(session({
     }
 }))
  
-const storage=multer.diskStorage({
-    destination:(req,file,cb)=>{
-        cb(null,'public/images')
-    },
-    filename:(req,file,cb)=>{
-        cb(null,file.fieldname + "_"+Date.now() + path.extname(file.originalname))
-    }
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/images')
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+  }
 })
 
-const upload=multer({
-    storage:storage
+const upload = multer({
+  storage: storage
 })
 
 const db=mysql.createConnection({
@@ -118,6 +118,45 @@ app.post('/login', (req, res) => {
       return res.json({ valid: false })
     }
   })
+
+ app.get('/getUseret',(req,res)=>{
+  const sql = "Select id,name,email,img_url,gender from users";   
+  db.query(sql,(err,result)=>{
+    if(err) return res.status(400).json({message:"Gabim"})
+    return res.status(200).json({Status:"Success",Result:result})
+  })
+ })
+
+  app.delete('/deleteUser/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "DELETE FROM users WHERE id = ?";
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ message: "Gabim gjatë fshirjes së përdoruesit" });
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ Status: "Error", Message: "Përdoruesi nuk u gjet" });
+        }
+        return res.status(200).json({ Status: "Success", Message: "Përdoruesi u fshi me sukses" });
+    });
+});
+
+app.post('/krijonjeLlogari',upload.single('image'),(req,res)=>{
+  const sql="Insert into users (`name`,`email`,`password`,`role`,`img_url`,`gender`) VALUES (?)"
+    const values=[
+      req.body.name,
+      req.body.email,
+      req.body.password,
+      req.body.role,
+      req.file.filename,
+      req.body.gender
+    ]
+    db.query(sql,[values],(err,result)=>{
+      if (err) return res.json({ Error: "Gabim gjate insertimit te produkteve ne databaze" })
+    return res.json({ Status: "Success" })
+    })
+})
 
 
 app.listen(3002,()=>{
