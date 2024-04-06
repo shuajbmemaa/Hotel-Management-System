@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify';
+import './menaxho.css'
 
 const MenaxhoUseret = () => {
 
@@ -61,8 +62,8 @@ const MenaxhoUseret = () => {
                     <td>{useret.name}</td>
                     <td>{useret.email}</td>
                     <td>{
-                    <img src={`http://localhost:3002/images/` + useret.image} alt="" 
-                    class='w-100 square h-100'/>
+                    <img src={`http://localhost:3002/images/` + useret.img_url} alt="" 
+                    className='useret_image'/>
                     }</td>
                     <td>{useret.gender}</td>
                     <td>
