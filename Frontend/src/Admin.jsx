@@ -35,7 +35,7 @@ const Admin = () => {
 									<i className="fs-4 bi-speedometer2"></i> <span className="ms-1 d-none d-sm-inline">Dashboard</span> </Link>
 							</li>
 							<li>
-								<Link to="/klientet" className="nav-link px-0 align-middle text-white">
+								<Link to="/menaxhoUseret" className="nav-link px-0 align-middle text-white">
 									<i className="fs-4 bi-people"></i> <span className="ms-1 d-none d-sm-inline">Menaxhimi i Userave</span> </Link>
 							</li>
 							<li>
