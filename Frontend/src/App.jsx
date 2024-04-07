@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import LoginRegister from './Auth/LoginRegister'
 import MenaxhoUseret from './MenaxhoUseret/MenaxhoUseret'
 import InsertLlogari from './MenaxhoUseret/InsertLlogari'
+import UpdateUseret from './MenaxhoUseret/UpdateUseret'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='' element={<Dashboard/>}></Route>
         <Route path='/menaxhoUseret' element={<MenaxhoUseret/>}></Route>
         <Route path='/krijoLlogari' element={<InsertLlogari/>}></Route>
+        <Route path='/updateUseret/:id' element={<UpdateUseret/>}></Route>
       </Route>
        <Route path='/login' element={<LoginRegister/>}></Route> 
       <Route path='*' element={<Error/>}></Route>
