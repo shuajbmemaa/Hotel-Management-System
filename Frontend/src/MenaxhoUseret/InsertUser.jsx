@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 import { toast } from 'react-toastify';
 
 
-const InsertLlogari = () => {
+const InsertUser = () => {
     
     const [llogari,setLlogari]=useState({
         name:'',
@@ -123,4 +123,4 @@ const InsertLlogari = () => {
   )
 }
 
-export default InsertLlogari
+export default InsertUser

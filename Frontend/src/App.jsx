@@ -9,8 +9,8 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import LoginRegister from './Auth/LoginRegister'
 import MenaxhoUseret from './MenaxhoUseret/MenaxhoUseret'
-import InsertLlogari from './MenaxhoUseret/InsertLlogari'
 import UpdateUseret from './MenaxhoUseret/UpdateUseret'
+import InsertUser from './MenaxhoUseret/InsertUser'
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
       <Route path='/' element={<Home/>}>
         <Route path='' element={<Dashboard/>}></Route>
         <Route path='/menaxhoUseret' element={<MenaxhoUseret/>}></Route>
-        <Route path='/krijoLlogari' element={<InsertLlogari/>}></Route>
+        <Route path='/krijoLlogari' element={<InsertUser/>}></Route>
         <Route path='/updateUseret/:id' element={<UpdateUseret/>}></Route>
       </Route>
        <Route path='/login' element={<LoginRegister/>}></Route> 
