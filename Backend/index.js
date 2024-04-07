@@ -127,6 +127,30 @@ app.post('/login', (req, res) => {
   })
  })
 
+ app.get('/getUsers/:id',(req,res)=>{
+  const id = req.params.id;
+  const sql = "Select name,email,role,date_of_birth from users where id=?";   
+  db.query(sql, [id], (err, result)=>{
+    if(err) return res.status(400).json({message:"Gabim"})
+    return res.status(200).json({Status:"Success",Result:result})
+  })
+ })
+
+
+
+
+ app.put('/updateUsers/:id',(req,res)=>{
+  const id=req.params.id;
+  const {name}=req.body;
+  const {email}=req.body;
+  const {role}=req.body;
+  const {date_of_birth}=req.body;
+  const sql="Update users set name=?,email=?,role=?,date_of_birth=? where id = ?" ;
+  db.query(sql, [name,email,role,date_of_birth,id], (err, result) => {
+    if (err) return res.json({ Error: "Error when updating in sql" })
+    return res.json({ Status: "Success", Result: result })
+  })
+})
   app.delete('/deleteUser/:id', (req, res) => {
     const id = req.params.id;
     const sql = "DELETE FROM users WHERE id = ?";
@@ -143,14 +167,15 @@ app.post('/login', (req, res) => {
 });
 
 app.post('/krijonjeLlogari',upload.single('image'),(req,res)=>{
-  const sql="Insert into users (`name`,`email`,`password`,`role`,`img_url`,`gender`) VALUES (?)"
+  const sql="Insert into users (`name`,`email`,`password`,`role`,`img_url`,`gender`,`date_of_birth`) VALUES (?)"
     const values=[
       req.body.name,
       req.body.email,
       req.body.password,
       req.body.role,
       req.file.filename,
-      req.body.gender
+      req.body.gender,
+      req.body.date_of_birth
     ]
     db.query(sql,[values],(err,result)=>{
       if (err) return res.json({ Error: "Gabim gjate insertimit te produkteve ne databaze" })
