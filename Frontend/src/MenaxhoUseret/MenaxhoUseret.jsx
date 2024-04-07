@@ -67,7 +67,7 @@ const MenaxhoUseret = () => {
                     }</td>
                     <td>{useret.gender}</td>
                     <td>
-                        <Link to={`/updateUser`+useret.id} className='btn btn-primary btn-sm me-2'>Update  <i class="bi bi-pencil"></i></Link>
+                        <Link to={`/updateUseret/`+useret.id} className='btn btn-primary btn-sm me-2'>Update  <i class="bi bi-pencil"></i></Link>
                         <button onClick={()=>handleDelete(useret.id)} className='btn btn-sm btn-danger'>Delete <i class="bi bi-trash3"></i></button>
                     </td>
                 </tr>
