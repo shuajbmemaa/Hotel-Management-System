@@ -13,7 +13,8 @@ const InsertLlogari = () => {
         role:'',
         password:'',
         image:'',
-        gender:''
+        gender:'',
+        date_of_birth:''
     })
 
     const navigate=useNavigate();
@@ -39,6 +40,7 @@ const InsertLlogari = () => {
         formData.append("password",llogari.password);
         formData.append("image",llogari.image);
         formData.append("gender",llogari.gender);
+        formData.append("date_of_birth",llogari.date_of_birth);
 
         console.log("Vlerat : " ,llogari);
 
@@ -101,6 +103,11 @@ const InsertLlogari = () => {
                         <option key={index} value={gjinite}>{gjinite}</option>
                     ))}
                     </select>
+            </div>
+            <div className="col-12">
+              <label htmlFor="inputDate" className="form-label">Datelindja</label>
+              <input type="date"className="form-control" id="inputDate"
+               onChange={e => setLlogari({...llogari, date_of_birth: e.target.value})}/>
             </div>
 
             <div class="col-12">
