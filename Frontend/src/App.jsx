@@ -11,6 +11,9 @@ import LoginRegister from './Auth/LoginRegister'
 import MenaxhoUseret from './MenaxhoUseret/MenaxhoUseret'
 import UpdateUseret from './MenaxhoUseret/UpdateUseret'
 import InsertUser from './MenaxhoUseret/InsertUser'
+import MenaxhoAmenties from './MenaxhoAmenties/MenaxhoAmenties'
+import InsertAmenties from './MenaxhoAmenties/InsertAmenties'
+import UpdateAmenties from './MenaxhoAmenties/UpdateAmenties'
 
 function App() {
   return (
@@ -22,6 +25,9 @@ function App() {
         <Route path='/menaxhoUseret' element={<MenaxhoUseret/>}></Route>
         <Route path='/krijoLlogari' element={<InsertUser/>}></Route>
         <Route path='/updateUseret/:id' element={<UpdateUseret/>}></Route>
+        <Route path='/menaxhoAmenties' element={<MenaxhoAmenties/>}></Route>
+        <Route path='/shtoAmenties' element={<InsertAmenties/>}></Route>
+        <Route path='/updateAmenties/:id' element={<UpdateAmenties/>}></Route>
       </Route>
        <Route path='/login' element={<LoginRegister/>}></Route> 
       <Route path='*' element={<Error/>}></Route>
