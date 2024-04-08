@@ -39,6 +39,10 @@ const Admin = () => {
 									<i className="fs-4 bi-people"></i> <span className="ms-1 d-none d-sm-inline">Menaxhimi i Userave</span> </Link>
 							</li>
 							<li>
+								<Link to="/menaxhoAmenties" className="nav-link px-0 align-middle text-white">
+								<ShoppingCartOutlined /> <span className="ms-1 d-none d-sm-inline">Menaxhimi i pajisjeve</span> </Link>
+							</li>
+							<li>
 								<Link to="/produktet" className="nav-link px-0 align-middle text-white">
 									<AppstoreOutlined/> <span className="ms-1 d-none d-sm-inline">Menaxhimi i Produkteve</span> </Link>
 							</li>
