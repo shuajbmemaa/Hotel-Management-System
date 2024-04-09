@@ -27,7 +27,7 @@ const UpdateAmenties = () => {
 
     const handleSubmit=(event)=>{
         event.preventDefault();
-        axios.put('http://localhost:3002/UpdateAmenties/'+id,data)
+        axios.put('http://localhost:3002/updateAmenties/'+id,data)
         .then(res =>{
             if(res.data.Status === "Success"){
             navigate('/menaxhoAmenties')
