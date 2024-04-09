@@ -17,6 +17,12 @@ const InsertAmenties = () => {
 
     const handleSubmit=(event)=>{
         event.preventDefault();
+
+        if(!llogari.name || !llogari.image || !llogari.description){
+            toast.warn("Ju lutem mbusheni te gjithe formen !");
+            return;
+        }
+        
         const formData=new FormData();
         formData.append("name",llogari.name);
         formData.append("image",llogari.image);
