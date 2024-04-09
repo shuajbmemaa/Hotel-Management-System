@@ -46,7 +46,7 @@ const db=mysql.createConnection({
     host:"localhost",
     user:"root",
     password:"",
-    database:"hotel"
+    database:"hms"
 })
 
 db.connect(function(err){
@@ -146,7 +146,7 @@ app.post('/login', (req, res) => {
 
  app.get('/getAmenties/:id',(req,res)=>{
   const id = req.params.id;
-  const sql = "Select name,decription from amenties where id=?";   
+  const sql = "Select name,description from amenties where id=?";   
   db.query(sql, [id], (err, result)=>{
     if(err) return res.status(400).json({message:"Gabim"})
     return res.status(200).json({Status:"Success",Result:result})
