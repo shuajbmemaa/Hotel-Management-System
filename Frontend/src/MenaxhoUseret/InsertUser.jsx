@@ -33,6 +33,12 @@ const InsertUser = () => {
 
     const handleSubmit=(event)=>{
         event.preventDefault();
+
+        if(!llogari.name || !llogari.email || !llogari.role || !llogari.password || !llogari.image || !llogari.gender || !llogari.date_of_birth){
+            toast.warn("Ju lutem plotesone te gjithe formen !");
+            return;
+        }
+
         const formData=new FormData();
         formData.append("name",llogari.name);
         formData.append("email",llogari.email);
