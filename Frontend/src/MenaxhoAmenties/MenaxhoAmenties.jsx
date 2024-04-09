@@ -52,7 +52,7 @@ const MenaxhoAmenties = () => {
                     <th>Name</th>
                     <th>Image</th>
                     <th>Description</th>
-                    <th> Actions </th>
+                    <th>Actions</th>
                 </tr>
         </thead>
         <tbody>
