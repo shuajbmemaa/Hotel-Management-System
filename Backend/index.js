@@ -135,6 +135,15 @@ app.post('/login', (req, res) => {
   })
  })
 
+app.get('/getFloors',(req,res)=>{
+  const sql = "Select id,name,floor_number,description from floors";   
+  db.query(sql,(err,result)=>{
+    if(err) return res.status(400).json({message:"Gabim"})
+    return res.status(200).json({Status:"Success",Result:result})
+  })
+ })
+
+
  app.get('/getUsers/:id',(req,res)=>{
   const id = req.params.id;
   const sql = "Select name,email,role,date_of_birth from users where id=?";   
@@ -153,6 +162,18 @@ app.post('/login', (req, res) => {
   })
  })
 
+
+
+ app.get('/getFloor/:id',(req,res)=>{
+  const id = req.params.id;
+  const sql = "Select name,floor_number,description from floors where id=?";   
+  db.query(sql, [id], (err, result)=>{
+    if(err) return res.status(400).json({message:"Gabim"})
+    return res.status(200).json({Status:"Success",Result:result})
+  })
+ })
+
+ 
 
 
 
@@ -181,6 +202,18 @@ app.put('/updateAmenties/:id',(req,res)=>{
 })
 
 
+app.put('/updateFloors/:id',(req,res)=>{
+  const id=req.params.id;
+  const {name}=req.body;
+  const {floor_number}=req.body;
+  const {description}=req.body;
+  const sql="Update floors set name=?,floor_number=?,description=? where id = ?" ;
+  db.query(sql, [name,floor_number,description,id], (err, result) => {
+    if (err) return res.json({ Error: "Error when updating in sql" })
+    return res.json({ Status: "Success", Result: result })
+  })
+})
+
   app.delete('/deleteUser/:id', (req, res) => {
     const id = req.params.id;
     const sql = "DELETE FROM users WHERE id = ?";
@@ -194,6 +227,22 @@ app.put('/updateAmenties/:id',(req,res)=>{
         }
         return res.status(200).json({ Status: "Success", Message: "Pajisja u fshi me sukses" });
     });
+});
+
+
+app.delete('/deleteFloors/:id', (req, res) => {
+  const id = req.params.id;
+  const sql = "DELETE FROM floors WHERE id = ?";
+  db.query(sql, [id], (err, result) => {
+      if (err) {
+          console.error(err);
+          return res.status(500).json({ message: "Gabim gjatë fshirjes së floor" });
+      }
+      if (result.affectedRows === 0) {
+          return res.status(404).json({ Status: "Error", Message: "Floor nuk u gjet" });
+      }
+      return res.status(200).json({ Status: "Success", Message: "Floor u fshi me sukses" });
+  });
 });
 
 app.delete('/deleteAmenties/:id', (req, res) => {
@@ -241,6 +290,18 @@ app.post('/shtonjeAmentie',upload.single('image'),(req,res)=>{
     })
 })
 
+app.post('/shtonjeFloor',upload.single('image'),(req,res)=>{
+  const sql="Insert into floors (`name`,`floor_number`,`description`) VALUES (?)"
+    const values=[
+      req.body.name,
+      req.body.floor_number,
+      req.body.description
+    ]
+    db.query(sql,[values],(err,result)=>{
+      if (err) return res.json({ Error: "Gabim gjate insertimit te floors ne databaze" })
+    return res.json({ Status: "Success" })
+    })
+})
 
 app.listen(3002,()=>{
     console.log("Server is running ");
