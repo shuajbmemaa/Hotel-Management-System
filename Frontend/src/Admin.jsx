@@ -43,6 +43,11 @@ const Admin = () => {
 								<ShoppingCartOutlined /> <span className="ms-1 d-none d-sm-inline">Menaxhimi i pajisjeve</span> </Link>
 							</li>
 							<li>
+								<Link to="/menaxhoFloors" className="nav-link px-0 align-middle text-white">
+								<ShoppingCartOutlined /> <span className="ms-1 d-none d-sm-inline">Menaxhimi i floors</span> </Link>
+							</li>
+
+							<li>
 								<Link to="/produktet" className="nav-link px-0 align-middle text-white">
 									<AppstoreOutlined/> <span className="ms-1 d-none d-sm-inline">Menaxhimi i Produkteve</span> </Link>
 							</li>
