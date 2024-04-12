@@ -14,6 +14,9 @@ import InsertUser from './MenaxhoUseret/InsertUser'
 import MenaxhoAmenties from './MenaxhoAmenties/MenaxhoAmenties'
 import InsertAmenties from './MenaxhoAmenties/InsertAmenties'
 import UpdateAmenties from './MenaxhoAmenties/UpdateAmenties'
+import MenaxhoFloors from './MenaxhoFloors/MenaxhoFloors'
+import InsertFloors from './MenaxhoFloors/InsertFloors'
+import UpdateFloors from './MenaxhoFloors/UpdateFloors'
 
 function App() {
   return (
@@ -28,6 +31,9 @@ function App() {
         <Route path='/menaxhoAmenties' element={<MenaxhoAmenties/>}></Route>
         <Route path='/shtoAmenties' element={<InsertAmenties/>}></Route>
         <Route path='/updateAmenties/:id' element={<UpdateAmenties/>}></Route>
+        <Route path='/menaxhoFloors' element={<MenaxhoFloors/>}></Route>
+        <Route path='/shtoFloors' element={<InsertFloors/>}></Route>
+        <Route path='/updateFloors/:id' element={<UpdateFloors/>}></Route>
       </Route>
        <Route path='/login' element={<LoginRegister/>}></Route> 
       <Route path='*' element={<Error/>}></Route>
