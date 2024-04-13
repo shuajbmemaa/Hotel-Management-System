@@ -27,6 +27,9 @@ body{
     width: 768px;
     max-width: 100%;
     min-height: 480px;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
 }
 
 .form-container.sign-in h1 {
