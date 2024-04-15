@@ -48,12 +48,12 @@ const Admin = () => {
 							</li>
 
 							<li>
-								<Link to="/produktet" className="nav-link px-0 align-middle text-white">
-									<AppstoreOutlined/> <span className="ms-1 d-none d-sm-inline">Menaxhimi i Produkteve</span> </Link>
+								<Link to="/hall-types" className="nav-link px-0 align-middle text-white">
+									<AppstoreOutlined/> <span className="ms-1 d-none d-sm-inline">Hall Types</span> </Link>
 							</li>
 							<li>
-								<Link to="/orders" className="nav-link px-0 align-middle text-white">
-								<OrderedListOutlined /> <span className="ms-1 d-none d-sm-inline">Orders</span> </Link>
+								<Link to="/halls" className="nav-link px-0 align-middle text-white">
+								<OrderedListOutlined /> <span className="ms-1 d-none d-sm-inline">Halls</span> </Link>
 							</li>
 							<li>
 								<Link to="/kategorite" className="nav-link px-0 align-middle text-white">
