@@ -87,7 +87,7 @@ const ShtoHallTypes = () => {
 
             <div className='col-12'>
                 <label for="inputSC" className="form-label">Short Code </label>
-                <input type="number" className="form-control" id="inputSC" placeholder='Vendos Short Code' autoComplete='off'
+                <input type="text" className="form-control" id="inputSC" placeholder='Vendos Short Code' autoComplete='off'
                 onChange={handleChange} name='short_code' />
             </div>
 
