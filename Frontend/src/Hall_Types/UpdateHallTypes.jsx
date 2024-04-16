@@ -92,7 +92,7 @@ const UpdateHallTypes = () => {
 
                 <div class="col-12">
 					<label for="inputSC" class="form-label">Short Code</label>
-					<input type="number" class="form-control" id="inputSC" placeholder='Enter Short Code' autoComplete='off'
+					<input type="text" class="form-control" id="inputSC" placeholder='Enter Short Code' autoComplete='off'
 					 name='short_code'   onChange={handleInputChange} value={hallTypes.short_code}/>
 				</div>
 
