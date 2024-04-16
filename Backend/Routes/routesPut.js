@@ -43,4 +43,24 @@ putRoutes.put('/updateAmenties/:id',(req,res)=>{
     })
   })
 
+  putRoutes.put('/updateRoomT/:id',(req,res)=>{
+    const id=req.params.id;
+    const {title,short_code,base_occupancy,higher_occupancy,extra_bed,kids,amenties_id,base_price,extra_bed_price}=req.body;
+    const sql="Update room_types set title=?,short_code=?,base_occupancy=?,higher_occupancy=?,extra_bed=?,kids=?,amenties_id=?,base_price=?,extra_bed_price=? where id = ?" ;
+    db.query(sql, [title,short_code,base_occupancy,higher_occupancy,extra_bed,kids,amenties_id,base_price,extra_bed_price,id], (err, result) => {
+      if (err) return res.json({ Error: "Error when updating in sql" })
+      return res.json({ Status: "Success", Result: result })
+    })
+  })
+
+  putRoutes.put('/updateRoom/:id',(req,res)=>{
+    const id=req.params.id;
+    const {floor_id,room_type_id,room_number}=req.body;
+    const sql="Update room set floor_id=?,room_type_id=?,room_number=? where id = ?" ;
+    db.query(sql, [floor_id,room_type_id,room_number,id], (err, result) => {
+      if (err) return res.json({ Error: "Error when updating in sql" })
+      return res.json({ Status: "Success", Result: result })
+    })
+  })
+
 export default putRoutes;
