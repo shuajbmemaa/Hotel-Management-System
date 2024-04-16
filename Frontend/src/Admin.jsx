@@ -46,6 +46,14 @@ const Admin = () => {
 								<Link to="/menaxhoFloors" className="nav-link px-0 align-middle text-white">
 								<ShoppingCartOutlined /> <span className="ms-1 d-none d-sm-inline">Menaxhimi i floors</span> </Link>
 							</li>
+							<li>
+								<Link to="/menaxhoRoomT" className="nav-link px-0 align-middle text-white">
+								<ShoppingCartOutlined /> <span className="ms-1 d-none d-sm-inline">Room Types</span> </Link>
+							</li>
+							<li>
+								<Link to="/menaxhoRoom" className="nav-link px-0 align-middle text-white">
+								<OrderedListOutlined /> <span className="ms-1 d-none d-sm-inline">Room</span> </Link>
+							</li>
 
 							<li>
 								<Link to="/hall-types" className="nav-link px-0 align-middle text-white">
