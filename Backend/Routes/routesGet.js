@@ -66,7 +66,24 @@ getRoutes.get('/logout', (req, res) => {
       return res.status(200).json({Status:"Success",Result:result})
     })
    })
-  
+   
+   getRoutes.get('/getHallTypes/:id',(req,res)=>{
+    const id = req.params.id;
+    const sql = "Select title,short_code,amenties_id,basePrice from hall_type where id=?";   
+    db.query(sql, [id], (err, result)=>{
+      if(err) return res.status(400).json({message:"Gabim"})
+      return res.status(200).json({Status:"Success",Result:result})
+    })
+   })
+
+   getRoutes.get('/getHallTypes',(req,res)=>{
+    const sql="Select hall_type.id,hall_type.title,hall_type.short_code,hall_type.baseOccupancy,hall_type.higherOccupancy,amenties.name as amenties,hall_type.basePrice,hall_type.image from hall_type INNER JOIN amenties on hall_type.amenties_id=amenties.id "
+    db.query(sql,(err,result)=>{
+      if(err) return res.status(400).json({Error:"Gabim ne Server"})
+      return res.json({Status:"Success",Result:result});
+    })
+   })
+
 
 export default getRoutes;
 
