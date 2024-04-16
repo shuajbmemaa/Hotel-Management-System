@@ -33,4 +33,14 @@ putRoutes.put('/updateAmenties/:id',(req,res)=>{
     })
   })
 
+  putRoutes.put('/updateHallTypes/:id',(req,res)=>{
+    const id=req.params.id;
+    const {title,short_code,amenties_id,basePrice}=req.body;
+    const sql="Update hall_type set title=?,short_code=?,amenties_id=?,basePrice=? where id = ?" ;
+    db.query(sql, [title,short_code,amenties_id,basePrice,id], (err, result) => {
+      if (err) return res.json({ Error: "Error when updating in sql" })
+      return res.json({ Status: "Success", Result: result })
+    })
+  })
+
 export default putRoutes;
