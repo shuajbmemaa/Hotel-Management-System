@@ -84,6 +84,41 @@ getRoutes.get('/logout', (req, res) => {
     })
    })
 
+   getRoutes.get('/getRoomT',(req,res)=>{
+    const sql = "Select room_types.id,room_types.title,room_types.short_code,amenties.name as amentie from room_types inner join amenties on amenties.id=room_types.amenties_id";
+    db.query(sql,(err,result)=>{
+      if(err) return res.status(400).json({message:"Gabim"})
+      return res.status(200).json({Status:"Success",Result:result})
+    })
+  })  
+
+  getRoutes.get('/getRooms',(req,res)=>{
+    const sql = "Select room.id,room.room_number,room_types.title as roomm,floors.name as floors from floors inner join room on floors.id=room.floor_id inner join room_types on room.room_type_id=room_types.id   ";
+    db.query(sql,(err,result)=>{
+      if(err) return res.status(400).json(err)
+      return res.status(200).json({Status:"Success",Result:result})
+    })
+  })  
+
+  
+getRoutes.get('/getRoomT/:id',(req,res)=>{
+ const id = req.params.id;
+ const sql = "Select title,short_code,base_occupancy,higher_occupancy,extra_bed,kids,amenties_id,base_price,extra_bed_price from room_types where id=?";   
+ db.query(sql, [id], (err, result)=>{
+   if(err) return res.status(400).json({message:"Gabim"})
+   return res.status(200).json({Status:"Success",Result:result})
+ })
+})
+
+
+getRoutes.get('/getRooms/:id',(req,res)=>{
+  const id = req.params.id;
+  const sql = "Select floor_id,room_type_id,room_number from room where id=?";   
+  db.query(sql, [id], (err, result)=>{
+    if(err) return res.status(400).json({message:"Gabim"})
+    return res.status(200).json({Status:"Success",Result:result})
+  })
+ })
 
 export default getRoutes;
 
