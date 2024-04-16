@@ -20,6 +20,12 @@ import UpdateFloors from './MenaxhoFloors/UpdateFloors'
 import HallTypes from './Hall_Types/HallTypes'
 import ShtoHallTypes from './Hall_Types/ShtoHallTypes'
 import UpdateHallTypes from './Hall_Types/UpdateHallTypes'
+import MenaxhoRoomT from './MenaxhoRoomTypes/MenaxhoRoomT'
+import MenaxhoRoom from './MenaxhoRoom/MenaxhoRoom'
+import InsertRoom from './MenaxhoRoom/InsertRoom'
+import InsertRoomT from './MenaxhoRoomTypes/InsertRoomT'
+import UpdateRoomT from './MenaxhoRoomTypes/UpdateRoomT'
+import UpdateRoom from './MenaxhoRoom/UpdateRoom'
 
 function App() {
   return (
@@ -44,6 +50,13 @@ function App() {
         <Route path='/insertHallTypes' element={<ShtoHallTypes/>}></Route>
         <Route path='/updateHallTypes/:id' element={<UpdateHallTypes/>}></Route>
         
+        <Route path='/menaxhoRoomT' element={<MenaxhoRoomT/>}></Route>
+        <Route path='/shtoRoomT' element={<InsertRoomT/>}></Route>
+        <Route path='/updateRoomT/:id' element={<UpdateRoomT/>}></Route>
+
+        <Route path='/menaxhoRoom' element={<MenaxhoRoom/>}></Route>
+        <Route path='/shtoRoom' element={<InsertRoom/>}></Route>
+        <Route path='/updateRoom/:id' element={<UpdateRoom/>}></Route>
       </Route>
        <Route path='/login' element={<LoginRegister/>}></Route> 
       <Route path='*' element={<Error/>}></Route>
