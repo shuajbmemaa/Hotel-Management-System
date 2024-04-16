@@ -121,6 +121,43 @@ postRoutes.post('/krijonjeLlogari',upload.single('image'),(req,res)=>{
       return res.json({ Status: "Success" })
       })
   })
+
+  postRoutes.post('/krijoDhome',upload.single('image'),(req,res)=>{
+    const sql="Insert into room_types (`title`,`short_code`,`base_occupancy`,`higher_occupancy`,`extra_bed`,`kids`,`amenties_id`,`base_price`,`extra_bed_price`,`image`) VALUES (?)"
+      const values=[
+        req.body.title,
+        req.body.short_code,
+        req.body.base_occupancy,
+        req.body.higher_occupancy,
+        req.body.extra_bed,
+        req.body.kids,
+        req.body.amenties_id,
+        req.body.base_price,
+        req.body.extra_bed_price,
+        req.file.filename,
+  
+      ]
+      db.query(sql,[values],(err,result)=>{
+        if (err) return res.json({ Error: "Gabim gjate insertimit te produkteve ne databaze" })
+      return res.json({ Status: "Success" })
+      })
+  })
+
+  
+
+  postRoutes.post('/shtoRoom',(req,res)=>{
+    const sql="Insert into room (`floor_id`,`room_type_id`,`room_number`) VALUES (?)"
+      const values=[
+        req.body.floor_id,
+        req.body.room_type_id,
+        req.body.room_number
+      ]
+      db.query(sql,[values],(err,result)=>{
+        if (err) return res.json(err)
+      return res.json({ Status: "Success" })
+      })
+  })
+
   
 
 export default postRoutes;
