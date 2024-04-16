@@ -92,6 +92,23 @@ postRoutes.post('/krijonjeLlogari',upload.single('image'),(req,res)=>{
       })
   })
 
+  postRoutes.post('/insertHallTypes',upload.single('image'),(req,res)=>{
+    const sql="Insert into hall_type (`title`,`short_code`,`baseOccupancy`,`higherOccupancy`,`amenties_id`,`basePrice`,`image`) VALUES (?)";
+    const values=[
+      req.body.title,
+      req.body.short_code,
+      req.body.baseOccupancy,
+      req.body.higherOccupancy,
+      req.body.amenties_id,
+      req.body.basePrice,
+      req.file.filename
+    ]
+    db.query(sql,[values],(err,result)=>{
+      if (err) return res.json(err)
+      return res.json({Status:"Success"})
+    })
+  })
+
   postRoutes.post('/shtonjeFloor',(req,res)=>{
     const sql="Insert into floors (`name`,`floor_number`,`description`) VALUES (?)"
       const values=[
