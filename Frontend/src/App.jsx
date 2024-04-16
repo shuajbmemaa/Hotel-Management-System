@@ -17,6 +17,9 @@ import UpdateAmenties from './MenaxhoAmenties/UpdateAmenties'
 import MenaxhoFloors from './MenaxhoFloors/MenaxhoFloors'
 import InsertFloors from './MenaxhoFloors/InsertFloors'
 import UpdateFloors from './MenaxhoFloors/UpdateFloors'
+import HallTypes from './Hall_Types/HallTypes'
+import ShtoHallTypes from './Hall_Types/ShtoHallTypes'
+import UpdateHallTypes from './Hall_Types/UpdateHallTypes'
 
 function App() {
   return (
@@ -28,12 +31,19 @@ function App() {
         <Route path='/menaxhoUseret' element={<MenaxhoUseret/>}></Route>
         <Route path='/krijoLlogari' element={<InsertUser/>}></Route>
         <Route path='/updateUseret/:id' element={<UpdateUseret/>}></Route>
+
         <Route path='/menaxhoAmenties' element={<MenaxhoAmenties/>}></Route>
         <Route path='/shtoAmenties' element={<InsertAmenties/>}></Route>
         <Route path='/updateAmenties/:id' element={<UpdateAmenties/>}></Route>
+
         <Route path='/menaxhoFloors' element={<MenaxhoFloors/>}></Route>
         <Route path='/shtoFloors' element={<InsertFloors/>}></Route>
         <Route path='/updateFloors/:id' element={<UpdateFloors/>}></Route>
+
+        <Route path='/hall-types' element={<HallTypes/>}></Route>
+        <Route path='/insertHallTypes' element={<ShtoHallTypes/>}></Route>
+        <Route path='/updateHallTypes/:id' element={<UpdateHallTypes/>}></Route>
+        
       </Route>
        <Route path='/login' element={<LoginRegister/>}></Route> 
       <Route path='*' element={<Error/>}></Route>
