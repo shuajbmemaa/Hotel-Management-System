@@ -120,5 +120,22 @@ getRoutes.get('/getRooms/:id',(req,res)=>{
   })
  })
 
+ getRoutes.get('/getHall',(req,res)=>{
+  const sql="Select hall.id,floors.name as emri,hall_type.title as halltype,hall.hall_number from hall_type INNER JOIN hall on hall_type.id=hall.hall_type_id INNER JOIN floors on floors.id=hall.floor_id ";
+  db.query(sql,(err,result)=>{
+    if(err) return res.status(400).json({Error:"Gabim ne Server"})
+    return res.json({Ok:"OK",Halls:result});
+  })
+ })
+
+ getRoutes.get('/getHall/:id',(req,res)=>{
+  const id = req.params.id;
+  const sql = "Select floor_id,hall_type_id,hall_number from hall where id=?";   
+  db.query(sql, [id], (err, result)=>{
+    if(err) return res.status(400).json({message:"Gabim"})
+    return res.status(200).json({Status:"Success",Result:result})
+  })
+ })
+
 export default getRoutes;
 
