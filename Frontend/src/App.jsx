@@ -26,6 +26,9 @@ import InsertRoom from './MenaxhoRoom/InsertRoom'
 import InsertRoomT from './MenaxhoRoomTypes/InsertRoomT'
 import UpdateRoomT from './MenaxhoRoomTypes/UpdateRoomT'
 import UpdateRoom from './MenaxhoRoom/UpdateRoom'
+import Hall from './Hall/Hall'
+import ShtoHall from './Hall/ShtoHall'
+import UpdateHall from './Hall/UpdateHall'
 
 function App() {
   return (
@@ -57,6 +60,11 @@ function App() {
         <Route path='/menaxhoRoom' element={<MenaxhoRoom/>}></Route>
         <Route path='/shtoRoom' element={<InsertRoom/>}></Route>
         <Route path='/updateRoom/:id' element={<UpdateRoom/>}></Route>
+
+        <Route path='/halls' element={<Hall/>}></Route>
+        <Route path='/shtoHalls' element={<ShtoHall/>}></Route>
+        <Route path='/updateHalls/:id' element={<UpdateHall/>}></Route>
+
       </Route>
        <Route path='/login' element={<LoginRegister/>}></Route> 
       <Route path='*' element={<Error/>}></Route>
