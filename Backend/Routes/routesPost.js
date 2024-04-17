@@ -158,6 +158,19 @@ postRoutes.post('/krijonjeLlogari',upload.single('image'),(req,res)=>{
       })
   })
 
+  postRoutes.post('/createHall',(req,res)=>{
+    const sql="Insert into hall (`floor_id`,`hall_type_id`,`hall_number`) VALUES (?)"
+      const values=[
+        req.body.floor_id,
+        req.body.hall_type_id,
+        req.body.hall_number
+      ]
+      db.query(sql,[values],(err,result)=>{
+        if (err) return res.json({Error:"Gabim ne server"})
+      return res.json({ Status: "Success" })
+      })
+  })
+
   
 
 export default postRoutes;
