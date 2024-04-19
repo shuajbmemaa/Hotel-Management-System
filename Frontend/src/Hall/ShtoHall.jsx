@@ -2,6 +2,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { FaTimes } from 'react-icons/fa';
+import '../form.css';
 
 const ShtoHall = () => {
 
@@ -63,8 +65,11 @@ const ShtoHall = () => {
 
   return (
     <div className='d-flex flex-column align-items-center pt-4'>
-        <h2>Create a hall</h2>
-        <form className='row g-3 w-50' onSubmit={handleSubmit}>
+      
+      <div className="form-border">
+        <Link to="/halls" className='btn btn-danger rounded-circle p-0 ' style={{ width: '20px', height: '20px', lineHeight: '1.01', fontSize: '15px', float: 'right', marginTop: '1px', }}><FaTimes /></Link>
+        <form className="row g-3 w-150" onSubmit={handleSubmit}>
+            <h3 className="text-start">Add Hall</h3>
 
         <div class="col-12">
           <label for="inputFK" class="form-label">Floor</label>
@@ -102,13 +107,14 @@ const ShtoHall = () => {
                 onChange={handleChange} name='hall_number' />
             </div>
 
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Krijo</button>
-                <Link to="/halls" className='btn btn-success ms-3'>Kthehu</Link>
-            </div>
-
+            <div className="col-12">
+                    <div className="text-center ">
+                    <button type="submit" className="btn btn-dark" style={{ width: '50%' }}>Create</button>
+                        </div>
+                    </div>
 
         </form>
+    </div>
     </div>
   )
 }

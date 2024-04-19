@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 import { toast } from 'react-toastify';
+import { FaTimes } from 'react-icons/fa'; 
+import '../form.css';
 
 
 const InsertUser = () => {
@@ -61,9 +63,10 @@ const InsertUser = () => {
 
   return (
     <div className='d-flex flex-column align-items-center pt-4'>
-        <h2>Shto User/Admin</h2>
-        <form className="row g-3 w-50" onSubmit={handleSubmit}>
-
+          <div className="form-border">
+        <Link to="/menaxhoUseret" className='btn btn-danger rounded-circle p-0 ' style={{ width: '20px', height: '20px', lineHeight: '1.01', fontSize: '15px', float: 'right', marginTop: '1px', }}><FaTimes /></Link>
+        <form className="row g-3 w-150" onSubmit={handleSubmit}>
+            <h3 className="text-start">Add User</h3>
 
             <div className='col-12'>
                 <label for="inputName" className="form-label">Name </label>
@@ -102,7 +105,7 @@ const InsertUser = () => {
             </div>
 
                 <div className="col-12">
-                <label htmlFor="inputGender" className="form-label">Gjinia</label>
+                <label htmlFor="inputGender" className="form-label">Gender</label>
                     <select className="form-control" id="inputGender" onChange={handleGenderChange}>
                         <option value="">Zgjidhni gjinine</option>
                             {gjinite.map((gjinite, index) => (
@@ -111,20 +114,18 @@ const InsertUser = () => {
                     </select>
             </div>
             <div className="col-12">
-              <label htmlFor="inputDate" className="form-label">Datelindja</label>
+              <label htmlFor="inputDate" className="form-label">Birthday</label>
               <input type="date"className="form-control" id="inputDate"
                onChange={e => setLlogari({...llogari, date_of_birth: e.target.value})}/>
             </div>
 
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Krijo</button>
-                <Link to="/menaxhoUseret" className='btn btn-success ms-3'>Kthehu</Link>
-            </div>
-
-
-
-
+            <div className="col-12">
+                    <div className="text-center ">
+                    <button type="submit" className="btn btn-dark" style={{ width: '50%' }}>Create</button>
+                        </div>
+                    </div>
         </form>
+      </div>
     </div>
   )
 }

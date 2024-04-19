@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import { FaTimes } from 'react-icons/fa'; 
+import '../form.css';
 
 const UpdateRoomT = () => {
     const [data, setData] = useState({
@@ -68,9 +70,10 @@ const UpdateRoomT = () => {
 
     return (
         <div className='d-flex flex-column align-items-center pt-4'>
-            <h2>Update Dhome</h2>
-            <form className="row g-3 w-50" onSubmit={handleSubmit}>
-    
+            <div className="form-border">
+        <Link to="/menaxhoRoomT" className='btn btn-danger rounded-circle p-0 ' style={{ width: '20px', height: '20px', lineHeight: '1.01', fontSize: '15px', float: 'right', marginTop: '1px', }}><FaTimes /></Link>
+        <form className="row g-3 w-150" onSubmit={handleSubmit}>
+            <h3 className="text-start">Update Room Type</h3>
     
                 <div className='col-12'>
                     <label for="inputTitle" className="form-label">Title</label>
@@ -129,19 +132,16 @@ const UpdateRoomT = () => {
                     <input type="number" className="form-control" id="inputExtraBP" placeholder='Extra Bed Price' autoComplete='off'
                     onChange={e => setData({ ...data, extra_bed_price: e.target.value })} value={data.extra_bed_price} />
                 </div>
-           
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary">Update</button>
-                    <Link to="/menaxhoRoomT" className='btn btn-success ms-3'>Kthehu</Link>
-                </div>
-    
-    
-    
-    
-            </form>
-        </div>
-      )
-    }
+                <div className="col-12">
+                    <div className="text-center ">
+                    <button type="submit" className="btn btn-dark" style={{ width: '50%' }}>Update</button>
+                        </div>
+                    </div>
+        </form>
+      </div>
+    </div>
+  )
+}
 
 export default UpdateRoomT
 

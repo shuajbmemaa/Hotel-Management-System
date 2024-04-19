@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 import { toast } from 'react-toastify';
+import { FaTimes } from 'react-icons/fa'; 
+import '../form.css';
 
 
 const InsertRoomT = () => {
@@ -73,10 +75,10 @@ const InsertRoomT = () => {
 
   return (
     <div className='d-flex flex-column align-items-center pt-4'>
-        <h2>Shto Dhome</h2>
-        <form className="row g-3 w-50" onSubmit={handleSubmit}>
-
-
+       <div className="form-border">
+        <Link to="/menaxhoRoomT" className='btn btn-danger rounded-circle p-0 ' style={{ width: '20px', height: '20px', lineHeight: '1.01', fontSize: '15px', float: 'right', marginTop: '1px', }}><FaTimes /></Link>
+        <form className="row g-3 w-150" onSubmit={handleSubmit}>
+            <h3 className="text-start">Add Room Type</h3>
             <div className='col-12'>
                 <label for="inputTitle" className="form-label">Title</label>
                 <input type="text" className="form-control" id="inputTitle" placeholder='Title' autoComplete='off'
@@ -138,18 +140,13 @@ const InsertRoomT = () => {
               <input type="file" class="form-control" id="inputGroupFile01"
                 onChange={e => setRoom({ ...room, image: e.target.files[0] })} />
             </div>
-
-        
-
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Krijo</button>
-                <Link to="/menaxhoRoomT" className='btn btn-success ms-3'>Kthehu</Link>
-            </div>
-
-
-
-
+            <div className="col-12">
+                    <div className="text-center ">
+                    <button type="submit" className="btn btn-dark" style={{ width: '50%' }}>Create</button>
+                        </div>
+                    </div>
         </form>
+      </div>
     </div>
   )
 }

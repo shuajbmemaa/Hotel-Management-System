@@ -8,6 +8,7 @@ const HallTypes = () => {
 
   const [hallTypes,setHallTypes]=useState([])
   const [amenties,setAmenties]=useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(()=>{
     axios.get('http://localhost:3002/getAmenties')
@@ -34,7 +35,7 @@ const HallTypes = () => {
   })
 
   const handleDelete= (id)=>{
-    if(window.confirm("A jeni i sigurte qe doni ta largoni kete Hall Type ?")){
+    if(window.confirm("Are you sure you want to remove this Hall Type?")){
       axios.delete('http://localhost:3002/deleteHallType/'+id)
       .then(res=>{
         if(res.data.Status === "Success"){
@@ -50,17 +51,24 @@ const HallTypes = () => {
  
   return (
     <div className='px-5 py-3'>
-      <div className='d-flex justify-content-center'>
+      <div className='d-flex justify-content-right'>
             <h3>Hall Types</h3>
       </div>
       <div className='d-flex justify-content-end'>
-          <Link to='/insertHallTypes' className='btn btn-success'>Create <i class="bi bi-patch-plus"></i></Link>
+          <Link to='/insertHallTypes' className='btn btn-light'><i class="bi bi-plus"></i>Add New Hall Type</Link>
       </div>
       <div className='mt-3'>
-        <table className='table'>
+      <input
+                    type="text"
+                    className="form-control shadow"
+                    placeholder="Search..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+        <table className='table mt-3'>
           <thead>
             <tr>
-              <th>Id</th>
+              <th>#</th>
               <th>Title</th>
               <th>Short Code</th>
               <th>Base Occupancy</th>

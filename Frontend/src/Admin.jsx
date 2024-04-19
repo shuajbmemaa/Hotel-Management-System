@@ -9,12 +9,11 @@ import { OrderedListOutlined } from '@ant-design/icons';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 
 const Admin = () => {
+	
   const handleLogout=()=>{
     axios.get('http://localhost:3002/logout')
     .then(res =>{
       window.localStorage.removeItem("userId")
-     // window.localStorage.removeItem("accessToken")
-      //window.localStorage.removeItem("refreshToken")
       Cookies.remove("accessToken");
       Cookies.remove("refreshToken");
         window.location.reload();
@@ -36,81 +35,51 @@ const Admin = () => {
 							</li>
 							<li>
 								<Link to="/menaxhoUseret" className="nav-link px-0 align-middle text-white">
-									<i className="fs-4 bi-people"></i> <span className="ms-1 d-none d-sm-inline">Menaxhimi i Userave</span> </Link>
-							</li>
-							<li>
-								<Link to="/menaxhoAmenties" className="nav-link px-0 align-middle text-white">
-								<ShoppingCartOutlined /> <span className="ms-1 d-none d-sm-inline">Menaxhimi i pajisjeve</span> </Link>
-							</li>
-							<li>
-								<Link to="/menaxhoFloors" className="nav-link px-0 align-middle text-white">
-								<ShoppingCartOutlined /> <span className="ms-1 d-none d-sm-inline">Menaxhimi i floors</span> </Link>
+									<i className="fs-4 bi-people"></i> <span className="ms-1 d-none d-sm-inline">Users</span> </Link>
 							</li>
 							<li>
 								<Link to="/menaxhoRoomT" className="nav-link px-0 align-middle text-white">
-								<ShoppingCartOutlined /> <span className="ms-1 d-none d-sm-inline">Room Types</span> </Link>
+								<i className="	bi bi-columns-gap"></i> <span className="ms-1 d-none d-sm-inline">Room Types</span> </Link>
 							</li>
 							<li>
 								<Link to="/menaxhoRoom" className="nav-link px-0 align-middle text-white">
-								<OrderedListOutlined /> <span className="ms-1 d-none d-sm-inline">Room</span> </Link>
+								<i class="bi bi-door-open"></i> <span className="ms-1 d-none d-sm-inline">Rooms</span> </Link>
 							</li>
-
 							<li>
 								<Link to="/hall-types" className="nav-link px-0 align-middle text-white">
-									<AppstoreOutlined/> <span className="ms-1 d-none d-sm-inline">Hall Types</span> </Link>
+								<i className="bi bi-columns-gap"></i><span className="ms-1 d-none d-sm-inline">Hall Types</span> </Link>
 							</li>
 							<li>
 								<Link to="/halls" className="nav-link px-0 align-middle text-white">
-								<OrderedListOutlined /> <span className="ms-1 d-none d-sm-inline">Halls</span> </Link>
+								<i class="bi bi-door-closed"></i><span className="ms-1 d-none d-sm-inline">Halls</span> </Link>
 							</li>
 							<li>
-								<Link to="/kategorite" className="nav-link px-0 align-middle text-white">
-								<ShoppingCartOutlined /> <span className="ms-1 d-none d-sm-inline">Kategorite</span> </Link>
+								<Link to="/menaxhoFloors" className="nav-link px-0 align-middle text-white">
+								<i class="bi bi-building"></i><span className="ms-1 d-none d-sm-inline">Floors</span> </Link>
 							</li>
 							<li>
-								<Link to="profile" className="nav-link px-0 align-middle text-white">
-									<i className="fs-4 bi-person"></i> <span className="ms-1 d-none d-sm-inline">Profile</span></Link>
+								<Link to="/menaxhoAmenties" className="nav-link px-0 align-middle text-white">
+								<i class="bi bi-clipboard2-plus"></i> <span className="ms-1 d-none d-sm-inline">Amenties</span> </Link>
 							</li>
-							<li>
-								<Link to="/skuadra" className="nav-link px-0 align-middle text-white">
-									<i className="fs-4 bi-person"></i> <span className="ms-1 d-none d-sm-inline">Skuadra</span></Link>
-							</li>
-							<li>
-								<Link to="/futbollisti" className="nav-link px-0 align-middle text-white">
-									<i className="fs-4 bi-person"></i> <span className="ms-1 d-none d-sm-inline">Futbollistet</span></Link>
-							</li>
-
-
-							<li>
-								<Link to="/bank" className="nav-link px-0 align-middle text-white">
-								<BankOutlined /> <span className="ms-1 d-none d-sm-inline">Banka</span></Link>
-							</li>
-							<li>
-								<Link to="/klientbanka" className="nav-link px-0 align-middle text-white">
-									<i className="fs-4 bi-person"></i> <span className="ms-1 d-none d-sm-inline">Klientet</span></Link>
-							</li>
-
-							<li>
-								<Link to="/chef" className="nav-link px-0 align-middle text-white">
-								<BankOutlined /> <span className="ms-1 d-none d-sm-inline">Chef</span></Link>
-							</li>
-							<li>
-								<Link to="/recipe" className="nav-link px-0 align-middle text-white">
-								<BankOutlined /> <span className="ms-1 d-none d-sm-inline">Recipe</span></Link>
-							</li>
+						
+					
 
 
 							<li onClick={handleLogout}>
 								<a href="#" className="nav-link px-0 align-middle text-white">
 									<i className="fs-4 bi-power"></i> <span className="ms-1 d-none d-sm-inline">Logout</span></a>
 							</li>
+						
 						</ul>
 					</div>
 				</div>
-				<div class="col p-0 m-0">
-					<div className='p-2 d-flex justify-content-center shadow'>
-						<h4>Sistemi per menaxhim te Aplikacionit E-commerce</h4>						
-					</div>
+				<div class="col p- m-0">
+    <Link to="profile" className="nav-link px-0 align-right text-black text-end">
+        <i className="fs-4 bi-person"></i> <span className="ms-1 d-none d-sm-inline">Profile</span>
+    </Link>
+
+							
+					
 					<Outlet />
 				</div>
 			</div>

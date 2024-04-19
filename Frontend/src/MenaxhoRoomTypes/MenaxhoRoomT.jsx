@@ -7,9 +7,10 @@ import { toast } from 'react-toastify';
 const MenaxhoRoomT = () => {
 
     const[data,setData]=useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const handleDelete= (id)=>{
-      if(window.confirm("A jeni i sigurte qe doni ta largoni kete dhome ?")){
+      if(window.confirm("Are you sure you want to remove this Room Type?")){
         axios.delete('http://localhost:3002/deleteRoomT/'+id)
         .then(res=>{
           if(res.data.Status === "Success"){
@@ -37,17 +38,24 @@ const MenaxhoRoomT = () => {
 
   return (
     <div className='px-5 py-3'>
-        <div className='d-flex justify-content-center'>
-            <h3>Menaxhimi i Dhomave</h3>
+        <div className='d-flex justify-content-right'>
+            <h3>Room Types</h3>
         </div>
         <div className="d-flex justify-content-end">
-        <Link to="/shtoRoomT" className='btn btn-success'>Krijo nje dhome <i class="bi bi-patch-plus"></i></Link>
+        <Link to="/shtoRoomT" className='btn btn-light'><i class="bi bi-plus"></i>Add New Room Type</Link>
       </div>
         <div className='mt-3'>
-        <table className='table'>
+        <input
+                    type="text"
+                    className="form-control shadow"
+                    placeholder="Search..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+        <table className='table mt-3'>
         <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>#</th>
                     <th>Name</th>
                     <th>Short Code</th>
                     <th>Amenties</th>
@@ -55,7 +63,14 @@ const MenaxhoRoomT = () => {
                 </tr>
         </thead>
         <tbody>
-            {data.map((rooms,index)=>{
+        {data.filter(rooms => {
+                            if (searchTerm === '') {
+                                return rooms;
+                            } else if (rooms.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                return rooms;
+                            }
+                            return false;
+                        }).map((rooms,index)=>{
                return  <tr key={index}>
                     <td>{rooms.id}</td>
                     <td>{rooms.title}</td>

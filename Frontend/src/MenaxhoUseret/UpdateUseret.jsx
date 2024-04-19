@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import { FaTimes } from 'react-icons/fa'; 
+import '../form.css';
 
 const UpdateUseret = () => {
     const [data, setData] = useState({
@@ -45,8 +47,10 @@ const UpdateUseret = () => {
 
   return (
     <div className='d-flex flex-column align-items-center pt-4'>
-			<h2>Update User</h2>
-			<form class="row g-3 w-50" onSubmit={handleSubmit}>
+		   <div className="form-border">
+        <Link to="/menaxhoUseret" className='btn btn-danger rounded-circle p-0 ' style={{ width: '20px', height: '20px', lineHeight: '1.01', fontSize: '15px', float: 'right', marginTop: '1px', }}><FaTimes /></Link>
+        <form className="row g-3 w-150" onSubmit={handleSubmit}>
+            <h3 className="text-start">Update User</h3>
 			<div class="col-12">
 					<label for="inputName" class="form-label">Name</label>
 					<input type="text" class="form-control" id="inputName" placeholder='Enter Name' autoComplete='off'
@@ -58,7 +62,7 @@ const UpdateUseret = () => {
 					onChange={e => setData({...data, email: e.target.value})} value={data.email}/>
 				</div>
                 <div className="col-12">
-                <label htmlFor="inputRole" className="form-label">Roli</label>
+                <label htmlFor="inputRole" className="form-label">Role</label>
                     <select className="form-control" id="inputRole" onChange={e => setData({...data, role: e.target.value})} value={data.role}>
                         <option value="">Zgjidhni rolin</option>
                             {rolet.map((rolet, index) => (
@@ -67,16 +71,18 @@ const UpdateUseret = () => {
                     </select>
             </div>
            <div className="col-12">
-              <label htmlFor="inputDate" className="form-label">Datelindja</label>
+              <label htmlFor="inputDate" className="form-label">Birthday</label>
               <input type="date"className="form-control" id="inputDate"
                 onChange={e => setData({ ...data, date_of_birth: e.target.value })} value={data.date_of_birth} />
             </div>
-				<div class="d-flex justify-content-center">
-					<button type="submit" class="btn btn-primary">Update</button>
-                    <Link to="/menaxhoUseret" className='btn btn-success ms-3'>Kthehu</Link>
-				</div>
-			</form>
-		</div>
+            <div className="col-12">
+                    <div className="text-center ">
+                    <button type="submit" className="btn btn-dark" style={{ width: '50%' }}>Update</button>
+                        </div>
+                    </div>
+        </form>
+      </div>
+    </div>
   )
 }
 

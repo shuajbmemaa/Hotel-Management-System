@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import { FaTimes } from 'react-icons/fa'; 
+import '../form.css';
 
 const UpdateRoom = () => {
   const [data, setData] = useState({
@@ -68,9 +70,10 @@ const handleSubmit=(event)=>{
 
 return (
     <div className='d-flex flex-column align-items-center pt-4'>
-        <h2>Update Dhome</h2>
-        <form className="row g-3 w-50" onSubmit={handleSubmit}>
-
+       <div className="form-border">
+        <Link to="/menaxhoRoom" className='btn btn-danger rounded-circle p-0 ' style={{ width: '20px', height: '20px', lineHeight: '1.01', fontSize: '15px', float: 'right', marginTop: '1px', }}><FaTimes /></Link>
+        <form className="row g-3 w-150" onSubmit={handleSubmit}>
+            <h3 className="text-start">Update Room</h3>
 
     <div class="col-12">
       <label for="inputF" class="form-label">Floor</label>
@@ -104,16 +107,13 @@ return (
             onChange={e => setData({ ...data, room_number: e.target.value })} value={data.room_number} />
         </div>
        
-       
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Update</button>
-                <Link to="/menaxhoRoom" className='btn btn-success ms-3'>Kthehu</Link>
-            </div>
-
-
-
-
+        <div className="col-12">
+                    <div className="text-center ">
+                    <button type="submit" className="btn btn-dark" style={{ width: '50%' }}>Update</button>
+                        </div>
+                    </div>
         </form>
+      </div>
     </div>
   )
 }

@@ -2,6 +2,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { FaTimes } from 'react-icons/fa';
+import '../form.css';
 
 
 const UpdateHall = () => {
@@ -75,8 +77,10 @@ const UpdateHall = () => {
 
   return (
     <div className='d-flex flex-column align-items-center pt-4'>
-			<h2>Update </h2>
-		    <form class="row g-3 w-50" onSubmit={handleSubmit}>
+		<div className="form-border">
+        <Link to="/halls" className='btn btn-danger rounded-circle p-0 ' style={{ width: '20px', height: '20px', lineHeight: '1.01', fontSize: '15px', float: 'right', marginTop: '1px', }}><FaTimes /></Link>
+        <form className="row g-3 w-150" onSubmit={handleSubmit}>
+            <h3 className="text-start">Update Hall</h3>
             <div class="col-12">
                      <label for="inputFK" class="form-label">Floor </label>
                 <select
@@ -110,15 +114,15 @@ const UpdateHall = () => {
 					<input type="number" class="form-control" id="inputHN" placeholder='Enter Hall Number' autoComplete='off'
 					 name='hall_number'   onChange={handleInputChange} value={hall.hall_number}/>
 				</div>
+        <div className="col-12">
+                    <div className="text-center ">
+                    <button type="submit" className="btn btn-dark" style={{ width: '50%' }}>Update</button>
+                        </div>
+                    </div>
 
-
-           
-				<div class="d-flex justify-content-center">
-					<button type="submit" class="btn btn-primary">Update</button>
-                    <Link to="/halls" className='btn btn-success ms-3'>Kthehu</Link>
-				</div>
-			</form>
-		</div>
+        </form>
+    </div>
+    </div>
   )
 }
 
