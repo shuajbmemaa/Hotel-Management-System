@@ -8,7 +8,10 @@ const HallTypes = () => {
 
   const [hallTypes,setHallTypes]=useState([])
   const [amenties,setAmenties]=useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+
+  const[title,setTitle]=useState('');
+  const[searchAmenties,setSearchAmenties]=useState('');
+
 
   useEffect(()=>{
     axios.get('http://localhost:3002/getAmenties')
@@ -48,6 +51,10 @@ const HallTypes = () => {
       .catch(err=>console.log(err))
     }
   }
+
+  const search=hallTypes.filter(hallT=>
+      hallT.title.toString().toLowerCase().includes(title.toLowerCase())
+    )
  
   return (
     <div className='px-5 py-3'>
@@ -59,12 +66,12 @@ const HallTypes = () => {
       </div>
       <div className='mt-3'>
       <input
-                    type="text"
-                    className="form-control shadow"
-                    placeholder="Search..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
+          type="text"
+          className="form-control mb-3"
+          placeholder="Search by title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
         <table className='table mt-3'>
           <thead>
             <tr>
@@ -80,7 +87,7 @@ const HallTypes = () => {
             </tr>
           </thead>
           <tbody>
-            {hallTypes.map((hallType,index)=>{
+            {search.map((hallType,index)=>{
                return  <tr key={index}>
                     <td>{hallType.id}</td>
                     <td>{hallType.title}</td>
