@@ -34,7 +34,7 @@ getRoutes.get('/logout', (req, res) => {
 
    getRoutes.get('/getUsers/:id',(req,res)=>{
     const id = req.params.id;
-    const sql = "Select name,email,role,date_of_birth from users where id=?";   
+    const sql = "Select name,email,role,img_url,date_of_birth from users where id=?";   
     db.query(sql, [id], (err, result)=>{
       if(err) return res.status(400).json({message:"Gabim"})
       return res.status(200).json({Status:"Success",Result:result})
