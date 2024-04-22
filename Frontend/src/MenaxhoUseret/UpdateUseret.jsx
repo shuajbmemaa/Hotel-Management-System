@@ -11,6 +11,7 @@ const UpdateUseret = () => {
 		name: '',
 		email: '',
 		role: '',
+        image:'',
         date_of_birth:''
 	})
 
@@ -27,6 +28,7 @@ const UpdateUseret = () => {
                 name:res.data.Result[0].name,
                 email:res.data.Result[0].email,
                 role:res.data.Result[0].role,
+                image:res.data.Result[0].img_url,
                 date_of_birth:res.data.Result[0].date_of_birth,
             })
         })
@@ -35,7 +37,19 @@ const UpdateUseret = () => {
 
     const handleSubmit=(event)=>{
         event.preventDefault();
-        axios.put('http://localhost:3002/updateUsers/'+id,data)
+
+        const formData=new FormData();
+        
+        formData.append("name",data.name);
+        formData.append("email",data.email);
+        formData.append("role",data.role);
+        //formData.append("image",data.image);
+        if(data.image){
+            formData.append("image",data.image); 
+        }
+        formData.append("date_of_birth",data.date_of_birth);
+
+        axios.put('http://localhost:3002/updateUsers/'+id,formData)
         .then(res =>{
             if(res.data.Status === "Success"){
             navigate('/menaxhoUseret')
@@ -70,6 +84,19 @@ const UpdateUseret = () => {
                     ))}
                     </select>
             </div>
+
+            <div class="col-12 mb-3">
+              <label htmlFor='inputGroupFile01' className="form-label">Select Image</label>
+              <input type="file" className="form-control" id="inputGroupFile01"
+                onChange={e=>{
+                    if(e.target.files.length>0){
+                        setData({...data,image:e.target.files[0]})
+                    }else{
+                        setData({ ...data, image: data.image });
+                    }
+                }}/>
+            </div>
+
            <div className="col-12">
               <label htmlFor="inputDate" className="form-label">Birthday</label>
               <input type="date"className="form-control" id="inputDate"
