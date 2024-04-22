@@ -1,7 +1,23 @@
 import express from 'express'
 import db from '../DB/db.js'
+import path from 'path';
+import multer from 'multer';
+
 
 const putRoutes=express.Router();
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/images')
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+  }
+})
+
+const upload = multer({
+  storage: storage
+})
 
 putRoutes.put('/updateAmenties/:id',(req,res)=>{
     const id=req.params.id;
@@ -13,15 +29,37 @@ putRoutes.put('/updateAmenties/:id',(req,res)=>{
     })
   })
 
-  putRoutes.put('/updateUsers/:id',(req,res)=>{
-    const id=req.params.id;
-    const {name,email,role,date_of_birth}=req.body;
-    const sql="Update users set name=?,email=?,role=?,date_of_birth=? where id = ?" ;
-    db.query(sql, [name,email,role,date_of_birth,id], (err, result) => {
-      if (err) return res.json({ Error: "Error when updating in sql" })
-      return res.json({ Status: "Success", Result: result })
-    })
-  })
+  putRoutes.put('/updateUsers/:id', upload.single('image'), (req, res) => {
+    const id = req.params.id;
+
+    const name=req.body.name;
+    const email = req.body.email;
+    const role = req.body.role;
+    const date_of_birth = req.body.date_of_birth;
+
+    let img_url = req.file ? req.file.filename : null;
+
+    if (!req.file) {
+
+      const sqlGetImage = "SELECT img_url FROM users WHERE id = ?";
+      db.query(sqlGetImage, [id], (err, result) => {
+          if (err) return res.json(err);
+          img_url = result[0].img_url;
+  
+          const sqlUpdate = "UPDATE users SET name=?, email=?, role=?, img_url=?, date_of_birth=? WHERE id = ?";
+          db.query(sqlUpdate, [name, email, role, img_url, date_of_birth, id], (err, result) => {
+              if (err) return res.json(err);
+              return res.json({ Status: "Success", Result: result });
+          });
+      });
+  } else {
+      const sqlUpdate = "UPDATE users SET name=?, email=?, role=?, img_url=?, date_of_birth=? WHERE id = ?";
+      db.query(sqlUpdate, [name, email, role, img_url, date_of_birth, id], (err, result) => {
+          if (err) return res.json(err);
+          return res.json({ Status: "Success", Result: result });
+    });
+}});
+
 
   putRoutes.put('/updateFloors/:id',(req,res)=>{
     const id=req.params.id;
