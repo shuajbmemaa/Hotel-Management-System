@@ -35,7 +35,12 @@ const InsertFloors = () => {
       })
       .catch(err => {
         setLoading(false);
-        console.log(err);
+        if (err.response && err.response.status === 400) {
+          toast.warn('Emri i floor eshte ne perdorim. Ju lutem provoni nje emer tjeter.');
+        } else {
+          console.log(err);
+          toast.error('Gabim ne server');
+        }
       });
   };
 
