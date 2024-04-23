@@ -6,7 +6,8 @@ import { toast } from 'react-toastify';
 const Hall = () => {
 
   const[halls,setHalls]=useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [kerkoSipasFloors,setKerkoSipasFloors]=useState('');
+  const [kerkoSipasHallNumber,setKerkoSipasHallNumber]=useState('');
 
   const handleDelete= (id)=>{
     if(window.confirm("Are you sure you want to remove this Hall??")){
@@ -34,6 +35,11 @@ const Hall = () => {
     }).catch(err=>console.log(err))
   })
 
+  const search=halls.filter(searchFilter=>
+          searchFilter.emri.toString().toLowerCase().includes(kerkoSipasFloors.toLowerCase())&&
+          searchFilter.hall_number.toString().toLowerCase().includes(kerkoSipasHallNumber.toLowerCase())
+      );
+
   return (
     <div className='px-5 py-3'>
       <div className='d-flex justify-content-right'>
@@ -44,12 +50,19 @@ const Hall = () => {
       </div>
       <div className='mt-3'>
       <input
-                    type="text"
-                    className="form-control shadow"
-                    placeholder="Search..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
+          type="text"
+          className="form-control mb-3"
+          placeholder="Search by floor"
+          value={kerkoSipasFloors}
+          onChange={(e) => setKerkoSipasFloors(e.target.value)}
+        />
+        <input
+          type="text"
+          className="form-control mb-3"
+          placeholder="Search by hall number"
+          value={kerkoSipasHallNumber}
+          onChange={(e) => setKerkoSipasHallNumber(e.target.value)}
+        />
           <table className='table mt-3'>
               <thead>
                 <tr>
@@ -61,7 +74,7 @@ const Hall = () => {
                 </tr>
               </thead>
               <tbody>
-                {halls.map((hall,index)=>{
+                {search.map((hall,index)=>{
                   return <tr key={index}>
                       <td>{hall.id}</td>
                       <td>{hall.emri}</td>
