@@ -109,18 +109,28 @@ postRoutes.post('/krijonjeLlogari',upload.single('image'),(req,res)=>{
     })
   })
 
-  postRoutes.post('/shtonjeFloor',(req,res)=>{
-    const sql="Insert into floors (`name`,`floor_number`,`description`) VALUES (?)"
-      const values=[
-        req.body.name,
-        req.body.floor_number,
-        req.body.description
-      ]
-      db.query(sql,[values],(err,result)=>{
-        if (err) return res.json({ Error: "Gabim gjate insertimit te floors ne databaze" })
-      return res.json({ Status: "Success" })
-      })
-  })
+  postRoutes.post('/shtonjeFloor', (req, res) => {
+    const { name, floor_number, description } = req.body;
+    const checkNameQuery = "SELECT * FROM floors WHERE name = ?";
+    
+    db.query(checkNameQuery, [name], (err, result) => {
+        if (err) {
+            return res.status(500).json({ message: "Error" });
+        }
+        if (result.length > 0) {
+            return res.status(400).json({ message: "Emri i floor eshte ne perdorim" });
+        } else {
+            const sql = "INSERT INTO floors (name, floor_number, description) VALUES (?, ?, ?)";
+            db.query(sql, [name, floor_number, description], (err, result) => {
+                if (err) {
+                    return res.status(500).json({ message: "Gabim ne server" });
+                }
+                return res.status(201).json({ message: "Floor u insertua me sukses" });
+            });
+        }
+    });
+});
+
 
   postRoutes.post('/krijoDhome',upload.single('image'),(req,res)=>{
     const sql="Insert into room_types (`title`,`short_code`,`base_occupancy`,`higher_occupancy`,`extra_bed`,`kids`,`amenties_id`,`base_price`,`extra_bed_price`,`image`) VALUES (?)"
