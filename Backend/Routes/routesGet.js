@@ -137,5 +137,18 @@ getRoutes.get('/getRooms/:id',(req,res)=>{
   })
  })
 
+ getRoutes.get('/api/profile', (req, res) => {
+  const sql = 'SELECT * FROM users WHERE id = ?';
+  const userId = req.query.userId;
+  db.query(sql, [userId], (error, results) => {
+    if (error) {
+      console.error('Error executing query:', error);
+      res.status(500).json({ error: 'An error occurred' });
+    } else {
+      res.json(results[0]);
+    }
+  });
+});
+
 export default getRoutes;
 
