@@ -1,14 +1,26 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, Outlet } from 'react-router-dom'
-import { AppstoreOutlined, BankOutlined } from '@ant-design/icons';
-import { OrderedListOutlined } from '@ant-design/icons';
-import { ShoppingCartOutlined } from '@ant-design/icons';
 
 const Admin = () => {
+
+	const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userId = window.localStorage.getItem("userId");
+        const response = await axios.get(`http://localhost:3002/api/profile?userId=${userId}`);
+        setUserData(response.data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    }
+    fetchUserData();
+  }, []);
 	
   const handleLogout=()=>{
     axios.get('http://localhost:3002/logout')
@@ -74,9 +86,9 @@ const Admin = () => {
 					</div>
 				</div>
 				<div class="col p- m-0">
-    <Link to="profile" className="nav-link px-0 align-right text-black text-end">
-        <i className="fs-4 bi-person"></i> <span className="ms-1 d-none d-sm-inline">Profile</span>
-    </Link>
+				<Link to="/profile" className="nav-link px-0 align-right text-black text-end">
+            <img src={`http://localhost:3002/images/${userData ? userData.img_url : ''}`} alt="" className='useret_image' />
+          </Link>
 
 							
 					
