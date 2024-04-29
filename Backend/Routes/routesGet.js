@@ -17,7 +17,7 @@ getRoutes.get('/logout', (req, res) => {
   })
 
   getRoutes.get('/getUseret',(req,res)=>{
-    const sql = "Select id,name,email,img_url,gender from users";   
+    const sql = "Select id,name,email,img_url,gender,date_of_birth from users";   
     db.query(sql,(err,result)=>{
       if(err) return res.status(400).json({message:"Gabim"})
       return res.status(200).json({Status:"Success",Result:result})

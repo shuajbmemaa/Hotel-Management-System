@@ -59,6 +59,7 @@ const MenaxhoUseret = () => {
                             <th>Email</th>
                             <th>Image</th>
                             <th>Gender</th>
+                            <th>Birthday</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -79,6 +80,7 @@ const MenaxhoUseret = () => {
                                     <img src={`http://localhost:3002/images/${useret.img_url}`} alt="" className='useret_image' />
                                 </td>
                                 <td>{useret.gender}</td>
+                                <td>{useret.date_of_birth}</td>
                                 <td>
                                     <Link to={`/updateUseret/${useret.id}`} className='btn btn-primary btn-sm me-2'>Update <i className="bi bi-pencil"></i></Link>
                                     <button onClick={() => handleDelete(useret.id)} className='btn btn-sm btn-danger'>Delete <i className="bi bi-trash3"></i></button>
