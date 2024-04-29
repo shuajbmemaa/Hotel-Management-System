@@ -29,6 +29,7 @@ import UpdateRoom from './MenaxhoRoom/UpdateRoom'
 import Hall from './Hall/Hall'
 import ShtoHall from './Hall/ShtoHall'
 import UpdateHall from './Hall/UpdateHall'
+import Service from './Service/Service'
 
 function App() {
   return (
@@ -64,6 +65,8 @@ function App() {
         <Route path='/halls' element={<Hall/>}></Route>
         <Route path='/shtoHalls' element={<ShtoHall/>}></Route>
         <Route path='/updateHalls/:id' element={<UpdateHall/>}></Route>
+
+        <Route path='/service' element={<Service/>}></Route>
 
       </Route>
        <Route path='/login' element={<LoginRegister/>}></Route> 
