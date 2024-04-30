@@ -82,23 +82,23 @@ const Admin = () => {
 					
 
 
-							<li onClick={handleLogout}>
-								<a href="#" className="nav-link px-0 align-middle text-white">
-									<i className="fs-4 bi-power"></i> <span className="ms-1 d-none d-sm-inline">Logout</span></a>
-							</li>
 						
 						</ul>
 					</div>
 				</div>
-				<div class="col p- m-0">
-				<Link to="/profile" className="nav-link px-0 align-right text-black text-end">
+				<div className="col p- m-0">
+    <div className="dropdown">
+        <a className="nav-link dropdown-toggle px-0 align-right text-black text-end" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             <img src={`http://localhost:3002/images/${userData ? userData.img_url : ''}`} alt="" className='useret_image' />
-          </Link>
-
-							
-					
-					<Outlet />
-				</div>
+        </a>
+        <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+            <li><Link to="/profile" className="dropdown-item">Profile</Link></li>
+            <li><hr className="dropdown-divider" /></li>
+            <li onClick={handleLogout}><a className="dropdown-item" href="#">Logout</a></li>
+        </ul>
+    </div>
+    <Outlet />
+</div>
 			</div>
 		</div>
   )
