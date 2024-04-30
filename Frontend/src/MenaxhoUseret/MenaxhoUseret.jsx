@@ -8,6 +8,15 @@ const MenaxhoUseret = () => {
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+        const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+        return `${day}-${month}-${year}`;
+    };
+    
+
     const handleDelete = (id) => {
         if (window.confirm("Are you sure you want to remove this User?")) {
             axios.delete(`http://localhost:3002/deleteUser/${id}`)
@@ -34,6 +43,8 @@ const MenaxhoUseret = () => {
             })
             .catch(err => console.log(err));
     }, []);
+
+    
 
     return (
         <div className='px-5 py-3'>
@@ -80,7 +91,7 @@ const MenaxhoUseret = () => {
                                     <img src={`http://localhost:3002/images/${useret.img_url}`} alt="" className='useret_image' />
                                 </td>
                                 <td>{useret.gender}</td>
-                                <td>{useret.date_of_birth}</td>
+                                <td>{formatDate(useret.date_of_birth)}</td>
                                 <td>
                                     <Link to={`/updateUseret/${useret.id}`} className='btn btn-primary btn-sm me-2'>Update <i className="bi bi-pencil"></i></Link>
                                     <button onClick={() => handleDelete(useret.id)} className='btn btn-sm btn-danger'>Delete <i className="bi bi-trash3"></i></button>
