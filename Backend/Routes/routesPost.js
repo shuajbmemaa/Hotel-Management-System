@@ -181,6 +181,20 @@ postRoutes.post('/krijonjeLlogari',upload.single('image'),(req,res)=>{
       })
   })
 
+  postRoutes.post('/shtoService',(req,res)=>{
+    const sql="Insert into service (`title`,`room_type_id`,`price_type`,`price`,`description`) VALUES (?)"
+      const values=[
+        req.body.title,
+        req.body.room_type_id,
+        req.body.price_type,
+        req.body.price,
+        req.body.description
+      ]
+      db.query(sql,[values],(err,result)=>{
+        if (err) return res.json({Error:"Gabim ne server"})
+      return res.json({ Status: "Success" })
+      })
+  })
   
 
 export default postRoutes;
