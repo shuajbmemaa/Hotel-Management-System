@@ -150,5 +150,13 @@ getRoutes.get('/getRooms/:id',(req,res)=>{
   });
 });
 
+getRoutes.get('/getServices',(req,res)=>{
+  const sql="Select service.id,service.title,room_types.title as roomType,service.price from service INNER JOIN room_types on room_types.id=service.room_type_id ";
+  db.query(sql,(err,result)=>{
+    if(err) return res.status(400).json({Error:"Gabim ne Server"})
+    return res.json({Status:"Success",Result:result});
+  })
+ })
+
 export default getRoutes;
 
