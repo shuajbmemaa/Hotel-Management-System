@@ -6,7 +6,7 @@ import './menaxho.css';
 
 const MenaxhoUseret = () => {
     const [data, setData] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
+    const [datelindja,setDatelindja] = useState('');
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -44,6 +44,8 @@ const MenaxhoUseret = () => {
             .catch(err => console.log(err));
     }, []);
 
+    const filteri=data.filter(search=>
+        formatDate(search.date_of_birth).toLowerCase().includes(datelindja.toLowerCase()))
     
 
     return (
@@ -55,13 +57,13 @@ const MenaxhoUseret = () => {
                 <Link to="/krijoLlogari" className='btn btn-light'><i className="bi bi-person-plus-fill"></i> Add New User</Link>
             </div>
             <div className='mt-3'>
-                <input
-                    type="text"
-                    className="form-control shadow"
-                    placeholder="Search..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
+            <input
+                type="text"
+                className="form-control mb-3"
+                placeholder="Search by date of birth"
+                value={datelindja}
+                onChange={(e) => setDatelindja(e.target.value)}
+            />
                 <table className='table mt-3'>
                     <thead>
                         <tr>
@@ -75,14 +77,7 @@ const MenaxhoUseret = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.filter(useret => {
-                            if (searchTerm === '') {
-                                return useret;
-                            } else if (useret.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                                return useret;
-                            }
-                            return false;
-                        }).map((useret, index) => (
+                        {filteri.map((useret, index) => (
                             <tr key={index}>
                                 <td>{useret.id}</td>
                                 <td>{useret.name}</td>
