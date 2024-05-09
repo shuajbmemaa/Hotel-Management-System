@@ -57,9 +57,9 @@ const Service = () => {
                   onClick={togglePriceSort}
                 >
                   {isPriceAscending ? (
-                    <i className="bi bi-arrow-up"></i>
-                  ) : (
                     <i className="bi bi-arrow-down"></i>
+                  ) : (
+                    <i className="bi bi-arrow-up"></i>
                   )}
                 </span>
               </th>
