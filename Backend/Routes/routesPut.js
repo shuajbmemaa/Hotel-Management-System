@@ -60,6 +60,36 @@ putRoutes.put('/updateAmenties/:id',(req,res)=>{
     });
 }});
 
+putRoutes.put('/updateProfile/:id', upload.single('image'), (req, res) => {
+  const id = req.params.id;
+
+  const name=req.body.name;
+  const email = req.body.email;
+  const password = req.body.password;
+
+  let img_url = req.file ? req.file.filename : null;
+
+  if (!req.file) {
+
+    const sqlGetImage = "SELECT img_url FROM users WHERE id = ?";
+    db.query(sqlGetImage, [id], (err, result) => {
+        if (err) return res.json(err);
+        img_url = result[0].img_url;
+
+        const sqlUpdate = "UPDATE users SET name=?, email=?, password=?, img_url=? WHERE id = ?";
+        db.query(sqlUpdate, [name, email, password, img_url, id], (err, result) => {
+            if (err) return res.json(err);
+            return res.json({ Status: "Success", Result: result });
+        });
+    });
+} else {
+    const sqlUpdate = "UPDATE users SET name=?, email=?, password=?, img_url=? WHERE id = ?";
+    db.query(sqlUpdate, [name, email, password, img_url, id], (err, result) => {
+        if (err) return res.json(err);
+        return res.json({ Status: "Success", Result: result });
+  });
+}});
+
 
   putRoutes.put('/updateFloors/:id',(req,res)=>{
     const id=req.params.id;

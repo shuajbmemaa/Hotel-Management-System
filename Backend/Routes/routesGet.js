@@ -41,6 +41,14 @@ getRoutes.get('/logout', (req, res) => {
     })
    })
 
+   getRoutes.get('/getProfile/:id',(req,res)=>{
+    const id = req.params.id;
+    const sql = "Select name,email,password,img_url from users where id=?";   
+    db.query(sql, [id], (err, result)=>{
+      if(err) return res.status(400).json({message:"Gabim"})
+      return res.status(200).json({Status:"Success",Result:result})
+    })
+   })
    getRoutes.get('/getAmenties/:id',(req,res)=>{
     const id = req.params.id;
     const sql = "Select name,description from amenties where id=?";   
