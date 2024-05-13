@@ -1,8 +1,8 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import './profile.css';
+import { Link } from 'react-router-dom';
 
 
 const ProfilePage = () => {
@@ -68,6 +68,7 @@ const ProfilePage = () => {
         <div className="profile-dateBirth">{formatDate(profileData.date_of_birth)}</div>
       </div>
     </li>
+    <Link to={`/editProfile/${profileData.id}`} class='btn btn-info'>Edit Profile</Link>
   </ul>
 </div>
 

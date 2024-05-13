@@ -32,6 +32,7 @@ import UpdateHall from './Hall/UpdateHall'
 import Service from './Service/Service'
 import ProfilePage from './Profile/Profile'
 import ShtoService from './Service/ShtoService'
+import EditProfile from './Profile/EditProfile'
 
 function App() {
   return (
@@ -72,6 +73,8 @@ function App() {
         <Route path='/shtoService' element={<ShtoService/>}></Route>
 
         <Route path='/profile' element={<ProfilePage/>}></Route>
+        <Route path='/editProfile/:id' element={<EditProfile/>}></Route>
+
 
 
       </Route>

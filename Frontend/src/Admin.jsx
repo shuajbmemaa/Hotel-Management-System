@@ -94,7 +94,7 @@ const Admin = () => {
         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
             <li><Link to="/profile" className="dropdown-item">Profile</Link></li>
             <li><hr className="dropdown-divider" /></li>
-            <li onClick={handleLogout}><a className="dropdown-item" href="#">Logout</a></li>
+            <li onClick={handleLogout}><a className="dropdown-item" href="/logout">Logout</a></li>
         </ul>
     </div>
     <Outlet />
