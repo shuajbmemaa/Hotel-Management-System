@@ -41,6 +41,18 @@ const ShtoService = () => {
         setServices({...services, [e.target.name]:e.target.value})
       }
 
+      useEffect(() => {
+        axios.get('http://localhost:3002/getRoomT')
+          .then(res => {
+            if (res.data.Status === "Success") {
+              setRoomT(res.data.Result)
+            } else {
+              toast.error("Erorr")
+            }
+          })
+          .catch(err => console.log(err))
+      }, [])
+
   return (
     <div className='d-flex flex-column align-items-center pt-4'>
       
