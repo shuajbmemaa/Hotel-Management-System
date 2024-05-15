@@ -7,6 +7,8 @@ const Service = () => {
   const [data, setData] = useState([]);
   const [sortedData, setSortedData] = useState([]);
   const [isPriceAscending, setIsPriceAscending] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [servicesPerPage] = useState(5);
 
   useEffect(() => {
     axios.get('http://localhost:3002/getServices')
@@ -34,6 +36,12 @@ const Service = () => {
   const togglePriceSort = () => {
     setIsPriceAscending(!isPriceAscending);
   };
+
+  const indexOfLastService = currentPage * servicesPerPage;
+  const indexOfFirstService = indexOfLastService - servicesPerPage;
+  const currentServices = sortedData.slice(indexOfFirstService, indexOfLastService);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className='px-5 py-3'>
@@ -67,23 +75,34 @@ const Service = () => {
             </tr>
           </thead>
           <tbody>
-            {sortedData.map((service, index) => {
-              return (
-                <tr key={index}>
-                  <td>{service.id}</td>
-                  <td>{service.title}</td>
-                  <td>{service.roomType}</td>
-                  <td>{service.price}</td>
-                  <td>
-                    <Link to={`/updateServices/${service.id}`} className='btn btn-primary btn-sm me-2'>Update <i className="bi bi-pencil"></i></Link>
-                    <button onClick={() => handleDelete(service.id)} className='btn btn-sm btn-danger'>Delete <i className="bi bi-trash3"></i></button>
-                  </td>
-                </tr>
-              );
-            })}
+            {currentServices.map((service, index) => (
+              <tr key={index}>
+                <td>{service.id}</td>
+                <td>{service.title}</td>
+                <td>{service.roomType}</td>
+                <td>{service.price}</td>
+                <td>
+                  <Link to={`/updateServices/${service.id}`} className='btn btn-primary btn-sm me-2'>
+                    Update <i className="bi bi-pencil"></i>
+                  </Link>
+                  <button onClick={() => handleDelete(service.id)} className='btn btn-sm btn-danger'>
+                    Delete <i className="bi bi-trash3"></i>
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
+      <nav>
+        <ul className="pagination">
+          {Array.from({ length: Math.ceil(sortedData.length / servicesPerPage) }, (_, i) => (
+            <li key={i} className={`page-item ${i + 1 === currentPage ? 'active' : ''}`}>
+              <button onClick={() => paginate(i + 1)} className="page-link">{i + 1}</button>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 }
