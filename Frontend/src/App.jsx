@@ -33,11 +33,13 @@ import Service from './Service/Service'
 import ProfilePage from './Profile/Profile'
 import ShtoService from './Service/ShtoService'
 import EditProfile from './Profile/EditProfile'
+import ChatIcon from './Chat/ChatIcon'
 
 function App() {
   return (
     <BrowserRouter>
     <ToastContainer/>
+    <ChatIcon/>
     <Routes>
       <Route path='/' element={<Home/>}>
         <Route path='' element={<Dashboard/>}></Route>
