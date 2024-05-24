@@ -12,46 +12,8 @@
     width: 50%;
     border-radius: 5px 5px 0 0;
    margin-left: 265px;
+   position: relative;
   }
-  /* .profile{
-    height: 160px;
-    width: 160px;
-    border-radius: 50%;
-    margin: 93px 0 0 -390px;
-    border: 1px solid rgb(43, 42, 42);
-    padding: 7px;
-    background: rgb(123, 118, 118);
-  }
-
-  .profilee{
-    height: 160px;
-    width: 160px;
-    border-radius: 50%;
-    margin: 93px 50px 0 0;
-    border: 1px solid rgb(43, 42, 42);
-    padding: 7px;
-    background: rgb(123, 118, 118);
-  } */
-  
-  /* .profile {
-    height: 160px;
-    width: 160px;
-    border-radius: 50%;
-    margin: 93px 0 0 -390px;
-    border: 1px solid rgb(43, 42, 42);
-    padding: 7px;
-    background: rgb(123, 118, 118);
-  }
-
-  .profilee {
-    height: 160px;
-    width: 160px;
-    border-radius: 50%;
-    margin: 93px 50px 0 0;
-    border: 1px solid rgb(43, 42, 42);
-    padding: 7px;
-    background: rgb(123, 118, 118);
-  } */
 
   .profile {
     height: 160px;
@@ -60,19 +22,26 @@
     margin: 93px 0 0 -390px;
     border: 1px solid rgb(43, 42, 42);
     padding: 7px;
+    object-fit: cover;
     background: rgb(123, 118, 118);
   }
-
+ 
   .edit-button {
-    margin-top: 10px;
+    position: absolute;
+    
+    transform: translate(640%, -120%);
+    background-color:rgb(123, 118, 118); 
+    color: rgb(43, 42, 42);
+    padding: 4px;
+    border-radius: 50%;
     cursor: pointer;
-    color: blue;
-  }
+    display: flex;
+   
+}
 
-  .edit-button:hover {
-    text-decoration: underline;
-  }
-
+.edit-button .bi-camera {
+    font-size: 14px; 
+}
   .profile-name{
     font-size: 25px;
     font-weight: bold;
@@ -88,8 +57,8 @@
     color: #555;
     list-style-type: none;
     width: 50%;
-    margin-left: 240px;
-    margin-top: 40px;
+    margin-left: 260px;
+   
   }
 
   .profile-item-wrapper {
@@ -105,10 +74,44 @@
     margin-right: 10px;
   }
   .details{
-    margin: 55px 655px 0 0;
-    font-size: 20px;
+    margin-left: -235px;
+    margin-top: 120px;
+    font-size: 25px;
     font-weight: bold;
     
   }
- 
-  
+
+ .buttonn{
+  width: 200px;
+  margin-left: 10px;
+  margin-top: 2px;
+  margin-bottom: 3.5px;
+  height: 35px;
+  border-radius: 4px;
+  background-color: rgba(239, 160, 160, 0.7); 
+  border:none;
+}
+
+.buttonn:hover{
+  background-color: #efa0a0;
+}
+
+.buttoni{
+  width: 200px;
+  height: 35px;
+  margin-left: 10px;
+  border-radius: 4px;
+  margin-bottom: 3.5px;
+  border: none;
+
+}
+
+.buttoni:hover{
+  background-color: #0b0c0b;
+}
+.butonat{
+  margin-left: 100px;
+}
+
+
+

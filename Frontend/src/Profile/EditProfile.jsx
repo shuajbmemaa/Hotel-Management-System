@@ -5,6 +5,7 @@ import { FaTimes } from 'react-icons/fa';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+
 const EditProfile = () => {
     const [previewImage, setPreviewImage] = useState(null);
     const [data,setData]=useState({
@@ -38,7 +39,7 @@ const EditProfile = () => {
         }));
 
         const selectedImage = e.target.files[0];
-        setPreviewImage(URL.createObjectURL(selectedImage)); // Krijoni një URL për të shfaqur foton e fundit të ngarkuar
+        setPreviewImage(URL.createObjectURL(selectedImage)); 
     };
     const handleSubmit=(e)=>{
         e.preventDefault();
@@ -66,19 +67,18 @@ const EditProfile = () => {
     <div className='profile-container'>
         <form className="row g-3 w-150" onSubmit={handleSubmit}>
         <div className="cover-photo">
-                    {previewImage ? ( // Shfaq foton e fundit të ngarkuar nëse ekziston
+                    {previewImage ? ( 
                         <img src={previewImage} alt="" className='profile' />
                     ) : (
                         <img src={`http://localhost:3002/images/${data.image}`} alt="" className='profile' />
                     )}
-                    <label htmlFor="fileInput" className="edit-button">
-                        Change Profile Photo
-                    </label>
+                  <label htmlFor="fileInput" className="edit-button">
+                  <i className="bi bi-camera"></i>
+                  </label>
                     <input id="fileInput" type="file" className="form-control" style={{ display: 'none' }}
                         onChange={handleImageChange} />
                 </div>
-    <div className="profile-name">{data.name}</div>
-    <div className="profile-role">Edit Profile</div>
+   
     <div className="details">Edit your details</div>
     <ul className="profile-list">
         <li className="profile-item">
@@ -105,12 +105,14 @@ const EditProfile = () => {
    
     </ul>
     <div className="col-12">
-    <div className="text-center">
-        <button type="submit" className="btn btn-dark" style={{ width: '50%' }}>Update</button>
+    <div className="butonat">
+    <Link to="/profile" className="btn btn-outline-light buttonn">Cancel</Link>
+     <button type="submit" className="btn btn-dark buttoni">Save Changes</button>
+       
     </div>
     </div>
     </form>
-    <Link to="/profile" className='btn btn-danger rounded-circle p-0 ' style={{ width: '20px', height: '20px', lineHeight: '1.01', fontSize: '15px', float: 'right', marginTop: '1px' }}><FaTimes /></Link>
+    
 </div>
   )
 }
