@@ -10,6 +10,21 @@ const Service = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [servicesPerPage] = useState(5);
 
+
+  const handleDelete= (id)=>{
+    if(window.confirm("A jeni i sigurte qe doni ta largoni kete service ?")){
+      axios.delete('http://localhost:3002/deleteService/'+id)
+      .then(res=>{
+        if(res.data.Status === "Success"){
+          window.location.reload(true)
+          toast.success(res.data.Message);
+        }else{
+          toast.error("Erorr")
+        }
+      })
+      .catch(err=>console.log(err))
+    }
+  }
   useEffect(() => {
     axios.get('http://localhost:3002/getServices')
       .then(res => {
@@ -82,7 +97,7 @@ const Service = () => {
                 <td>{service.roomType}</td>
                 <td>{service.price}</td>
                 <td>
-                  <Link to={`/updateServices/${service.id}`} className='btn btn-primary btn-sm me-2'>
+                  <Link to={`/updateService/${service.id}`} className='btn btn-primary btn-sm me-2'>
                     Update <i className="bi bi-pencil"></i>
                   </Link>
                   <button onClick={() => handleDelete(service.id)} className='btn btn-sm btn-danger'>
