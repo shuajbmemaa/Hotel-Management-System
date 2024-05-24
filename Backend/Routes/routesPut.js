@@ -141,4 +141,14 @@ putRoutes.put('/updateProfile/:id', upload.single('image'), (req, res) => {
     })
   })
 
+  putRoutes.put('/updateService/:id',(req,res)=>{
+    const id=req.params.id;
+    const {title,room_type_id,price_type,price,description}=req.body;
+    const sql="Update service set title=?,room_type_id=?,price_type=?,price=?,description=? where id = ?" ;
+    db.query(sql, [title,room_type_id,price_type,price,description,id], (err, result) => {
+      if (err) return res.json({ Error: "Error when updating in sql" })
+      return res.json({ Status: "Success", Result: result })
+    })
+  })
+
 export default putRoutes;
