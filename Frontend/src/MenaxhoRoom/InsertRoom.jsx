@@ -28,10 +28,17 @@ const InsertRoom = () => {
       .then(res => {
         console.log(res.data);
         navigate('/menaxhoRoom');
-        toast.success('Dhoma u shtua me sukses');
+        toast.success('Dhoma u shtua me sukses!');
       })
-      .catch(err => console.log(err))
-  }
+      .catch(err => {
+        if (err.response && err.response.status === 400) {
+          toast.warn('Ky numer i dhomes ekziston!');
+        } else {
+          console.log(err);
+          toast.error('Error');
+        }
+      });
+  };
 
   useEffect(() => {
     axios.get('http://localhost:3002/getFloors')
