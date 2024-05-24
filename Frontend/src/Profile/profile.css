@@ -49,7 +49,7 @@
   }
   .profile-role{
     font-size: 15px;
-    margin: 1px 180px 0 0;
+    margin: 1px 190px 0 0;
   }
   
   .profile-item {
@@ -57,9 +57,19 @@
     color: #555;
     list-style-type: none;
     width: 50%;
-    margin-left: 260px;
+    margin-left: 270px;
    
   }
+
+  .profile-itemm {
+    margin-bottom: 25px;
+    color: #555;
+    list-style-type: none;
+    width: 50%;
+    margin-left: 250px;
+   
+  }
+
 
   .profile-item-wrapper {
     display: flex;
@@ -73,14 +83,47 @@
   .profile-item-wrapper i {
     margin-right: 10px;
   }
+
+  .profile-item-wrapperr {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .profile-item-wrapperr i {
+    margin-right: 10px;
+  }
   .details{
-    margin-left: -235px;
+    margin-left: -233px;
     margin-top: 120px;
     font-size: 25px;
     font-weight: bold;
     
   }
 
+  .detailss{
+    margin-left: -520px;
+    margin-top: 60px;
+    font-size: 25px;
+    font-weight: bold;
+    
+  }
+  .b{
+    width: 200px;
+    height: 35px;
+    margin-left: 300px;
+    border-radius: 4px;
+    margin-bottom: 3.5px;
+    border: none;
+  
+  }
+  
+  .b:hover{
+    background-color: #626362;
+  }
  .buttonn{
   width: 200px;
   margin-left: 10px;
@@ -95,6 +138,7 @@
 .buttonn:hover{
   background-color: #efa0a0;
 }
+
 
 .buttoni{
   width: 200px;

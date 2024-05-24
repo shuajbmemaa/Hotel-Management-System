@@ -48,27 +48,28 @@ const ProfilePage = () => {
   </div>
   <div className="profile-name">{profileData.name}</div>
   <div className="profile-role">{profileData.role}</div>
-  <div className="details">My details</div>
+  <div className="detailss">My details</div>
   <ul className="profile-list">
-    <li className="profile-item">
-      <div className="profile-item-wrapper">
+    <li className="profile-itemm">
+      <div className="profile-item-wrapperr">
       <i class="bi bi-envelope"></i>
         <div className="profile-email">{profileData.email}</div>
       </div>
     </li>
-    <li className="profile-item">
-      <div className="profile-item-wrapper">
+    <li className="profile-itemm">
+      <div className="profile-item-wrapperr">
       <i class="bi bi-person-standing"></i><i class="bi bi-person-standing-dress"></i>
         <div className="profile-gender">{profileData.gender}</div>
       </div>
     </li>
-    <li className="profile-item">
-      <div className="profile-item-wrapper">
+    <li className="profile-itemm">
+      <div className="profile-item-wrapperr">
       <i class="bi bi-calendar-event"></i>
         <div className="profile-dateBirth">{formatDate(profileData.date_of_birth)}</div>
       </div>
     </li>
-    <Link to={`/editProfile/${profileData.id}`} class='btn btn-info'>Edit Profile</Link>
+    <Link to={`/editProfile/${profileData.id}`} class='btn btn-dark b'>Edit Profile</Link>
+    
   </ul>
 </div>
 
