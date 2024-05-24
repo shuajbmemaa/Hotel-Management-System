@@ -33,6 +33,7 @@ import Service from './Service/Service'
 import ProfilePage from './Profile/Profile'
 import ShtoService from './Service/ShtoService'
 import EditProfile from './Profile/EditProfile'
+import UpdateService from './Service/UpdateService'
 import ChatIcon from './Chat/ChatIcon'
 
 function App() {
@@ -73,6 +74,8 @@ function App() {
 
         <Route path='/service' element={<Service/>}></Route>
         <Route path='/shtoService' element={<ShtoService/>}></Route>
+        <Route path='/updateService/:id' element={<UpdateService/>}></Route>
+
 
         <Route path='/profile' element={<ProfilePage/>}></Route>
         <Route path='/editProfile/:id' element={<EditProfile/>}></Route>
