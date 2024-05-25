@@ -1,29 +1,36 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import img from '../assets/chatbot.jpg';
 
 const ChatModal = ({ onClose }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [response, setResponse] = useState('');
+  const [typing, setTyping] = useState(false);
 
   const handleOptionClick = async (option) => {
+    setResponse('');
+    setSelectedOption(option);
+    setTyping(true); 
+
     let responseMessage = '';
     if (option === 'navigateRooms') {
       responseMessage = 'Ju mund të navigoni te dhomat nga menuja kryesore.';
-    } else if (option === 'mapProblems') {
-      responseMessage = 'Ju lutemi rifreskoni faqen ose kontrolloni lidhjen tuaj të internetit.';
+    } else if (option === 'freeRoom') {
+      responseMessage = 'Ju lutemi kontaktoni recepsionin për informacion mbi dhomat e lira.';
     } else if (option === 'bookingIssues') {
       responseMessage = 'Kontrolloni detajet e rezervimit dhe provoni përsëri.';
     }
 
-    setSelectedOption(option);
-    setResponse(responseMessage);
+    setTimeout(() => {
+      setResponse(responseMessage);
+      setTyping(false);
 
-    // Dërgo pyetjen dhe përgjigjen në backend
-    try {
-      await axios.post('http://localhost:3002/chat', { question: option, response: responseMessage });
-    } catch (error) {
-      console.error('Failed to save response:', error);
-    }
+      try {
+        axios.post('http://localhost:3002/chat', { question: option, response: responseMessage });
+      } catch (error) {
+        console.error('Failed to save response:', error);
+      }
+    }, 2000);
   };
 
   return (
@@ -35,14 +42,19 @@ const ChatModal = ({ onClose }) => {
       <button onClick={() => handleOptionClick('navigateRooms')} style={{ display: 'block', width: '100%', marginBottom: '10px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '5px', padding: '10px', cursor: 'pointer' }}>
         Unë dua të navigoj te dhomat
       </button>
-      <button onClick={() => handleOptionClick('mapProblems')} style={{ display: 'block', width: '100%', marginBottom: '10px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '5px', padding: '10px', cursor: 'pointer' }}>
-        Kam probleme me hartën
+      <button onClick={() => handleOptionClick('freeRoom')} style={{ display: 'block', width: '100%', marginBottom: '10px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '5px', padding: '10px', cursor: 'pointer' }}>
+        Cila prej dhomave eshte e lirë
       </button>
       <button onClick={() => handleOptionClick('bookingIssues')} style={{ display: 'block', width: '100%', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '5px', padding: '10px', cursor: 'pointer' }}>
         Nuk më bën të rezervoj dhomën
       </button>
 
-      {selectedOption && <p style={{ marginTop: '20px', color: '#007bff' }}>{response}</p>}
+      <div style={{ display: 'flex', alignItems: 'center', marginTop: '20px', color: '#007bff' }}>
+        {typing && <img src={img} alt="Chatbot" style={{ width: '45px', height: '45px', marginRight: '10px' }} />}
+        {typing && <p>Typing...</p>}
+        {!typing && response && <img src={img} alt="Chatbot" style={{ width: '45px', height: '45px', marginRight: '10px' }} />}
+        {response && <p style={{ marginTop: '20px', color: '#007bff' }}>{response}</p>}
+      </div>
     </div>
   );
 };
