@@ -3,7 +3,7 @@ import db from '../DB/db.js'
 import jwt from 'jsonwebtoken'
 import path from 'path';
 import multer from 'multer';
-//import Chat from '../MongoDB/models/Chat.js';
+import Chat from '../MongoDB/models/Chat.js';
 
 
 const postRoutes = express.Router();
@@ -206,24 +206,34 @@ postRoutes.post('/shtoService', (req, res) => {
   })
 })
 
-// postRoutes.post('/chat', async (req, res) => {
-//   const { question, response } = req.body;
-//   try {
-//     const chat = await Chat.findOne({ question });
-//     if (chat) {
-//       chat.response = response;
-//       await chat.save();
-//       res.json({ message: 'Përgjigja u përditësua me sukses.' });
-//     } else {
-//       const newChat = new Chat({ question, response });
-//       await newChat.save();
-//       res.json({ message: 'Përgjigja u ruajt me sukses.' });
-//     }
-//   } catch (error) {
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
+postRoutes.post('/chat', async (req, res) => {
+  const { question, response } = req.body;
+  try {
+    const chat = await Chat.findOne({ question });
+    if (chat) {
+      chat.response = response;
+      await chat.save();
+      res.json({ message: 'Përgjigja u përditësua me sukses.' });
+    } else {
+      const newChat = new Chat({ question, response });
+      await newChat.save();
+      res.json({ message: 'Përgjigja u ruajt me sukses.' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
-
+postRoutes.post('/shtoHouseK', (req, res) => {
+  const sql = "Insert into housekeeping_status (`title`,`short_description`) VALUES (?)"
+  const values = [
+    req.body.title,
+    req.body.short_description,
+  ]
+  db.query(sql, [values], (err, result) => {
+    if (err) return res.json({ Error: "Gabim ne server" })
+    return res.json({ Status: "Success" })
+  })
+})
 
 export default postRoutes;

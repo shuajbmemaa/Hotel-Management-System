@@ -151,4 +151,15 @@ putRoutes.put('/updateProfile/:id', upload.single('image'), (req, res) => {
     })
   })
 
+  
+  putRoutes.put('/updateHouseKS/:id',(req,res)=>{
+    const id=req.params.id;
+    const {title,short_description}=req.body;
+    const sql="Update housekeeping_status set title=?,short_description=? where id = ?" ;
+    db.query(sql, [title,short_description,id], (err, result) => {
+      if (err) return res.json({ Error: "Error when updating in sql" })
+      return res.json({ Status: "Success", Result: result })
+    })
+  })
+
 export default putRoutes;

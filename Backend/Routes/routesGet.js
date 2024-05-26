@@ -176,5 +176,23 @@ getRoutes.get('/getServices',(req,res)=>{
   })
  })
 
+ getRoutes.get('/getHouseKS',(req,res)=>{
+  const sql = "Select * from housekeeping_status";   
+  db.query(sql,(err, result)=>{
+    if(err) return res.status(400).json({message:"Gabim"})
+    return res.status(200).json({Status:"Success",Result:result})
+  })
+ })
+
+ getRoutes.get('/getHouseeKS/:id',(req,res)=>{
+  const id = req.params.id;
+  const sql = "Select * from housekeeping_status where id=?";   
+  db.query(sql, [id], (err, result)=>{
+    if(err) return res.status(400).json({message:"Gabim"})
+    return res.status(200).json({Status:"Success",Result:result})
+  })
+ })
+
+
 export default getRoutes;
 

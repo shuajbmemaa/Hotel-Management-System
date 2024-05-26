@@ -121,5 +121,20 @@ deleteRoutes.delete('/deleteAmenties/:id', (req, res) => {
         return res.status(200).json({ Status: "Success", Message: "Service u fshie me sukses!" });
     });
   });
+
+  deleteRoutes.delete('/deleteHouseKs/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "DELETE FROM housekeeping_status WHERE id = ?";
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ message: "Gabim gjatë fshirjes së housekeepingS!" });
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ Status: "Error", Message: "HousekeepingS nuk u gjet!" });
+        }
+        return res.status(200).json({ Status: "Success", Message: "HousekeepingS u fshie me sukses!" });
+    });
+  });
   
 export default deleteRoutes;
