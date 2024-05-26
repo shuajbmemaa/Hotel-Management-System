@@ -39,7 +39,7 @@ useEffect(()=>{
   axios.get('http://localhost:3002/getRoomT')
   .then(res=>{
     if(res.data.Status === "Success"){
-      setFloor(res.data.Result)
+      setRoomT(res.data.Result)
     }else{
       toast.error("Erorr")
     }
