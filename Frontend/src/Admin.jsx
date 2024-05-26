@@ -82,6 +82,11 @@ const Admin = () => {
 								<Link to="/houseKeppingS" className="nav-link px-0 align-middle text-white">
 								<i class="bi bi-gear-wide"></i> <span className="ms-1 d-none d-sm-inline">Housekeeping Status</span> </Link>
 							</li>
+
+							<li>
+								<Link to="/guestReviews" className="nav-link px-0 align-middle text-white">
+								<i class="bi bi-star"></i> <span className="ms-1 d-none d-sm-inline">Guest Reviews</span> </Link>
+							</li>
 						
 						
 					
