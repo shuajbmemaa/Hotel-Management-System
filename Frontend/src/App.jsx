@@ -38,6 +38,8 @@ import ChatIcon from './Chat/ChatIcon'
 import HouseKS from './HousekeepingStatus/HouseKS'
 import InsertHouseKS from './HousekeepingStatus/InsertHouseKS'
 import UpdateHouseKS from './HousekeepingStatus/UpdateHouseKS'
+import HouseKeeping from './HouseKeeping/HouseKeeping'
+import InsertHouseKeeping from './HouseKeeping/InsertHouseKeeping'
 
 function App() {
   return (
@@ -87,9 +89,8 @@ function App() {
         <Route path='/insertHouseKeppingS' element={<InsertHouseKS/>}></Route>
         <Route path='/updateHouseKeppingS/:id' element={<UpdateHouseKS/>}></Route>
 
-
-        
-
+        <Route path='/houseKeeping' element={<HouseKeeping/>}></Route>
+        <Route path='/insertHouseKeeping' element={<InsertHouseKeeping/>}></Route>
 
 
       </Route>
