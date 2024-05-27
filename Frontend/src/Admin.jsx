@@ -84,6 +84,11 @@ const Admin = () => {
 							</li>
 
 							<li>
+								<Link to="/houseKeeping" className="nav-link px-0 align-middle text-white">
+								<i class="bi bi-house-gear"></i> <span className="ms-1 d-none d-sm-inline">Housekeeping</span> </Link>
+							</li>
+
+							<li>
 								<Link to="/guestReviews" className="nav-link px-0 align-middle text-white">
 								<i class="bi bi-star"></i> <span className="ms-1 d-none d-sm-inline">Guest Reviews</span> </Link>
 							</li>
