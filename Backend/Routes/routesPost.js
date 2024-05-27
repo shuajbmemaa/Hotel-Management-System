@@ -158,24 +158,24 @@ postRoutes.post('/krijoDhome', upload.single('image'), (req, res) => {
 
 
 postRoutes.post('/shtoRoom', (req, res) => {
-  const{floor_id,room_type_id,room_number}=req.body;
-  const checkRoomNumber="Select * from room where room_number=?"
-  db.query(checkRoomNumber,[room_number],(err,result) =>{
-    if(err){
-      return res.status(500).json({message:"Error"})
-    }
-    if(result.length>0){
-      return res.status(400).json({message:"Ky numer i dhomes ekziston!!"})
-    }else{
-      const sql = "INSERT INTO room (floor_id, room_type_id, room_number) VALUES (?, ?, ?)"
-  db.query(sql, [floor_id,room_type_id,room_number], (err, result) => {
+  const { floor_id, room_type_id, room_number } = req.body;
+  const checkRoomNumber = "Select * from room where room_number=?"
+  db.query(checkRoomNumber, [room_number], (err, result) => {
     if (err) {
-      return res.status(500).json({message:"Error"});
+      return res.status(500).json({ message: "Error" })
     }
-     return res.status(201).json({message:"Dhoma u shtua me sukses!"});
+    if (result.length > 0) {
+      return res.status(400).json({ message: "Ky numer i dhomes ekziston!!" })
+    } else {
+      const sql = "INSERT INTO room (floor_id, room_type_id, room_number) VALUES (?, ?, ?)"
+      db.query(sql, [floor_id, room_type_id, room_number], (err, result) => {
+        if (err) {
+          return res.status(500).json({ message: "Error" });
+        }
+        return res.status(201).json({ message: "Dhoma u shtua me sukses!" });
+      });
+    }
   });
-}
-});
 });
 
 postRoutes.post('/createHall', (req, res) => {
@@ -229,6 +229,21 @@ postRoutes.post('/shtoHouseK', (req, res) => {
   const values = [
     req.body.title,
     req.body.short_description,
+  ]
+  db.query(sql, [values], (err, result) => {
+    if (err) return res.json({ Error: "Gabim ne server" })
+    return res.json({ Status: "Success" })
+  })
+})
+
+postRoutes.post('/krijoHouseKeeping', (req, res) => {
+  const sql = "Insert into housekeeping (`housekeeping_status_id`,`room_id`,`hall_id`,`user_id`,`date`) VALUES (?)"
+  const values = [
+    req.body.housekeeping_status_id,
+    req.body.room_id,
+    req.body.hall_id,
+    req.body.user_id,
+    req.body.date
   ]
   db.query(sql, [values], (err, result) => {
     if (err) return res.json({ Error: "Gabim ne server" })

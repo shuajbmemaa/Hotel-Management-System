@@ -1,7 +1,7 @@
 import express from 'express'
 import db from '../DB/db.js'
 
-const deleteRoutes=express.Router();
+const deleteRoutes = express.Router();
 
 deleteRoutes.delete('/deleteUser/:id', (req, res) => {
     const id = req.params.id;
@@ -31,8 +31,8 @@ deleteRoutes.delete('/deleteAmenties/:id', (req, res) => {
         }
         return res.status(200).json({ Status: "Success", Message: "Pajisja u fshi me sukses" });
     });
-  })
-  deleteRoutes.delete('/deleteFloors/:id', (req, res) => {
+})
+deleteRoutes.delete('/deleteFloors/:id', (req, res) => {
     const id = req.params.id;
     const sql = "DELETE FROM floors WHERE id = ?";
     db.query(sql, [id], (err, result) => {
@@ -45,9 +45,9 @@ deleteRoutes.delete('/deleteAmenties/:id', (req, res) => {
         }
         return res.status(200).json({ Status: "Success", Message: "Floor u fshi me sukses" });
     });
-  });
-  
-  deleteRoutes.delete('/deleteHallType/:id', (req, res) => {
+});
+
+deleteRoutes.delete('/deleteHallType/:id', (req, res) => {
     const id = req.params.id;
     const sql = "DELETE FROM hall_type WHERE id = ?";
     db.query(sql, [id], (err, result) => {
@@ -60,9 +60,9 @@ deleteRoutes.delete('/deleteAmenties/:id', (req, res) => {
         }
         return res.status(200).json({ Status: "Success", Message: "Hall Type u fshi me sukses" });
     });
-  });
+});
 
-  deleteRoutes.delete('/deleteRoomT/:id', (req, res) => {
+deleteRoutes.delete('/deleteRoomT/:id', (req, res) => {
     const id = req.params.id;
     const sql = "DELETE FROM room_types WHERE id = ?";
     db.query(sql, [id], (err, result) => {
@@ -75,9 +75,9 @@ deleteRoutes.delete('/deleteAmenties/:id', (req, res) => {
         }
         return res.status(200).json({ Status: "Success", Message: "Dhoma u fshie me sukses!" });
     });
-  });
-  
-  deleteRoutes.delete('/deleteRoom/:id', (req, res) => {
+});
+
+deleteRoutes.delete('/deleteRoom/:id', (req, res) => {
     const id = req.params.id;
     const sql = "DELETE FROM room WHERE id = ?";
     db.query(sql, [id], (err, result) => {
@@ -90,9 +90,9 @@ deleteRoutes.delete('/deleteAmenties/:id', (req, res) => {
         }
         return res.status(200).json({ Status: "Success", Message: "Dhoma u fshie me sukses!" });
     });
-  });
+});
 
-  deleteRoutes.delete('/deleteHall/:id', (req, res) => {
+deleteRoutes.delete('/deleteHall/:id', (req, res) => {
     const id = req.params.id;
     const sql = "DELETE FROM hall WHERE id = ?";
     db.query(sql, [id], (err, result) => {
@@ -105,9 +105,9 @@ deleteRoutes.delete('/deleteAmenties/:id', (req, res) => {
         }
         return res.status(200).json({ Status: "Success", Message: "Hall u fshi me sukses" });
     });
-  });
+});
 
-  deleteRoutes.delete('/deleteService/:id', (req, res) => {
+deleteRoutes.delete('/deleteService/:id', (req, res) => {
     const id = req.params.id;
     const sql = "DELETE FROM service WHERE id = ?";
     db.query(sql, [id], (err, result) => {
@@ -120,9 +120,9 @@ deleteRoutes.delete('/deleteAmenties/:id', (req, res) => {
         }
         return res.status(200).json({ Status: "Success", Message: "Service u fshie me sukses!" });
     });
-  });
+});
 
-  deleteRoutes.delete('/deleteHouseKs/:id', (req, res) => {
+deleteRoutes.delete('/deleteHouseKs/:id', (req, res) => {
     const id = req.params.id;
     const sql = "DELETE FROM housekeeping_status WHERE id = ?";
     db.query(sql, [id], (err, result) => {
@@ -135,6 +135,21 @@ deleteRoutes.delete('/deleteAmenties/:id', (req, res) => {
         }
         return res.status(200).json({ Status: "Success", Message: "HousekeepingS u fshie me sukses!" });
     });
-  });
-  
+});
+
+deleteRoutes.delete('/deleteHouseKeeping/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "DELETE FROM housekeeping WHERE id = ?";
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ message: "Gabim gjatë fshirjes së housekeeping!" });
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ Status: "Error", Message: "Housekeeping nuk u gjet!" });
+        }
+        return res.status(200).json({ Status: "Success", Message: "Housekeeping u fshie me sukses!" });
+    });
+});
+
 export default deleteRoutes;
