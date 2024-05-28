@@ -34,18 +34,19 @@ import ProfilePage from './Profile/Profile'
 import ShtoService from './Service/ShtoService'
 import EditProfile from './Profile/EditProfile'
 import UpdateService from './Service/UpdateService'
-import ChatIcon from './Chat/ChatIcon'
+//import ChatIcon from './Chat/ChatIcon'
 import HouseKS from './HousekeepingStatus/HouseKS'
 import InsertHouseKS from './HousekeepingStatus/InsertHouseKS'
 import UpdateHouseKS from './HousekeepingStatus/UpdateHouseKS'
 import HouseKeeping from './HouseKeeping/HouseKeeping'
 import InsertHouseKeeping from './HouseKeeping/InsertHouseKeeping'
+import Employee from './Employee/Employee'
 
 function App() {
   return (
     <BrowserRouter>
     <ToastContainer/>
-    <ChatIcon/>
+    {/* <ChatIcon/> */}
     <Routes>
       <Route path='/' element={<Home/>}>
         <Route path='' element={<Dashboard/>}></Route>
@@ -94,6 +95,12 @@ function App() {
 
 
       </Route>
+      <Route path='/employee' element={<Employee/>}></Route> 
+      
+      <Route path='/profile' element={<ProfilePage/>}></Route>
+        <Route path='/editProfile/:id' element={<EditProfile/>}></Route>
+
+
        <Route path='/login' element={<LoginRegister/>}></Route> 
       <Route path='*' element={<Error/>}></Route>
     </Routes>

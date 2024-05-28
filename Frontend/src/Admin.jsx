@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, Outlet } from 'react-router-dom'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBroom } from '@fortawesome/free-solid-svg-icons'; 
 const Admin = () => {
 
 	const [userData, setUserData] = useState(null);
@@ -80,12 +81,12 @@ const Admin = () => {
 							</li>
 							<li>
 								<Link to="/houseKeppingS" className="nav-link px-0 align-middle text-white">
-								<i class="bi bi-gear-wide"></i> <span className="ms-1 d-none d-sm-inline">Housekeeping Status</span> </Link>
+								<i class="bi bi-house-check"></i> <span className="ms-1 d-none d-sm-inline">Housekeeping Status</span> </Link>
 							</li>
 
 							<li>
 								<Link to="/houseKeeping" className="nav-link px-0 align-middle text-white">
-								<i class="bi bi-house-gear"></i> <span className="ms-1 d-none d-sm-inline">Housekeeping</span> </Link>
+								<FontAwesomeIcon icon={faBroom} /> <span className="ms-1 d-none d-sm-inline">Housekeeping</span> </Link>
 							</li>
 
 							<li>
