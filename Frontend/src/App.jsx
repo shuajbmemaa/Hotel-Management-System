@@ -40,7 +40,7 @@ import InsertHouseKS from './HousekeepingStatus/InsertHouseKS'
 import UpdateHouseKS from './HousekeepingStatus/UpdateHouseKS'
 import HouseKeeping from './HouseKeeping/HouseKeeping'
 import InsertHouseKeeping from './HouseKeeping/InsertHouseKeeping'
-import Employee from './Employee/Employee'
+//import Employee from './Employee/Employee'
 
 function App() {
   return (
@@ -95,11 +95,10 @@ function App() {
 
 
       </Route>
-      <Route path='/employee' element={<Employee/>}></Route> 
+        {/*<Route path='/employee' element={<Employee/>}></Route> */}
       
         <Route path='/profile' element={<ProfilePage/>}></Route>
         <Route path='/editProfile/:id' element={<EditProfile/>}></Route>
-
 
        <Route path='/login' element={<LoginRegister/>}></Route> 
       <Route path='*' element={<Error/>}></Route>
