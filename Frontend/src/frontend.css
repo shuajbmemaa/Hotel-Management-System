@@ -1,0 +1,537 @@
+.header {
+    background-image: url('images/Background.png');
+    height: 500px;
+}
+
+.header_menu {
+    padding: -30px 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: -70px;
+}
+
+.header_menu h4 {
+    color: white;
+    font-size: 14px;
+    font-family: Source Sans Pro;
+    font-weight: 400;
+    word-wrap: break-word;
+    margin-top: 85px;
+    margin-left: 10px;
+}
+
+.header_menu img {
+    margin-top: 90px;
+}
+
+.projects,
+.aboutus,
+.news,
+.contact {
+    display: flex;
+    margin-top: 10px;
+}
+
+.header_main {
+    padding: 70px 70px;
+    text-align: center;
+}
+
+.header_main h1 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 8px;
+}
+
+.header_main p {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 5.4px;
+}
+
+.header_main img {
+    width: 40px;
+    height: 40px;
+    margin-top: 110px;
+}
+
+.nav {
+    background-color: white;
+    height: 130px;
+}
+
+
+.nav h1 {
+    color: #2C4058;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.content-1 {
+    background-color: white;
+    height: 1000px
+}
+
+.content1_flex {
+    display: flex;
+}
+
+.images {
+    flex-direction: column;
+}
+
+.images {
+    position: relative;
+    margin-top: 0px;
+}
+
+.img1 {
+    display: block;
+}
+
+.img2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    margin-top: 50px;
+    margin-left: 150px;
+}
+
+.text {
+    text-align: center;
+    width: 300px;
+    margin-left: 250px;
+    margin-top: 90px;
+    text-align: start;
+    width: 330px;
+    height: 351px;
+}
+
+.btn {
+    height: 55px;
+    width: 150px;
+    color: #000;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.text h3 {
+    color: #2C4058;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.text h1 {
+    color: #2C4058;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.text p {
+    color: #2C4058;
+    font-family: Open Sans;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    /* 166.667% */
+}
+
+.text h4 {
+    color: #000;
+    font-family: Open Sans;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.content1_flex1 {
+    display: flex;
+    margin-top: 70px;
+}
+
+.text1 {
+    text-align: center;
+    margin-left: 150px;
+    margin-top: 90px;
+    text-align: start;
+    width: 375px;
+    height: 351px;
+}
+
+.btn {
+    height: 55px;
+    width: 150px;
+    color: #000;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.text1 h3 {
+    color: #2C4058;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.text1 h1 {
+    color: #2C4058;
+    font-family: Montserrat;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.text1 p {
+    color: #2C4058;
+    font-family: Open Sans;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    /* 166.667% */
+}
+
+.text1 h4 {
+    color: #000;
+    font-family: Open Sans;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+.images {
+    flex-direction: column;
+    margin-left: -50px;
+}
+
+.images1 {
+    position: relative;
+    margin-top: 40px;
+    margin-left: 200px;
+}
+
+.img4 {
+    display: block;
+    padding-left: 150px;
+}
+
+.img3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    margin-top: 50px;
+    margin-left: 20px;
+}
+
+.content-2 {
+    background-image: url('images/Background (2).png');
+    height: 650px;
+    padding-top: 20px;
+    margin-top: 100px;
+}
+
+.content-2_header h1 {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.content_box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.content_box h3 {
+    color: #2C4058;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.content_box p {
+    color: #2C4058;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.icon1 {
+    display: flex;
+}
+
+.icon1_text {
+    flex-direction: column;
+}
+
+.icon1_text p {
+    color: #55B7FF;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: -20px;
+    margin-left: 10px;
+}
+
+.icon1_text h4 {
+    color: #2C4058;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: -1px;
+    margin-left: 10px;
+}
+
+
+
+
+.box1 {
+    width: 270px;
+    height: 380px;
+    flex-shrink: 0;
+
+    padding-right: -150px;
+    background-color: white;
+
+}
+
+.box1_img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-bottom: 7px;
+    margin-left: 100px;
+}
+
+.box2 {
+    width: 270px;
+    height: 380px;
+    flex-shrink: 0;
+    background-color: white;
+}
+
+.box3 {
+    width: 270px;
+    height: 380px;
+    margin-right: 120px;
+    background-color: white;
+}
+
+
+
+
+.content-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 50px;
+    margin-top: 50px;
+}
+
+.content-3 h1 {
+    color: #2C4058;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 37px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.gallery {
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery_box2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery_box2_row1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery_box2_row2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery_box1 {
+    padding-top: 4px;
+    padding-right: 4px;
+}
+
+.gallery_box2 img {
+    padding: 4px;
+}
+
+.gallery_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    background-color: white;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 400;
+    width: 190px;
+    height: 50px;
+    border: 1px solid #2c4058;
+}
+
+
+.content-4 {
+    background-image: url('images/Map.png');
+    height: 550px;
+}
+
+.main_box {
+    display: flex;
+    justify-content: center;
+    margin-top: -200px;
+}
+
+.main_box_box {
+    width: 600px;
+    height: 290px;
+    margin: 0 35px;
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.25);
+}
+
+.inside {
+    display: flex;
+}
+
+.main_box_box h1 {
+    text-align: center;
+}
+
+.right {
+    width: 300px;
+}
+
+.left {
+    width: 300px;
+    margin-top: -18px;
+}
+
+.btn1 {
+    margin-left: 180px;
+    margin-top: 20px;
+    width: 100px;
+    height: 30px;
+    color: #000;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+    /* 150% */
+}
+
+.firstRow,
+.secondRow,
+.thirdRow,
+.fouthRow {
+    display: flex;
+    align-items: center;
+    margin-top: -20px;
+    margin-left: 30px;
+}
+
+.footer {
+    height: 350px;
+    background-image: url('images/Background.webp');
+    background-size: cover;
+    margin-top: -90px;
+}
+
+.footer_logo {
+    padding: 130px 430px;
+}
+
+.socials {
+    margin-left: 190px;
+}
+
+.logo p {
+
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.icons {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 150px;
+}
+
+
+
+
+
