@@ -93,7 +93,7 @@ getRoutes.get('/getHallTypes', (req, res) => {
 })
 
 getRoutes.get('/getRoomT', (req, res) => {
-  const sql = "Select room_types.id,room_types.title,room_types.short_code,amenties.name as amentie from room_types inner join amenties on amenties.id=room_types.amenties_id";
+  const sql = "Select room_types.id,room_types.title,room_types.short_code,amenties.name as amentie,room_types.image from room_types inner join amenties on amenties.id=room_types.amenties_id";
   db.query(sql, (err, result) => {
     if (err) return res.status(400).json({ message: "Gabim" })
     return res.status(200).json({ Status: "Success", Result: result })

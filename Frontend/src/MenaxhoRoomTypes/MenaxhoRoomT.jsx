@@ -59,6 +59,7 @@ const MenaxhoRoomT = () => {
                     <th>Name</th>
                     <th>Short Code</th>
                     <th>Amenties</th>
+                    <th>Image</th>
                     <th>Actions</th>
                 </tr>
         </thead>
@@ -76,6 +77,10 @@ const MenaxhoRoomT = () => {
                     <td>{rooms.title}</td>
                     <td>{rooms.short_code}</td>
                     <td>{rooms.amentie}</td>
+                    <td>{
+                    <img src={`http://localhost:3002/images/` + rooms.image} alt="" 
+                    className='pajisjet_image'/>
+                    }</td>
                     <td>
                         <Link to={`/updateRoomT/`+rooms.id} className='btn btn-primary btn-sm me-2'>Update  <i class="bi bi-pencil"></i></Link>
                         <button onClick={()=>handleDelete(rooms.id)} className='btn btn-sm btn-danger'>Delete <i class="bi bi-trash3"></i></button>
