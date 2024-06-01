@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
 import './frontend.css';
 import img from '../src/assets/HoteliAI.jpg'
+import { Link } from 'react-router-dom';
 
 const User = () => {
   const [services, setServices] = useState([]);
@@ -48,6 +49,7 @@ const User = () => {
     axios.get('http://localhost:3002/logout')
       .then(res => {
         window.localStorage.removeItem("userId");
+        window.localStorage.removeItem("role");
         Cookies.remove("accessToken");
         Cookies.remove("refreshToken");
         window.location.reload();
@@ -59,6 +61,11 @@ const User = () => {
     <div>
       <div className="navbar">
         <h1>Lotus</h1>
+        <Link to='/serviceUser'>Sherbimet</Link>
+        <Link to='/rooms'>Dhomat</Link>
+        <Link to='/team'>Team</Link>
+        <Link to='/aboutUs'>About Us</Link>
+
         <button onClick={handleLogout}>Logout</button>
       </div>
       <div className="hotel-description">

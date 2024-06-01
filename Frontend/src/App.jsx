@@ -1,7 +1,7 @@
 import './App.css'
 import {ToastContainer} from 'react-toastify'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Home from './Home'
 import Dashboard from './Dashboard'
 import Error from './Error'
@@ -40,15 +40,31 @@ import InsertHouseKS from './HousekeepingStatus/InsertHouseKS'
 import UpdateHouseKS from './HousekeepingStatus/UpdateHouseKS'
 import HouseKeeping from './HouseKeeping/HouseKeeping'
 import InsertHouseKeeping from './HouseKeeping/InsertHouseKeeping'
+import Sherbimet from './Main/Sherbimet'
+import Team from './Main/Team'
+import AboutUs from './Main/AboutUs'
+import Dhomat from './Main/Dhomat'
 //import Employee from './Employee/Employee'
 
 function App() {
+
+  const [role,setRole]=useState('');
+
+  useEffect(()=>{
+    const userRole=window.localStorage.getItem('role');
+    if(userRole){
+      setRole(userRole)
+    }
+  },[]);
+
   return (
     <BrowserRouter>
     <ToastContainer/>
      <ChatIcon/>
     <Routes>
       <Route path='/' element={<Home/>}>
+        {role === 'admin' && (
+          <>
         <Route path='' element={<Dashboard/>}></Route>
         <Route path='/menaxhoUseret' element={<MenaxhoUseret/>}></Route>
         <Route path='/krijoLlogari' element={<InsertUser/>}></Route>
@@ -92,13 +108,24 @@ function App() {
 
         <Route path='/houseKeeping' element={<HouseKeeping/>}></Route>
         <Route path='/insertHouseKeeping' element={<InsertHouseKeeping/>}></Route>
-
-
+        </>
+      )}
       </Route>
         {/*<Route path='/employee' element={<Employee/>}></Route> */}
-      
+        {role === 'employee' && (
+          <>
         <Route path='/profile' element={<ProfilePage/>}></Route>
         <Route path='/editProfile/:id' element={<EditProfile/>}></Route>
+        </>
+      )}
+        {role === 'user' && (
+          <>
+        <Route path='/serviceUser' element={<Sherbimet/>}></Route>
+        <Route path='/team' element={<Team/>}></Route>
+        <Route path='/aboutUs' element={<AboutUs/>}></Route>
+        <Route path='/rooms' element={<Dhomat/>}></Route>
+        </>
+      )}
 
        <Route path='/login' element={<LoginRegister/>}></Route> 
       <Route path='*' element={<Error/>}></Route>
