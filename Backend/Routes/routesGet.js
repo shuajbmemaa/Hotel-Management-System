@@ -201,6 +201,14 @@ getRoutes.get('/getHouseKeeping', (req, res) => {
   })
 })
 
+getRoutes.get('/getEmployee', (req, res) => {
+  const sql = "Select name,img_url from users where role ='employee'";
+  db.query(sql, (err, result) => {
+    if (err) return res.status(400).json(err)
+    return res.status(200).json({ Status: "Success", Result: result })
+  })
+})
+
 
 export default getRoutes;
 
