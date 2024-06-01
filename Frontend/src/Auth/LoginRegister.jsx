@@ -38,6 +38,7 @@ const LoginRegister = () => {
                     if (res.data.Login) {
                         console.log(res.data);
                         window.localStorage.setItem("userId", res.data.userId);
+                        window.localStorage.setItem("role",res.data.role)
                         Cookies.set("accessToken", res.data.accessToken);
                         Cookies.set("refreshToken", res.data.refreshToken)
                         navigate('/');
