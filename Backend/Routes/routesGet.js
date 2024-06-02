@@ -1,5 +1,6 @@
 import express from 'express'
 import db from '../DB/db.js';
+import Review from '../MongoDB/models/Review.js';
 
 const getRoutes = express.Router();
 
@@ -219,6 +220,16 @@ getRoutes.get('/getEmployee', (req, res) => {
     return res.status(200).json({ Status: "Success", Result: result })
   })
 })
+
+getRoutes.get('/review', async (req, res) => {
+  try {
+    const reviews = await Review.find();
+    res.json(reviews);
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    res.status(500).json({ error: 'Error fetching reviews' });
+  }
+});
 
 
 export default getRoutes;

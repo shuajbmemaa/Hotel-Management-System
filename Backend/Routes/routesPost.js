@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken'
 import path from 'path';
 import multer from 'multer';
 import Chat from '../MongoDB/models/Chat.js';
+import Review from '../MongoDB/models/Review.js';
 
 
 const postRoutes = express.Router();
@@ -250,5 +251,21 @@ postRoutes.post('/krijoHouseKeeping', (req, res) => {
     return res.json({ Status: "Success" })
   })
 })
+
+postRoutes.post('/shtoReview', async (req, res) => {
+  const { userId, rating, comment } = req.body;
+
+  if (!userId) {
+    return res.status(400).json({ error: 'UserId is required' });
+  }
+
+  const newReview = new Review({ userId, rating, comment });
+  try {
+    await newReview.save();
+    res.json(newReview);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to save review' });
+  }
+});
 
 export default postRoutes;
