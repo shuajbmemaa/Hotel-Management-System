@@ -12,9 +12,9 @@ deleteRoutes.delete('/deleteUser/:id', (req, res) => {
             return res.status(500).json({ message: "Gabim gjatë fshirjes së përdoruesit" });
         }
         if (result.affectedRows === 0) {
-            return res.status(404).json({ Status: "Error", Message: "Pajisja nuk u gjet" });
+            return res.status(404).json({ Status: "Error", Message: "Useri u fshie me sukses" });
         }
-        return res.status(200).json({ Status: "Success", Message: "Pajisja u fshi me sukses" });
+        return res.status(200).json({ Status: "Success", Message: "Useri u fshie me sukses" });
     });
 })
 
