@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import './menaxho.css';
+import Swal from 'sweetalert2';
 
 const MenaxhoUseret = () => {
     const [data, setData] = useState([]);
@@ -18,18 +19,34 @@ const MenaxhoUseret = () => {
     
 
     const handleDelete = (id) => {
-        if (window.confirm("Are you sure you want to remove this User?")) {
-            axios.delete(`http://localhost:3002/deleteUser/${id}`)
-                .then(res => {
-                    if (res.data.Status === "Success") {
-                        window.location.reload(true);
-                        toast.success(res.data.Message);
-                    } else {
-                        toast.error("Error");
-                    }
-                })
-                .catch(err => console.log(err));
-        }
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:3002/deleteUser/${id}`)
+                    .then(res => {
+                        if (res.data.Status === "Success") {
+                            Swal.fire(
+                                'Deleted!',
+                                res.data.Message,
+                                'success'
+                            ).then(() => {
+                                window.location.reload(true);
+                            });
+                            //toast.success(res.data.Message);
+                        } else {
+                            toast.error("Error");
+                        }
+                    })
+                    .catch(err => console.log(err));
+            }
+        });
     };
 
     useEffect(() => {
