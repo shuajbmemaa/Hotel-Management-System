@@ -44,6 +44,8 @@ import Sherbimet from './Main/Sherbimet'
 import Team from './Main/Team'
 import AboutUs from './Main/AboutUs'
 import Dhomat from './Main/Dhomat'
+import Review from './Main/Review'
+import GuestReview from './GuestReview'
 //import Employee from './Employee/Employee'
 
 function App() {
@@ -108,6 +110,8 @@ function App() {
 
         <Route path='/houseKeeping' element={<HouseKeeping/>}></Route>
         <Route path='/insertHouseKeeping' element={<InsertHouseKeeping/>}></Route>
+
+        <Route path='/guestReviews' element={<GuestReview/>}></Route>
         </>
       )}
       </Route>
@@ -124,6 +128,7 @@ function App() {
         <Route path='/team' element={<Team/>}></Route>
         <Route path='/aboutUs' element={<AboutUs/>}></Route>
         <Route path='/rooms' element={<Dhomat/>}></Route>
+        <Route path='/review' element={<Review/>}></Route>
         </>
       )}
 
