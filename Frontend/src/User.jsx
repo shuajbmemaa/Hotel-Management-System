@@ -65,6 +65,8 @@ const User = () => {
         <Link to='/rooms'>Dhomat</Link>
         <Link to='/team'>Team</Link>
         <Link to='/aboutUs'>About Us</Link>
+        <Link to='/review'><i class="bi bi-star"></i></Link>
+
 
         <button onClick={handleLogout}>Logout</button>
       </div>
