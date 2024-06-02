@@ -100,6 +100,17 @@ getRoutes.get('/getRoomT', (req, res) => {
   })
 })
 
+getRoutes.get('/getRoommT', (req, res) => {
+  const sql = "Select room_types.id,room_types.title,room_types.short_code,amenties.name as amentie,room_types.image from room_types inner join amenties on amenties.id=room_types.amenties_id";
+  db.query(sql, (err, result) => {
+    if (err) return res.status(400).json({ message: "Gabim" })
+    return res.status(200).json({ Status: "Success", Result: result })
+  })
+})
+
+
+
+
 getRoutes.get('/getRooms', (req, res) => {
   const sql = "Select room.id,room.room_number,room_types.title as roomm,floors.name as floors from floors inner join room on floors.id=room.floor_id inner join room_types on room.room_type_id=room_types.id   ";
   db.query(sql, (err, result) => {
