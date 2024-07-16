@@ -101,7 +101,7 @@ const LoginRegister = () => {
                     <h1>Sign In</h1>
                     <input type="text" placeholder="Username or Email" name="userOrEmail" value={signInValues.userOrEmail} onChange={handleSignInInput} />
                     <input type="password" placeholder="Password" name="password" value={signInValues.password} onChange={handleSignInInput} />
-                    <a href="#">Forget Your Password?</a>
+                    <a href="/forgot-password">Forget Your Password?</a>
                     <button>Sign In</button>
                 </form>
             </div>
