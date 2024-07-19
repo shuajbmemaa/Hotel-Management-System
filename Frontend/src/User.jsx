@@ -2,8 +2,11 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
 import './frontend.css';
-import img from '../src/assets/HoteliAI.jpg'
 import { Link } from 'react-router-dom';
+import HotelDescription from './HotelViews/HotelDescription';
+import HotelServices from './HotelViews/HotelServices';
+import HotelStaff from './HotelViews/HotelStaff';
+import HotelRoomTypes from './HotelViews/HotelRoomTypes';
 
 const User = () => {
   const [services, setServices] = useState([]);
@@ -65,61 +68,13 @@ const User = () => {
         <Link to='/rooms'>Dhomat</Link>
         <Link to='/team'>Team</Link>
         <Link to='/aboutUs'>About Us</Link>
-        <Link to='/review'><i class="bi bi-star"></i></Link>
-
-
+        <Link to='/review'><i className="bi bi-star"></i></Link>
         <button onClick={handleLogout}>Logout</button>
       </div>
-      <div className="hotel-description">
-        <div className="description-text">
-          <h2>Rreth Hotelit Tonë</h2>
-          <p>
-            Hoteli ynë ofron shërbime të jashtëzakonshme dhe akomodime të shkëlqyera për të gjithë vizitorët tanë.
-            Me një vendndodhje të përsosur dhe stafin tonë miqësor, ne sigurohemi që qëndrimi juaj të jetë sa më i këndshëm.
-          </p>
-        </div>
-        <div className="description-image">
-          <img src={img} alt="Hotel Image" />
-        </div>
-      </div>
-      <div className="hotel-services">
-        <h2>Shërbimet Tona</h2>
-        <ul className="service-list">
-          {services.map(service => (
-            <li key={service.id}>
-              <h3>{service.title}</h3>
-              <p>Tipi i dhomës: {service.roomType}</p>
-              <p>Çmimi: {service.price} €</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="hotel-room-types">
-        <h2>Llojet e Dhomave</h2>
-        <ul className="room-type-list">
-          {roomTypes.map(roomType => (
-            <li key={roomType.id}>
-              <h3>{roomType.title}</h3>
-              <span>
-        <img src={`http://localhost:3002/images/${roomType.image}`} alt="" className="room-type-image"/>
-            </span>
-              <p>Short Code: {roomType.short_code}</p>
-              <p>Amenties: {roomType.amentie}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="hotel-staff">
-        <h2>Team</h2>
-        <ul className="staff-list">
-          {punetori.map(member => (
-            <li key={member.id}>
-              <h3>{member.name}</h3>
-              <img src={`http://localhost:3002/images/${member.img_url}`} alt={`${member.name}`} className="staff-image"/>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <HotelDescription />
+      <HotelServices services={services} />
+      <HotelRoomTypes roomTypes={roomTypes} />
+      <HotelStaff staff={punetori} />
     </div>
   );
 };
