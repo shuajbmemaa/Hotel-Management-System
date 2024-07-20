@@ -3,6 +3,8 @@ import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
 import '../frontend.css';
 import { Link } from 'react-router-dom';
+import Slider from './Slider';
+
 
 const Dhomat = () => {
   const [roomTypes, setRoomTypes] = useState([]);
@@ -20,7 +22,8 @@ const Dhomat = () => {
       .catch(err => console.log(err));
   }, []);
 
-  
+  const images = roomTypes.map(roomType => `http://localhost:3002/images/${roomType.image}`);
+
   const handleLogout = () => {
     axios.get('http://localhost:3002/logout')
       .then(res => {
@@ -41,27 +44,26 @@ const Dhomat = () => {
         <Link to='/rooms'>Dhomat</Link>
         <Link to='/team'>Team</Link>
         <Link to='/aboutUs'>About Us</Link>
-
         <button onClick={handleLogout}>Logout</button>
       </div>
 
       <div className="hotel-room-types">
         <h2>Llojet e Dhomave</h2>
+        <Slider images={images} /> 
         <ul className="room-type-list">
           {roomTypes.map(roomType => (
             <li key={roomType.id}>
               <h3>{roomType.title}</h3>
               <span>
-        <img src={`http://localhost:3002/images/${roomType.image}`} alt="" className="room-type-image"/>
-            </span>
+                <img src={`http://localhost:3002/images/${roomType.image}`} alt={roomType.title} className="room-type-image"/>
+              </span>
               <p>Short Code: {roomType.short_code}</p>
               <p>Amenties: {roomType.amentie}</p>
-              <Link to={`/book/`+roomType.id} className='btn btn-primary btn-sm me-2'>BOOK NOW </Link>
+              <Link to={`/book/${roomType.id}`} className='btn btn-primary btn-sm me-2'>BOOK NOW</Link>
             </li>
           ))}
         </ul>
       </div>
-    
     </div>
   );
 };
