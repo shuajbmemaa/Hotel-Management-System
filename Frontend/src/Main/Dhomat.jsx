@@ -16,7 +16,7 @@ const Dhomat = () => {
         if (res.data.Status === "Success") {
           setRoomTypes(res.data.Result);
         } else {
-          console.error("Error loading room types");
+          console.error("Error");
         }
       })
       .catch(err => console.log(err));
