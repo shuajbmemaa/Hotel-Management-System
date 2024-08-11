@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import './halltypes.css'
+import Swal from 'sweetalert2';
 
 const HallTypes = () => {
 
@@ -37,20 +38,35 @@ const HallTypes = () => {
     ).catch(err => console.log(err))
   })
 
-  const handleDelete= (id)=>{
-    if(window.confirm("Are you sure you want to remove this Hall Type?")){
-      axios.delete('http://localhost:3002/deleteHallType/'+id)
-      .then(res=>{
-        if(res.data.Status === "Success"){
-          window.location.reload(true)
-          toast.success(res.data.Message);
-        }else{
-          toast.error("Erorr")
+  const handleDelete = (id) => {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axios.delete(`http://localhost:3002/deleteHallType/${id}`)
+                .then(res => {
+                    if (res.data.Status === "Success") {
+                        Swal.fire(
+                            'Deleted!',
+                            res.data.Message,
+                            'success'
+                        ).then(() => {
+                            window.location.reload(true);
+                        });
+                    } else {
+                        toast.error("Error");
+                    }
+                })
+                .catch(err => console.log(err));
         }
-      })
-      .catch(err=>console.log(err))
-    }
-  }
+    });
+};
 
   const search=hallTypes.filter(hallT=>
       hallT.title.toString().toLowerCase().includes(title.toLowerCase())

@@ -3,26 +3,42 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import './menaxhoAmenties.css'
+import Swal from 'sweetalert2';
 
 const MenaxhoAmenties = () => {
 
 
     const[data,setData]=useState([]);
 
-    const handleDelete= (id)=>{
-      if(window.confirm("A jeni i sigurte qe doni ta largoni kete pajisje ?")){
-        axios.delete('http://localhost:3002/deleteAmenties/'+id)
-        .then(res=>{
-          if(res.data.Status === "Success"){
-            window.location.reload(true)
-            toast.success(res.data.Message);
-          }else{
-            toast.error("Erorr")
+    const handleDelete = (id) => {
+      Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              axios.delete(`http://localhost:3002/deleteAmenties/${id}`)
+                  .then(res => {
+                      if (res.data.Status === "Success") {
+                          Swal.fire(
+                              'Deleted!',
+                              res.data.Message,
+                              'success'
+                          ).then(() => {
+                              window.location.reload(true);
+                          });
+                      } else {
+                          toast.error("Error");
+                      }
+                  })
+                  .catch(err => console.log(err));
           }
-        })
-        .catch(err=>console.log(err))
-      }
-    }
+      });
+  };
 
       useEffect(()=>{
         axios.get('http://localhost:3002/getAmenties')
