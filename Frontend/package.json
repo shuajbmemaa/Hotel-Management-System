@@ -20,6 +20,7 @@
     "bootstrap-icons": "^1.11.3",
     "buffer": "^6.0.3",
     "chart.js": "^4.4.2",
+    "html2canvas": "^1.4.1",
     "js-cookie": "^3.0.5",
     "jspdf": "^2.5.1",
     "moment": "^2.30.1",
