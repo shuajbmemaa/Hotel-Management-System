@@ -7,6 +7,7 @@ import HotelDescription from './HotelViews/HotelDescription';
 import HotelServices from './HotelViews/HotelServices';
 import HotelStaff from './HotelViews/HotelStaff';
 import HotelRoomTypes from './HotelViews/HotelRoomTypes';
+import Navbar from './Navbar';
 
 const User = () => {
   const [services, setServices] = useState([]);
@@ -62,15 +63,7 @@ const User = () => {
 
   return (
     <div>
-      <div className="navbar">
-        <h1>Lotus</h1>
-        <Link to='/serviceUser'>Sherbimet</Link>
-        <Link to='/rooms'>Dhomat</Link>
-        <Link to='/team'>Team</Link>
-        <Link to='/aboutUs'>About Us</Link>
-        <Link to='/review'><i className="bi bi-star"></i></Link>
-        <button onClick={handleLogout}>Logout</button>
-      </div>
+      <Navbar onLogout={handleLogout} />
       <HotelDescription />
       <HotelServices services={services} />
       <HotelRoomTypes roomTypes={roomTypes} />
