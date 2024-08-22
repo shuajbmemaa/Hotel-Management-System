@@ -10,6 +10,7 @@ const Navbar = ({ onLogout }) => {
       <Link to='/team'>Team</Link>
       <Link to='/aboutUs'>About Us</Link>
       <Link to='/review'><i className="bi bi-star"></i></Link>
+      <Link to='/myOrders'>My Orders</Link>
       <button onClick={onLogout}>Logout</button>
     </div>
   );
