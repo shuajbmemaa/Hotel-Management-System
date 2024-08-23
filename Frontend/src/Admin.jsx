@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, Outlet } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBroom } from '@fortawesome/free-solid-svg-icons'; 
+import { OrderedListOutlined } from '@ant-design/icons';
+
 const Admin = () => {
 
 	const [userData, setUserData] = useState(null);
@@ -43,7 +45,7 @@ const Admin = () => {
 						</a>
 						<ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
 							<li>
-								<Link to="/" data-bs-toggle="collapse" className="nav-link text-white px-0 align-middle">
+								<Link to="/" className="nav-link text-white px-0 align-middle">
 									<i className="fs-4 bi-speedometer2"></i> <span className="ms-1 d-none d-sm-inline">Dashboard</span> </Link>
 							</li>
 							<li>
@@ -93,11 +95,17 @@ const Admin = () => {
 								<Link to="/guestReviews" className="nav-link px-0 align-middle text-white">
 								<i class="bi bi-star"></i> <span className="ms-1 d-none d-sm-inline">Guest Reviews</span> </Link>
 							</li>
-						
-						
-					
 
+							<li>
+								<Link to="/orders" className="nav-link px-0 align-middle text-white">
+								<OrderedListOutlined /> <span className="ms-1 d-none d-sm-inline">Bookings</span> </Link>
+							</li>
 
+							<li>
+								<Link to="/calendar" className="nav-link px-0 align-middle text-white">
+								<i class="bi bi-calendar"></i> <span className="ms-1 d-none d-sm-inline">Availability Calendar</span> </Link>
+							</li>
+						
 						
 						</ul>
 					</div>
