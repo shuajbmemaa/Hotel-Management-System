@@ -16,7 +16,8 @@ const UpdateRoomT = () => {
         kids:'',
         amenties_id:'',
         base_price:'',
-        extra_bed_price:''
+        extra_bed_price:'',
+        image:''
 	})
 
     const navigate=useNavigate();
@@ -38,7 +39,7 @@ const UpdateRoomT = () => {
                 amenties_id:res.data.Result[0].amenties_id,
                 base_price:res.data.Result[0].base_price,
                 extra_bed_price:res.data.Result[0].extra_bed_price,
-              
+                image:res.data.Result[0].image
             })
         })
         .catch(err => console.log(err))
@@ -58,7 +59,23 @@ const UpdateRoomT = () => {
 
     const handleSubmit=(event)=>{
         event.preventDefault();
-        axios.put('http://localhost:3002/updateRoomT/'+id,data)
+
+        const formData=new FormData();
+        
+        formData.append("title",data.title);
+        formData.append("short_code",data.short_code);
+        formData.append("base_occupancy",data.base_occupancy);
+        formData.append("higher_occupancy",data.higher_occupancy);
+        formData.append("extra_bed",data.extra_bed);
+        formData.append("kids",data.kids);
+        formData.append("amenties_id",data.amenties_id);
+        formData.append("base_price",data.base_price);
+        formData.append("extra_bed_price",data.extra_bed_price);
+        if(data.image){
+            formData.append("image",data.image); 
+        }
+
+        axios.put('http://localhost:3002/updateRoomT/'+id,formData)
         .then(res =>{
             if(res.data.Status === "Success"){
             navigate('/menaxhoRoomT')
@@ -131,6 +148,17 @@ const UpdateRoomT = () => {
                     <label for="inputExtraBP" className="form-label">Extra Bed Price</label>
                     <input type="number" className="form-control" id="inputExtraBP" placeholder='Extra Bed Price' autoComplete='off'
                     onChange={e => setData({ ...data, extra_bed_price: e.target.value })} value={data.extra_bed_price} />
+                </div>
+                <div class="col-12 mb-3">
+                    <label htmlFor='inputGroupFile01' className="form-label">Select Image</label>
+                    <input type="file" className="form-control" id="inputGroupFile01"
+                        onChange={e=>{
+                            if(e.target.files.length>0){
+                                setData({...data,image:e.target.files[0]})
+                            }else{
+                                setData({ ...data, image: data.image });
+                            }
+                        }}/>
                 </div>
                 <div className="col-12">
                     <div className="text-center ">
