@@ -32,7 +32,6 @@ const Service = () => {
                         ).then(() => {
                             window.location.reload(true);
                         });
-                        //toast.success(res.data.Message);
                     } else {
                         toast.error("Error");
                     }
@@ -81,7 +80,8 @@ const Service = () => {
         <h3>Services</h3>
       </div>
       <div className="d-flex justify-content-end">
-        <Link to="/shtoService" className='btn btn-light'><i className="bi bi-plus"></i>Add New Service</Link>
+        <Link to="/shtoService" className='btn btn-light me-3'><i className="bi bi-plus fs-4"></i>Add New Service</Link>
+        <Link to="/importServices" className='btn btn-light'><i className="bi bi-plus"></i>Import <i class="bi bi-filetype-json fs-4 ms-2"></i></Link>
       </div>
       <div className='mt-3'>
         <table className='table mt-3'>
