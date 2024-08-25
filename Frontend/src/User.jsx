@@ -7,7 +7,7 @@ import HotelDescription from './HotelViews/HotelDescription';
 import HotelServices from './HotelViews/HotelServices';
 import HotelStaff from './HotelViews/HotelStaff';
 import HotelRoomTypes from './HotelViews/HotelRoomTypes';
-import Navbar from './Navbar';
+import Navbar from './Layout/Navbar';
 
 const User = () => {
   const [services, setServices] = useState([]);

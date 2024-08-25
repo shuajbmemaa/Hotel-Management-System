@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from '../Layout/Navbar';
 
 const Sherbimet = () => {
   const [services, setServices] = useState([]);
@@ -64,27 +65,29 @@ const Sherbimet = () => {
     marginBottom: '10px'
   };
 
+  const handleLogout = () => {
+    axios.get('http://localhost:3002/logout')
+      .then(res => {
+        window.localStorage.removeItem("userId");
+        window.localStorage.removeItem("role");
+        Cookies.remove("accessToken");
+        Cookies.remove("refreshToken");
+        window.location.reload();
+      })
+      .catch(err => console.log(err));
+  };
+
   return (
     <div>
-      <div style={navbarStyle} className="navbar">
-        <h1 style={h1Style}>Lotus</h1>
-        <Link
-          to='/'
-          style={linkStyle}
-          onMouseOver={e => e.currentTarget.style.backgroundColor = linkHoverStyle.backgroundColor}
-          onMouseOut={e => e.currentTarget.style.backgroundColor = linkStyle.backgroundColor}
-        >
-          Kthehu
-        </Link>
-      </div>
+      <Navbar onLogout={handleLogout}/>
       <div style={servicesContainerStyle} className="hotel-services">
-        <h2>Shërbimet Tona</h2>
+        <h2>Our Services</h2>
         <ul className="service-list">
           {services.map(service => (
             <li key={service.id} style={serviceItemStyle}>
               <h3>{service.title}</h3>
-              <p>Tipi i dhomës: {service.roomType}</p>
-              <p>Çmimi: {service.price} €</p>
+              <p>Room Type: {service.roomType}</p>
+              <p>Price: {service.price} €</p>
             </li>
           ))}
         </ul>
