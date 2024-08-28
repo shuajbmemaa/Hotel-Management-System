@@ -13,9 +13,9 @@ const ForgotPassword = () => {
       event.preventDefault();
       try {
         await axios.post('http://localhost:3002/forgot-password', { email });
-        toast.success('Email-i për resetimin e fjalëkalimit u dërgua', { position: toast.POSITION.TOP_RIGHT });
+        toast.success('Email-i per resetimin e fjalekalimit u dergua');
       } catch (error) {
-        toast.error('Gabim gjatë dërgimit të email-it', { position: toast.POSITION.TOP_RIGHT });
+        toast.error('Gabim gjate dergimit te email-it');
         console.log(error);
       }
     };
