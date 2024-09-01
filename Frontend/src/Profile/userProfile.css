@@ -1,0 +1,167 @@
+.userProfile-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.userProfile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.userProfile-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.userProfile-image-section {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    flex: 1;
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userProfile-image {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.userProfile-info-section {
+    flex: 2;
+}
+
+.userProfile-field {
+    margin-bottom: 15px;
+}
+
+.userProfile-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.userProfile-field input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.userProfile-changePassword {
+    margin-top: 5px;
+    background-color: transparent;
+    color: #00aaff;
+    border: none;
+    cursor: pointer;
+}
+
+.userProfile-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.userProfile-saveButton,
+.userProfile-cancelButton {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.userProfile-saveButton {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.userProfile-cancelButton {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.userProfile-buttons {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.userProfile-editButton,
+.userProfile-deleteButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}
+
+.userProfile-editButton {
+    margin: 0 15px;
+    background-color: #007bff;
+}
+
+.userProfile-deleteButton {
+    background-color: #dc3545;
+}
+
+.userProfile-editButton:hover {
+    background-color: #0056b3;
+}
+
+.userProfile-deleteButton:hover {
+    background-color: #c82333;
+}
+
+.userProfile-image-section {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: auto;
+}
+
+.userProfile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.edito-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    display: none;
+    cursor: pointer;
+}
+
+.edito-button i {
+    font-size: 20px;
+}
+
+.userProfile-image-section:hover .edito-button {
+    display: block;
+}
+
+
+.userProfile-image-section:hover .userProfile-image {
+    opacity: 0.6;
+}
