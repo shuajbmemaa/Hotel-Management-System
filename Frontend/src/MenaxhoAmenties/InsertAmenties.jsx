@@ -34,14 +34,14 @@ const InsertAmenties = () => {
         .then(res=>{
             console.log(res.data);
             navigate('/menaxhoAmenties');
-            toast.success('Pajisja u shtua me sukses');
+            toast.success('Amenity was added successfully');
         })
         .catch(err=>console.log(err))
     }
 
   return (
     <div className='d-flex flex-column align-items-center pt-4'>
-        <h2>Shto pajisje</h2>
+        <h2>Add Amenity</h2>
         <form className="row g-3 w-50" onSubmit={handleSubmit}>
 
 
@@ -64,8 +64,8 @@ const InsertAmenties = () => {
             </div>
                
             <div class="col-12">
-                <button type="submit" class="btn btn-primary">Shto pajisjen</button>
-                <Link to="/menaxhoAmenties" className='btn btn-success ms-3'>Kthehu</Link>
+                <button type="submit" class="btn btn-primary">Add</button>
+                <Link to="/menaxhoAmenties" className='btn btn-success ms-3'>Go Back</Link>
             </div>
 
 

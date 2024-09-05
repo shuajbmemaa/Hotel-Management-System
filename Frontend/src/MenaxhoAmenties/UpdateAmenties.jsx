@@ -39,7 +39,7 @@ const UpdateAmenties = () => {
 
   return (
     <div className='d-flex flex-column align-items-center pt-4'>
-			<h2>Update User</h2>
+			<h2>Update Amentie</h2>
 			<form class="row g-3 w-50" onSubmit={handleSubmit}>
 			<div class="col-12">
 					<label for="inputName" class="form-label">Name</label>

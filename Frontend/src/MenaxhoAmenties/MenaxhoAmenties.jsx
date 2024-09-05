@@ -55,10 +55,10 @@ const MenaxhoAmenties = () => {
   return (
     <div className='px-5 py-3'>
         <div className='d-flex justify-content-center'>
-            <h3> Menaxhimi i pajisjeve </h3>
+            <h3> Amenities </h3>
         </div>
         <div className="d-flex justify-content-end">
-        <Link to="/shtoAmenties" className='btn btn-success'> Shto nje pajisje <i class="bi bi-patch-plus"></i></Link>
+        <Link to="/shtoAmenties" className='btn btn-success'> Add amenity <i class="bi bi-patch-plus"></i></Link>
       </div>
         <div className='mt-3'>
         <table className='table'>
