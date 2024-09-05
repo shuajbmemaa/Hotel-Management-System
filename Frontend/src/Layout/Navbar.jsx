@@ -22,7 +22,9 @@ const Navbar = ({ onLogout }) => {
 
   return (
     <div className="navbar">
-      <h1>Lotus</h1>
+      <Link to="/" className="navbar-brand">
+        <h1>Lotus</h1>
+      </Link>
       <Link to='/serviceUser'>Services</Link>
       <Link to='/rooms'>Bookings</Link>
       <Link to='/team'>Team</Link>
@@ -36,7 +38,7 @@ const Navbar = ({ onLogout }) => {
               <li><Link to="/userProfile" className="dropdown-item">Profile</Link></li>
               <li><Link to="/myOrders" className="dropdown-item">My Orders</Link></li>
                 <li><hr className="dropdown-divider" /></li>
-              <li onClick={onLogout}><a className="dropdown-item" href="/logout">Logout</a></li>
+              <li onClick={onLogout}><a className="dropdown-item" href="/login">Logout</a></li>
             </ul>
       </div>
     </div>
