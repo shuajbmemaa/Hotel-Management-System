@@ -2,14 +2,14 @@ import React from 'react';
 
 const HotelServices = ({ services }) => {
   return (
-    <div className="hotel-services">
-      <h2>Shërbimet Tona</h2>
+    <div id="hotel-services" className="hotel-services">
+      <h2>Our Services</h2>
       <ul className="service-list">
         {services.map(service => (
           <li key={service.id}>
             <h3>{service.title}</h3>
-            <p>Tipi i dhomës: {service.roomType}</p>
-            <p>Çmimi: {service.price} €</p>
+            <p>Room Type : {service.roomType}</p>
+            <p>Price: {service.price} €</p>
           </li>
         ))}
       </ul>

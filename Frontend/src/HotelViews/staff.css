@@ -1,0 +1,82 @@
+.hotel-staff {
+    padding: 40px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+.staff-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.staff-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.staff-member {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+    max-width: 250px;
+}
+
+.staff-member.active,
+.staff-member:hover {
+    background-color: #444;
+}
+
+.staff-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.staff-details {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.staff-details-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.staff-details p {
+    margin-top: 10px;
+    line-height: 1.5;
+    font-size: 16px;
+    color: #ddd;
+}
