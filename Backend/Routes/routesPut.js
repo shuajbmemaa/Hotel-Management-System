@@ -92,6 +92,39 @@ putRoutes.put('/updateProfile/:id', upload.single('image'), (req, res) => {
   }
 });
 
+putRoutes.put('/updateUserProfile/:id', upload.single('image'), (req, res) => {
+  const id = req.params.id;
+
+  const name = req.body.name;
+  const email = req.body.email;
+  const password = req.body.password;
+  const gender = req.body.gender
+  const date_of_birth = req.body.date_of_birth
+
+  let img_url = req.file ? req.file.filename : null;
+
+  if (!req.file) {
+
+    const sqlGetImage = "SELECT img_url FROM users WHERE id = ?";
+    db.query(sqlGetImage, [id], (err, result) => {
+      if (err) return res.json(err);
+      img_url = result[0].img_url;
+
+      const sqlUpdate = "UPDATE users SET name=?, email=?, password=?, img_url=?, gender=? ,date_of_birth = ? WHERE id = ?";
+      db.query(sqlUpdate, [name, email, password, img_url, gender, date_of_birth, id], (err, result) => {
+        if (err) return res.json(err);
+        return res.json({ Status: "Success", Result: result });
+      });
+    });
+  } else {
+    const sqlUpdate = "UPDATE users SET name=?, email=?, password=?, img_url=? , gender=? ,date_of_birth = ? WHERE id = ?";
+    db.query(sqlUpdate, [name, email, password, img_url, gender, date_of_birth, id], (err, result) => {
+      if (err) return res.json(err);
+      return res.json({ Status: "Success", Result: result });
+    });
+  }
+});
+
 
 putRoutes.put('/updateFloors/:id', (req, res) => {
   const id = req.params.id;
