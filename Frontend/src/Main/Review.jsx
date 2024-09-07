@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import './Review.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Navbar from '../Layout/Navbar';
 
 const Review = () => {
     const [rating, setRating] = useState('');
@@ -31,12 +32,21 @@ const Review = () => {
         }
     };
 
+    const handleLogout = () => {
+        axios.get('http://localhost:3002/logout')
+          .then(res => {
+            window.localStorage.removeItem("userId");
+            window.localStorage.removeItem("role");
+            Cookies.remove("accessToken");
+            Cookies.remove("refreshToken");
+            window.location.reload();
+          })
+          .catch(err => console.log(err));
+      };
+
     return (
         <div>
-        <div className="navbar">
-            <h1>Lotus</h1>
-            <Link to='/'>Kthehu</Link>
-        </div>
+        <Navbar onLogout={handleLogout}/>
         <div className="review-container">
             <h2>Vleresoni Hotelin Tone</h2>
             <p>Sa jeni te kenaqur me sherbimin tone?</p>
