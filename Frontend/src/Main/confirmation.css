@@ -1,0 +1,23 @@
+.confirmation-container {
+    text-align: center;
+    background-color: #2f2f2f;
+    color: #3bb143;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.confirmation-container h1 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.confirmation-container p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.confirmation-image {
+    width: 65%;
+    height: auto;
+    border-radius: 10px;
+}
