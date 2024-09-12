@@ -2,26 +2,42 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const MenaxhoRoom = ({}) => {
   const[data,setData]=useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
 
-  const handleDelete= (id)=>{
-    if(window.confirm("Are you sure you want to remove this Room?")){
-      axios.delete('http://localhost:3002/deleteRoom/'+id)
-      .then(res=>{
-        if(res.data.Status === "Success"){
-          window.location.reload(true)
-          toast.success(res.data.Message);
-        }else{
-          toast.error("Erorr")
+  const handleDelete = (id) => {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axios.delete(`http://localhost:3002/deleteRoom/${id}`)
+                .then(res => {
+                    if (res.data.Status === "Success") {
+                        Swal.fire(
+                            'Deleted!',
+                            res.data.Message,
+                            'success'
+                        ).then(() => {
+                            window.location.reload(true);
+                        });
+                    } else {
+                        toast.error("Error");
+                    }
+                })
+                .catch(err => console.log(err));
         }
-      })
-      .catch(err=>console.log(err))
-    }
-  }
+    });
+};
 
     useEffect(()=>{
       axios.get('http://localhost:3002/getRooms')
@@ -41,7 +57,8 @@ return (
           <h3>Rooms</h3>
       </div>
       <div className="d-flex justify-content-end">
-      <Link to="/shtoRoom" className='btn btn-light'><i class="bi bi-plus"></i>Add New Room</Link>
+      <Link to="/shtoRoom" className='btn btn-light me-2'><i class="bi bi-plus"></i>Add New Room</Link>
+      <Link to="/shtoExcelFile" className='btn btn-light'><i class="bi bi-plus"></i>Import from Excel</Link>
     </div>
       <div className='mt-3'>
       <input
