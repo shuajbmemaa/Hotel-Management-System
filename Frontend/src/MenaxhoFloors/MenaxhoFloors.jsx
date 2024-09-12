@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {toast} from 'react-toastify'
+import Swal from 'sweetalert2';
+
 
 const MenaxhoFloors = () => {
   const [data, setData] = useState([]);
@@ -19,17 +21,35 @@ const MenaxhoFloors = () => {
   }, []);
 
   const handleDelete = (id) => {
-    axios.delete('http://localhost:3002/deleteFloors/' + id)
-      .then(res => {
-        if (res.data.Status === "Success") {
-          window.location.reload(true);
-          toast.success('Floor u fshie me sukses');
-        } else {
-          alert("Error");
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axios.delete(`http://localhost:3002/deleteFloors/${id}`)
+                .then(res => {
+                    if (res.data.Status === "Success") {
+                        Swal.fire(
+                            'Deleted!',
+                            res.data.Message,
+                            'success'
+                        ).then(() => {
+                            window.location.reload(true);
+                        });
+                    } else {
+                        toast.error("Error");
+                    }
+                })
+                .catch(err => console.log(err));
         }
-      })
-      .catch(err => console.log(err));
-  }
+    });
+};
+
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -42,7 +62,8 @@ const MenaxhoFloors = () => {
       </div>
 
       <div className="d-flex justify-content-end">
-        <Link to="/shtoFloors" className='btn btn-success'>Krijo nje floor <i class="bi bi-patch-plus"></i></Link>
+        <Link to="/shtoFloors" className='btn btn-success me-2'>Krijo nje floor <i class="bi bi-patch-plus"></i></Link>
+        <Link to="/importFloors" className='btn btn-success'>Import <i class="bi bi-file-earmark-spreadsheet"></i></Link>
       </div>
       <div className='mt-3'>
         <table className='table'>
