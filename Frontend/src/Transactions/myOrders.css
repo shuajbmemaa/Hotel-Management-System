@@ -1,0 +1,72 @@
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.orders-table th {
+    background-color: #f2f2f2;
+}
+
+.orders-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.status.pending {
+    background-color: #ff9800;
+    /* Portokalli për pending */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Stili për statusin completed (ngjyrë jeshile) */
+.status.completed {
+    background-color: #4CAF50;
+    /* Jeshile për completed */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.status.cancelled {
+    background-color: #f44336;
+    /* Red for cancelled */
+}
+
+/* Stili për ikonat e veprimeve */
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    color: #555;
+}
+
+.action-btn:hover {
+    color: #000;
+}
+
+select {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+select:focus {
+    outline: none;
+    border-color: #007bff;
+}
