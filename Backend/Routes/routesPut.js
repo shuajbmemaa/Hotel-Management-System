@@ -213,4 +213,15 @@ putRoutes.put('/updateHouseKS/:id', (req, res) => {
   })
 })
 
+putRoutes.put('/orders/:id/status', (req, res) => {
+  const orderId = req.params.id;
+  const newStatus = req.body.status;
+
+  db.query('UPDATE booking SET status = ? WHERE id = ?', [newStatus, orderId], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.status(200).send('Status updated successfully');
+  });
+});
+
+
 export default putRoutes;
