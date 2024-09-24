@@ -3,7 +3,8 @@
     justify-content: space-between;
     align-items: center;
     background-color: #87CEEB;
-    padding: 1rem;
+    padding: 0.3rem;
+    gap: 11.5rem;
 }
 
 .navbar h1 {
@@ -215,7 +216,102 @@
 .room-type-image {
     width: 100%;
     height: 100px;
-    /* Vendosni një lartësi fikse për imazhet e dhomave */
     object-fit: cover;
-    /* Sigurohuni që imazhet të përshtaten mirë brenda përmasave të caktuara */
+}
+
+.room-item.sold-out {
+    opacity: 0.5;
+}
+
+.room-item.sold-out .btn {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.hero-section {
+    height: 100vh;
+    background-image: url('http://localhost:3002/images/image_1723975234110.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 20px;
+}
+
+.search-availability {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-availability label {
+    color: white;
+    margin-right: 10px;
+}
+
+.search-availability input,
+.search-availability select {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.search-availability button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hero-section {
+    position: relative;
+    text-align: center;
+}
+
+.hero-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.search-availability {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+}
+
+.room-list-section {
+    padding: 20px;
+}
+
+.room-type-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.room-item {
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.room-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
