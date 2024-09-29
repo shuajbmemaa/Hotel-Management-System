@@ -50,11 +50,20 @@ getRoutes.get('/getProfile/:id', (req, res) => {
     return res.status(200).json({ Status: "Success", Result: result })
   })
 })
+
+getRoutes.get('/getUserProfile/:id', (req, res) => {
+  const id = req.params.id;
+  const sql = "Select name,email,password,img_url,gender,date_of_birth from users where id=?";
+  db.query(sql, [id], (err, result) => {
+    if (err) return res.status(400).json(err)
+    return res.status(200).json({ Status: "Success", Result: result })
+  })
+})
 getRoutes.get('/getAmenties/:id', (req, res) => {
   const id = req.params.id;
   const sql = "Select name,description from amenties where id=?";
   db.query(sql, [id], (err, result) => {
-    if (err) return res.status(400).json({ message: "Gabim" })
+    if (err) return res.status(400).json(err)
     return res.status(200).json({ Status: "Success", Result: result })
   })
 })
@@ -94,9 +103,9 @@ getRoutes.get('/getHallTypes', (req, res) => {
 })
 
 getRoutes.get('/getRoomT', (req, res) => {
-  const sql = "Select room_types.id,room_types.title,room_types.short_code,amenties.name as amentie,room_types.image from room_types inner join amenties on amenties.id=room_types.amenties_id";
+  const sql = "Select room_types.id,room_types.title,room_types.short_code,amenties.name as amentie,room_types.image,room_types.base_occupancy,room_types.higher_occupancy,room_types.kids,room_types.base_price from room_types inner join amenties on amenties.id=room_types.amenties_id";
   db.query(sql, (err, result) => {
-    if (err) return res.status(400).json({ message: "Gabim" })
+    if (err) return res.status(400).json(err)
     return res.status(200).json({ Status: "Success", Result: result })
   })
 })
@@ -123,7 +132,7 @@ getRoutes.get('/getRooms', (req, res) => {
 
 getRoutes.get('/getRoomT/:id', (req, res) => {
   const id = req.params.id;
-  const sql = "Select title,short_code,base_occupancy,higher_occupancy,extra_bed,kids,amenties_id,base_price,extra_bed_price from room_types where id=?";
+  const sql = "Select title,short_code,base_occupancy,higher_occupancy,extra_bed,kids,amenties_id,base_price,extra_bed_price,image from room_types where id=?";
   db.query(sql, [id], (err, result) => {
     if (err) return res.status(400).json({ message: "Gabim" })
     return res.status(200).json({ Status: "Success", Result: result })
@@ -231,6 +240,194 @@ getRoutes.get('/review', async (req, res) => {
   }
 });
 
+getRoutes.get('/orders', (req, res) => {
+  const sql = `Select booking.id,users.name as username,room_types.title as room,
+              booking.name,booking.email,booking.nights,booking.total,
+              booking.checkIn,booking.checkOut,booking.status
+              from users INNER JOIN booking ON users.id=booking.userId
+              INNER JOIN room_types ON booking.room_id=room_types.id
+  `;
+  db.query(sql, (err, result) => {
+    if (err) return res.status(400).json(err)
+    return res.status(200).json({ Status: "Success", Result: result })
+  })
+})
+
+getRoutes.get('/bookingsC', async (req, res) => {
+  try {
+    const sql = "SELECT room_id, name, checkIn, checkOut FROM booking";
+    db.query(sql, (err, result) => {
+      if (err) {
+        return res.status(400).json({ error: err.message });
+      }
+      return res.status(200).json({ Status: "Success", Result: result })
+    });
+  } catch (error) {
+    console.error('Error fetching bookings:', error);
+    res.status(500).send('Error fetching bookings');
+  }
+})
+
+getRoutes.get('/getServicesForRoom/:roomId', (req, res) => {
+  const roomId = req.params.roomId;
+  const query = "SELECT * FROM service WHERE room_type_id = ?";
+  db.query(query, [roomId], (err, result) => {
+    if (err) {
+      return res.status(500).json({ Status: "Error", Error: err });
+    }
+    res.json({ Status: "Success", Result: result });
+  });
+});
+
+getRoutes.get('/getRoomNumber/:roomId', (req, res) => {
+  const roomId = req.params.roomId;
+  const query = "SELECT * FROM room WHERE room_type_id = ?";
+  db.query(query, [roomId], (err, result) => {
+    if (err) {
+      return res.status(500).json({ Status: "Error", Error: err });
+    }
+    res.json({ Status: "Success", Result: result });
+  });
+});
+
+getRoutes.get('/myorders/:user_id', (req, res) => {
+  const userId = req.params.user_id;
+  const sql = "SELECT * FROM booking WHERE userId = ?";
+
+  db.query(sql, [userId], (err, results) => {
+    if (err) {
+      console.log(err);
+      res.status(500).json({ status: 'Error', err });
+    } else {
+      res.status(200).json({ status: 'Success', Result: results });
+    }
+  });
+});
+
+getRoutes.get('/getBookingStatus', (req, res) => {
+  const pendingStatus = "Select COUNT(*) as count from booking where status = 'pending'";
+  const completedStatus = "Select COUNT(*) as count from booking where status = 'completed'";
+  const cancelledStatus = "Select COUNT(*) as count from booking where status = 'cancelled'";
+
+  const statusCount = {};
+
+  db.query(pendingStatus, (err, result) => {
+    if (err) return res.status(400).json(err);
+    statusCount.pending = result[0].count;
+
+    db.query(completedStatus, (err, result) => {
+      if (err) return res.status(400).json(err);
+      statusCount.completed = result[0].count
+
+      db.query(cancelledStatus, (err, result) => {
+        if (err) return res.status(400).json(err);
+        statusCount.cancelled = result[0].count
+
+        return res.status(200).json({ Status: "Success", Result: statusCount });
+
+      })
+    })
+  })
+})
+
+getRoutes.get('/getUserCounts', (req, res) => {
+  const sqlUsers = "SELECT COUNT(*) AS count FROM users WHERE role = 'user'";
+  const sqlAdmins = "SELECT COUNT(*) AS count FROM users WHERE role = 'admin'";
+  const sqlEmployees = "SELECT COUNT(*) AS count FROM users WHERE role = 'employee'";
+
+  const userCounts = {};
+
+  db.query(sqlUsers, (err, result) => {
+    if (err) return res.status(400).json(err);
+    userCounts.users = result[0].count;
+
+    db.query(sqlAdmins, (err, result) => {
+      if (err) return res.status(400).json(err);
+      userCounts.admins = result[0].count;
+
+      db.query(sqlEmployees, (err, result) => {
+        if (err) return res.status(400).json(err);
+        userCounts.employees = result[0].count;
+
+        return res.status(200).json({ Status: "Success", Result: userCounts });
+      });
+    });
+  });
+});
+
+getRoutes.get('/getTopServices', (req, res) => {
+  const sql = "SELECT title, price FROM service ORDER BY price DESC LIMIT 5";
+  db.query(sql, (err, result) => {
+    if (err) return res.status(400).json(err);
+    return res.status(200).json({ Status: "Success", Result: result });
+  });
+});
+
+getRoutes.get('/getMonthlyBookings', (req, res) => {
+  const sql = `
+      SELECT MONTHNAME(checkIn) AS month, COUNT(*) AS bookings
+      FROM booking
+      GROUP BY MONTH(checkIn)
+      ORDER BY MONTH(checkIn);
+  `;
+
+  db.query(sql, (err, result) => {
+    if (err) return res.status(400).json(err);
+    return res.status(200).json({ Status: "Success", Result: result });
+  });
+});
+
+getRoutes.get('/getBookingsWeeklyComparison', (req, res) => {
+  const sql = `
+      SELECT 
+          WEEK(checkIn, 1) AS week,
+          COUNT(*) AS bookings,
+          IF(MONTH(checkIn) = MONTH(CURRENT_DATE()), 'current', 'previous') AS period
+      FROM booking
+      WHERE checkIn >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+      GROUP BY period, week
+      ORDER BY period DESC, week;
+  `;
+
+  db.query(sql, (err, result) => {
+    if (err) return res.status(400).json(err);
+    return res.status(200).json({ Status: "Success", Result: result });
+  });
+});
+
+getRoutes.get('/getRoomCount', (req, res) => {
+  const sql = "SELECT COUNT(*) AS count FROM room_types";
+  db.query(sql, (err, result) => {
+    if (err) return res.status(400).json(err);
+    return res.status(200).json({ Status: "Success", count: result[0].count });
+  });
+});
+
+getRoutes.get('/getHallCount', (req, res) => {
+  const sql = "SELECT COUNT(*) AS hallcount FROM hall_type";
+  db.query(sql, (err, result) => {
+    if (err) return res.status(400).json(err);
+    return res.status(200).json({ Status: "Success", count: result[0].hallcount });
+  });
+});
+
+getRoutes.get('/getServiceCount', (req, res) => {
+  const sql = "SELECT COUNT(*) AS serviceCount FROM service";
+  db.query(sql, (err, result) => {
+    if (err) return res.status(400).json(err);
+    return res.status(200).json({ Status: "Success", count: result[0].serviceCount });
+  });
+});
+
+getRoutes.get('/getReviewCount', async (req, res) => {
+  try {
+    const reviews = await Review.countDocuments();
+    res.json(reviews);
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    res.status(500).json({ error: 'Error fetching reviews' });
+  }
+});
 
 export default getRoutes;
 
