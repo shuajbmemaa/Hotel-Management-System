@@ -4,7 +4,7 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import Home from './Home'
 import Dashboard from './Dashboard'
-import Error from './Error'
+import Error from './Error/Error'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import LoginRegister from './Auth/LoginRegister'
@@ -46,6 +46,19 @@ import AboutUs from './Main/AboutUs'
 import Dhomat from './Main/Dhomat'
 import Review from './Main/Review'
 import GuestReview from './GuestReview'
+//import ImportExcel from './MenaxhoFloors/ImportFloors'
+import ImportFloors from './MenaxhoFloors/ImportFloors'
+import ImportFromExcel from './MenaxhoRoom/ImportFromExcel'
+import ForgotPassword from './ForgotPassword/ForgotPassword'
+import Booking from './Main/Booking'
+import Success from './Main/Success'
+import Orders from './Transactions/Orders'
+import ResetPassword from './ForgotPassword/ResetPassword'
+import MyCalendar from './Schedule/MyCalendar'
+import MyOrders from './Transactions/MyOrders'
+import ImportServicesJson from './Service/ImportServicesJson'
+import UserProfile from './Profile/UserProfile'
+import EditUserProfile from './Profile/EditUserProfile'
 //import Employee from './Employee/Employee'
 
 function App() {
@@ -79,6 +92,7 @@ function App() {
         <Route path='/menaxhoFloors' element={<MenaxhoFloors/>}></Route>
         <Route path='/shtoFloors' element={<InsertFloors/>}></Route>
         <Route path='/updateFloors/:id' element={<UpdateFloors/>}></Route>
+        <Route path='/importFloors' element={<ImportFloors/>}></Route>
 
         <Route path='/hall-types' element={<HallTypes/>}></Route>
         <Route path='/insertHallTypes' element={<ShtoHallTypes/>}></Route>
@@ -91,6 +105,7 @@ function App() {
         <Route path='/menaxhoRoom' element={<MenaxhoRoom/>}></Route>
         <Route path='/shtoRoom' element={<InsertRoom/>}></Route>
         <Route path='/updateRoom/:id' element={<UpdateRoom/>}></Route>
+        <Route path='/shtoExcelFile' element={<ImportFromExcel/>}></Route>
 
         <Route path='/halls' element={<Hall/>}></Route>
         <Route path='/shtoHalls' element={<ShtoHall/>}></Route>
@@ -99,7 +114,7 @@ function App() {
         <Route path='/service' element={<Service/>}></Route>
         <Route path='/shtoService' element={<ShtoService/>}></Route>
         <Route path='/updateService/:id' element={<UpdateService/>}></Route>
-
+        <Route path='/importServices' element={<ImportServicesJson/>}></Route>
 
         <Route path='/profile' element={<ProfilePage/>}></Route>
         <Route path='/editProfile/:id' element={<EditProfile/>}></Route>
@@ -112,6 +127,8 @@ function App() {
         <Route path='/insertHouseKeeping' element={<InsertHouseKeeping/>}></Route>
 
         <Route path='/guestReviews' element={<GuestReview/>}></Route>
+        <Route path='/orders' element={<Orders/>}></Route>
+        <Route path='/calendar' element={<MyCalendar/>}></Route>
         </>
       )}
       </Route>
@@ -129,10 +146,17 @@ function App() {
         <Route path='/aboutUs' element={<AboutUs/>}></Route>
         <Route path='/rooms' element={<Dhomat/>}></Route>
         <Route path='/review' element={<Review/>}></Route>
+        <Route path='/myOrders' element={<MyOrders/>}></Route>
+        <Route path={`/book/:roomId`} element={<Booking/>}></Route>
+        <Route path='/userProfile' element={<UserProfile/>}></Route>
+        <Route path='/editUserProfile/:id' element={<EditUserProfile/>}></Route>
         </>
       )}
 
-       <Route path='/login' element={<LoginRegister/>}></Route> 
+       <Route path='/login' element={<LoginRegister/>}></Route>
+       <Route path='/forgot-password' element={<ForgotPassword/>}></Route>
+       <Route path='/reset-password/:token' element={<ResetPassword />}></Route>
+       <Route path='/success' element={<Success/>}></Route>
       <Route path='*' element={<Error/>}></Route>
     </Routes>
     </BrowserRouter>
