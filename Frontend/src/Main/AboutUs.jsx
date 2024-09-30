@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FaHotel, FaConciergeBell, FaMapMarkerAlt } from 'react-icons/fa';
+import Navbar from '../Layout/Navbar';
 
 const Container = styled.div`
     padding: 40px 20px;
@@ -16,24 +17,6 @@ const Container = styled.div`
     color: #2c3e50;
 `;
 
-
-
-const Navbar = styled.div`
-    width: 100%;
-    padding: 20px;
-    background-color: #87CEEB;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-    h1 {
-        margin: 0;
-        font-size: 2em;
-        font-family: 'Georgia', serif;
-    }
-`;
 
 const StyledLink = styled(Link)`
     text-decoration: none;
@@ -114,10 +97,7 @@ const IconBox = styled.div`
 const AboutUs = () => {
     return (
         <>
-            <Navbar>
-                <h1>Lotus</h1>
-                <StyledLink to='/'>Kthehu</StyledLink>
-            </Navbar>
+            <Navbar/>
             <Container>
                 <Title>Rreth Nesh</Title>
                 <Image src="https://miro.medium.com/v2/resize:fit:2000/1*cfuAGisqyGTvlGVaaEMVzw.png" alt="Hotel Lotus" />
