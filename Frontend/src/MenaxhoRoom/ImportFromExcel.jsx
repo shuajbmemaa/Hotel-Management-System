@@ -26,9 +26,10 @@ const ImportFromExcel = () => {
 
         axios.post('http://localhost:3002/importDataToRooms', { data: excelData })
           .then(res => {
-            console.log(res.data);
-            toast.success('Te dhenat u importuan me sukses nga Excel file.');
-            navigate('/menaxhoRoom');
+            if (res.status === 200) {
+              toast.success('Te dhenat u importuan me sukses nga Excel file.');
+              navigate('/menaxhoRoom');
+            }
           })
           .catch(err => {
             console.error('Error uploading data:', err);
