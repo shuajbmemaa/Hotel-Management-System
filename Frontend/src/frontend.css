@@ -315,3 +315,46 @@
     height: auto;
     border-radius: 8px;
 }
+
+.team-section {
+    text-align: center;
+    padding: 40px;
+}
+
+.team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.team-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    width: 250px;
+    transition: transform 0.2s;
+}
+
+.team-card:hover {
+    transform: scale(1.05);
+}
+
+.team-photo {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.team-card h3 {
+    margin: 15px 0 5px;
+    font-size: 1.2em;
+}
+
+.team-card p {
+    color: #777;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}

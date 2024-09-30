@@ -230,6 +230,14 @@ getRoutes.get('/getEmployee', (req, res) => {
   })
 })
 
+getRoutes.get('/getAdminData', (req, res) => {
+  const sql = "Select name,img_url from users where role ='admin'";
+  db.query(sql, (err, result) => {
+    if (err) return res.status(400).json(err)
+    return res.status(200).json({ Status: "Success", Result: result })
+  })
+})
+
 getRoutes.get('/review', async (req, res) => {
   try {
     const reviews = await Review.find();
