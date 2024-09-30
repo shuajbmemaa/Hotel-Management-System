@@ -392,7 +392,8 @@ getRoutes.get('/getBookingsWeeklyComparison', (req, res) => {
           COUNT(*) AS bookings,
           IF(MONTH(checkIn) = MONTH(CURRENT_DATE()), 'current', 'previous') AS period
       FROM booking
-      WHERE checkIn >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+      WHERE checkIn >= DATE_SUB(CURRENT_DATE(), INTERVAL 2 MONTH)
+      AND (MONTH(checkIn) = MONTH(CURRENT_DATE()) OR MONTH(checkIn) = MONTH(DATE_SUB(CURRENT_DATE(), INTERVAL 1 MONTH)))
       GROUP BY period, week
       ORDER BY period DESC, week;
   `;
