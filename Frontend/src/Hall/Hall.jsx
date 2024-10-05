@@ -6,9 +6,11 @@ import Swal from 'sweetalert2';
 
 const Hall = () => {
 
-  const[halls,setHalls]=useState([]);
+  const [halls,setHalls]=useState([]);
   const [kerkoSipasFloors,setKerkoSipasFloors]=useState('');
   const [kerkoSipasHallNumber,setKerkoSipasHallNumber]=useState('');
+  const [hallTypes, setHallTypes] = useState([]);
+  const [selectedHallType, setSelectedHallType] = useState('');
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -31,7 +33,6 @@ const Hall = () => {
                         ).then(() => {
                             window.location.reload(true);
                         });
-                        //toast.success(res.data.Message);
                     } else {
                         toast.error("Error");
                     }
@@ -52,7 +53,22 @@ const Hall = () => {
     }).catch(err=>console.log(err))
   })
 
+  useEffect(() => {
+    axios.get('http://localhost:3002/getHallTypes')
+      .then(res => {
+        if (res.data.Status === "Success") {
+          setHallTypes(res.data.Result);
+        } else {
+          toast.error("Gabim");
+        }
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+  const uniqueHallTypes =[... new Set(halls.map(hall => hall.halltype))]
+
   const search=halls.filter(searchFilter=>
+          (selectedHallType === '' || searchFilter.halltype === selectedHallType) &&
           searchFilter.emri.toString().toLowerCase().includes(kerkoSipasFloors.toLowerCase())&&
           searchFilter.hall_number.toString().toLowerCase().includes(kerkoSipasHallNumber.toLowerCase())
       );
@@ -80,6 +96,16 @@ const Hall = () => {
           value={kerkoSipasHallNumber}
           onChange={(e) => setKerkoSipasHallNumber(e.target.value)}
         />
+        <select
+          className="form-control mb-3"
+          value={selectedHallType}
+          onChange={(e) => setSelectedHallType(e.target.value)}
+        >
+          <option value=''>Choose Hall Type</option>
+          {uniqueHallTypes.map((hallType, index) => (
+            <option key={index} value={hallType}>{hallType}</option>
+          ))}
+        </select>
           <table className='table mt-3'>
               <thead>
                 <tr>
