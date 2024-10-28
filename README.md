@@ -21,13 +21,21 @@ These charts provide administrators with a visual overview, helping them make mo
 ## Installation and Setup
 To run the project on your local environment, follow these steps:
 
-1. Clone the Project:
-git clone https://github.com/shuajbmemaa/Hotel-Management-System.git
+1. Clone the project:<br />
+git clone https://github.com/shuajbmemaa/Hotel-Management-System.git <br />
 cd hotel-management-system
-2. Install Backend Packages:
-   cd backend
-   npm install
-4. Database Setup: Create the necessary databases in MySQL and MongoDB.
-5. Install Frontend Packages:
-   cd frontend
-   npm install
+
+2. Install Backend Packages:<br />
+cd backend <br />
+npm install
+
+3. Database Setup: Create the necessary databases in MySQL and MongoDB.
+
+4. Install Frontend Packages:<br />
+cd frontend <br />
+npm install
+
+5. Run the Project:<br/>
+Backend: npm start <br />
+Frontend: npm run dev
+
