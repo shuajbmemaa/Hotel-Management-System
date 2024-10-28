@@ -22,22 +22,22 @@ These charts provide administrators with a visual overview, helping them make mo
 To run the project on your local environment, follow these steps:
 
 1. Clone the project:<br />
-git clone https://github.com/shuajbmemaa/Hotel-Management-System.git <br />
-cd hotel-management-system
+**git clone** https://github.com/shuajbmemaa/Hotel-Management-System.git <br />
+**cd hotel-management-system**
 
 2. Install Backend Packages:<br />
-cd backend <br />
-npm install
+**cd backend** <br />
+**npm install**
 
-3. Database Setup: Create the necessary databases in MySQL and MongoDB.
+3. Database Setup: Create the necessary databases in **MySQL** and **MongoDB**.
 
 4. Install Frontend Packages:<br />
-cd frontend <br />
-npm install
+**cd frontend** <br />
+**npm install**
 
 5. Run the Project:<br/>
-Backend: npm start <br />
-Frontend: npm run dev
+**Backend**: npm start <br />
+**Frontend**: npm run dev
 
 ## Core Features
 The system's core features include:
@@ -66,7 +66,7 @@ The system's core features include:
 ## Forgot Password
 ![image](https://github.com/user-attachments/assets/73a5a434-55ae-4b36-a2c5-67c33dbaadad)
 
-## Admin Dashbord
+## Admin Dashboard
 ![image](https://github.com/user-attachments/assets/91a4c251-4c5b-4a09-b96c-4d52a0023242)
 ![image](https://github.com/user-attachments/assets/20ce2748-e985-423b-a849-bdc55fd5eac8)
 ![image](https://github.com/user-attachments/assets/f72b0bbe-19d5-461f-852d-a2b9b867179a)
