@@ -1,3 +1,5 @@
+## Overview
+
 The Hotel Management System is a web platform designed to manage hotel operations.
 The application includes features like user registration and authentication, booking management, room management, payment processing for bookings and services, as well as guest feedback management.
 The system supports different roles, such as hotel administrators, registered users, and employees, providing each with a personalized interface.
@@ -15,3 +17,17 @@ The system is flexible and scalable, supporting additional features like analyti
 Within the admin dashboard, the system also offers detailed statistics displayed through charts, helping monitor hotel performance.
 These statistics can include monthly booking counts, most-used services, revenue from bookings and services, and room occupancy rates.
 These charts provide administrators with a visual overview, helping them make more informed decisions and optimize hotel resource management.
+
+## Installation and Setup
+To run the project on your local environment, follow these steps:
+
+1. Clone the Project:
+git clone https://github.com/shuajbmemaa/Hotel-Management-System.git
+cd hotel-management-system
+2. Install Backend Packages:
+   cd backend
+   npm install
+4. Database Setup: Create the necessary databases in MySQL and MongoDB.
+5. Install Frontend Packages:
+   cd frontend
+   npm install
