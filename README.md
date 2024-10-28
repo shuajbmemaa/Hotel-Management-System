@@ -39,6 +39,24 @@ npm install
 Backend: npm start <br />
 Frontend: npm run dev
 
+## Core Features
+The system's core features include:
+
+- **Booking Management**: Make and manage room bookings.
+- **Room Management**: Add, modify, and manage room information.
+- **Payments**: Use Stripe to process payments.
+- **User Management**: Users with different roles have personalized access.
+- **Guest Feedback**: Users can leave comments on services.
+- **Chat AutoResponse**: The system provides automated responses to common user queries via a chat feature.
+- **User Authentication and Authorization**: Users are authenticated and authorized to access various features based on their roles.
+- **Forgot and Reset Password**: Users can recover their password if forgotten.
+- **Real-Time Room Availability**: View and manage room availability in real time.
+- **Payment Integration**: Use Stripe for secure and fast payments.
+- **Admin Dashboard**: An administrative panel for managing and supervising system functionalities.
+- **Advanced Search and Filtering**: Enables searching and filtering of room and booking information.
+- **Data Import and Export**: Allows importing and exporting data to and from the system.
+- **Availability Calendar**: View and manage room availability over different periods through a visual calendar.
+
 ## Login
 ![image](https://github.com/user-attachments/assets/c43f9744-9edd-4056-83ad-ddb303402731)
 
@@ -86,6 +104,4 @@ Frontend: npm run dev
 
 ## Ratings
 ![image](https://github.com/user-attachments/assets/fcab96b7-b829-463a-b157-a8a1a3c61a4d)
-
-
 
